@@ -253,6 +253,14 @@ export const fr = {
           items: [] as string[],
         },
         {
+          icon: "dashboard",
+          title: "Création de systèmes de gestion d'entreprise",
+          badge: null,
+          description:
+            "Des outils sur mesure pour gérer vos ventes, vos stocks, votre facturation, votre personnel et vos clients, depuis un seul espace.",
+          items: [],
+        },
+        {
           icon: "video",
           title: "Réalisation de vidéos publicitaires",
           badge: null,
