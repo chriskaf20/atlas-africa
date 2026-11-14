@@ -10,6 +10,8 @@ type MediaProps = {
   title: string;
   caption: string;
   kind?: "image" | "video";
+  /** Image affichée avant la lecture de la vidéo. */
+  poster?: string | null;
   /** Classe de proportions, ex. "aspect-[16/10]". */
   ratio?: string;
   /** Indication de largeur pour le chargement adaptatif des images. */
@@ -27,6 +29,7 @@ export function Media({
   title,
   caption,
   kind = "image",
+  poster,
   ratio = "aspect-[16/10]",
   sizes = "(min-width: 1024px) 50vw, 100vw",
   className,
@@ -38,9 +41,10 @@ export function Media({
           src={src}
           controls
           preload="none"
+          poster={poster ?? undefined}
           playsInline
           aria-label={alt}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-contain"
         />
       </div>
     );

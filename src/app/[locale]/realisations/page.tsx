@@ -80,13 +80,26 @@ function CaseSection({
             </ButtonLink>
           </Reveal>
           <Reveal delay={120}>
-            <Media
-              src={study.image}
-              alt={study.imageAlt}
-              title={study.name}
-              caption={common.mediaSoon}
-              sizes="(min-width: 1024px) 50vw, 100vw"
-            />
+            {study.video ? (
+              <Media
+                src={study.video}
+                kind="video"
+                poster={study.videoPoster}
+                alt={study.videoLabel}
+                title={study.name}
+                caption={common.videoSoon}
+                ratio="aspect-[9/16]"
+                className="mx-auto w-full max-w-[19rem] border border-line shadow-[0_30px_60px_-30px_rgb(6_18_46/0.45)]"
+              />
+            ) : (
+              <Media
+                src={study.image}
+                alt={study.imageAlt}
+                title={study.name}
+                caption={common.mediaSoon}
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
+            )}
           </Reveal>
         </div>
 
@@ -135,6 +148,7 @@ function CaseSection({
                 <Media
                   src={ads.video}
                   kind="video"
+                  poster={ads.videoPoster}
                   alt={ads.videoCaption}
                   title={ads.videoTitle}
                   caption={ads.videoCaption}

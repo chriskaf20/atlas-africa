@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Icon } from "@/components/ui/Icon";
+import { Media } from "@/components/ui/Media";
 import { Reveal } from "@/components/ui/Reveal";
 import { Eyebrow } from "@/components/ui/SectionHeading";
 import { getContent, type Pole, type PoleService } from "@/content";
@@ -176,6 +177,38 @@ export default async function ServicesPage({ params }: LocaleParams) {
                     href={contactHref(locale, pole.featured.serviceValue)}
                   />
                 </Reveal>
+              ) : null}
+              {pole.showcase ? (
+                <div className="sm:col-span-2">
+                  <h3 className="mt-6 font-display text-xl font-semibold text-navy-900">{pole.showcase.title}</h3>
+                  <p className="mt-2 text-muted">{pole.showcase.intro}</p>
+                  {/* 3.16fr / 1fr : la vidéo horizontale et la verticale ont la même hauteur. */}
+                  <ul className="mt-6 grid gap-5 sm:grid-cols-[3.16fr_1fr] sm:items-start">
+                    {pole.showcase.items.map((item) => (
+                      <Reveal as="li" key={item.src}>
+                        <figure>
+                          <Media
+                            src={item.src}
+                            kind="video"
+                            poster={item.poster}
+                            alt={item.caption}
+                            title={item.title}
+                            caption={item.caption}
+                            ratio={item.orientation === "portrait" ? "aspect-[9/16]" : "aspect-video"}
+                            className={cn(
+                              "border border-line",
+                              item.orientation === "portrait" && "mx-auto max-w-[14rem] sm:max-w-none",
+                            )}
+                          />
+                          <figcaption className="mt-3 text-sm text-muted">
+                            <span className="font-display font-semibold text-navy-900">{item.title}</span>
+                            <span className="sm:hidden lg:inline"> — {item.caption}</span>
+                          </figcaption>
+                        </figure>
+                      </Reveal>
+                    ))}
+                  </ul>
+                </div>
               ) : null}
             </div>
           </Container>

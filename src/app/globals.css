@@ -123,6 +123,124 @@
   animation: pulse-ring 2.8s var(--ease-out-soft) infinite;
 }
 
+/* ───────────── Hero : motion design ─────────────
+   Animations CSS seules (aucun JavaScript). Chaque élément reçoit son délai
+   par la variable --d. Tout est neutralisé si l'utilisateur préfère moins
+   d'animations (voir plus bas). */
+@keyframes hero-up {
+  from { opacity: 0; transform: translate3d(0, 24px, 0); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes hero-word {
+  from { transform: translate3d(0, 110%, 0) rotate(4deg); }
+  to { transform: none; }
+}
+@keyframes hero-line {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes hero-fade {
+  from { opacity: 0; }
+}
+@keyframes hero-map {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes hero-float {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -10px, 0); }
+}
+@keyframes hero-drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-8%, 10%, 0) scale(1.15); }
+}
+@keyframes hero-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(12%, -8%, 0) scale(1.2); }
+}
+@keyframes hero-grid {
+  to { background-position: 56px 56px; }
+}
+@keyframes hero-live {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+.hero-up {
+  animation: hero-up 0.9s var(--ease-out-soft) var(--d, 0ms) both;
+}
+.hero-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  /* Laisse la place aux jambages et accents malgré le masque. */
+  padding-block: 0.08em;
+  margin-block: -0.08em;
+}
+.hero-word > span {
+  display: inline-block;
+  transform-origin: left bottom;
+  animation: hero-word 0.85s var(--ease-out-soft) var(--d, 0ms) both;
+}
+.hero-line {
+  transform-origin: left;
+  animation: hero-line 0.9s var(--ease-out-soft) var(--d, 0ms) both;
+}
+.hero-fade {
+  animation: hero-fade 1.6s ease-out 0.2s both;
+}
+.hero-map {
+  animation: hero-map 1.4s var(--ease-out-soft) 0.35s both;
+}
+.hero-float {
+  animation: hero-float 7s ease-in-out 2.4s infinite;
+}
+.hero-live {
+  animation: hero-live 1.6s ease-in-out infinite;
+}
+.hero-glow {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  will-change: transform;
+}
+.hero-glow-a {
+  right: -10%;
+  top: -25%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 46rem;
+  max-height: 46rem;
+  background: rgb(44 74 143 / 0.75);
+  animation: hero-drift-a 16s ease-in-out infinite;
+}
+.hero-glow-b {
+  left: -15%;
+  bottom: -30%;
+  width: 45vw;
+  height: 45vw;
+  max-width: 34rem;
+  max-height: 34rem;
+  background: rgb(201 161 59 / 0.16);
+  animation: hero-drift-b 20s ease-in-out infinite;
+}
+.hero-grid {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(90% 80% at 70% 20%, #000 0%, transparent 75%);
+  animation: hero-grid 14s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero *,
+  .hero-glow,
+  .hero-grid {
+    animation: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

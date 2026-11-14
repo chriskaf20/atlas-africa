@@ -121,6 +121,18 @@ export const fr = {
           ],
         },
       ],
+      /** Vidéos et visuels présentés sous les services du pôle. */
+      showcase: null as null | {
+        title: string;
+        intro: string;
+        items: {
+          src: string;
+          poster: string;
+          title: string;
+          caption: string;
+          orientation: "landscape" | "portrait";
+        }[];
+      },
       featured: null as null | {
         eyebrow: string;
         title: string;
@@ -178,6 +190,7 @@ export const fr = {
           ],
         },
       ],
+      showcase: null,
       featured: null,
     },
     {
@@ -233,6 +246,7 @@ export const fr = {
           ],
         },
       ],
+      showcase: null,
       featured: null,
     },
     {
@@ -283,6 +297,26 @@ export const fr = {
           items: [],
         },
       ],
+      showcase: {
+        title: "Nos créations en vidéo",
+        intro: "Deux films réalisés par notre équipe pour des projets menés à Lubumbashi.",
+        items: [
+          {
+            src: "/media/led-atlas.mp4",
+            poster: "/media/led-atlas-poster.jpg",
+            title: "LED Atlas",
+            caption: "Film de présentation du réseau d'écrans LED",
+            orientation: "landscape" as const,
+          },
+          {
+            src: "/media/zando-yetu.mp4",
+            poster: "/media/zando-yetu-poster.jpg",
+            title: "Zando Yeto",
+            caption: "Vidéo de lancement de la boutique en ligne",
+            orientation: "portrait" as const,
+          },
+        ],
+      },
       featured: {
         eyebrow: "Offre clé en main",
         title: "Suivi mensuel et accompagnement complet",
@@ -345,7 +379,11 @@ export const fr = {
       headline: "Une marque de mode, visible et vendue en ligne.",
       summary:
         "Site e-commerce, vidéo et campagnes publicitaires : un dispositif complet pour présenter les collections et vendre en ligne.",
-      image: null as string | null,
+      image: "/media/zando-yetu-card.jpg" as string | null,
+      /** Vidéo de présentation (format vertical) et son image d'attente. */
+      video: "/media/zando-yetu.mp4" as string | null,
+      videoPoster: "/media/zando-yetu-poster.jpg" as string | null,
+      videoLabel: "Vidéo de lancement Zando Yeto",
       imageAlt: "Aperçu du site e-commerce Zando Yeto",
       deliverablesTitle: "Ce que nous avons réalisé",
       deliverables: [
@@ -385,6 +423,7 @@ export const fr = {
         visibility: { value: string; label: string }[];
         videoTitle: string;
         video: string | null;
+        videoPoster: string | null;
         videoCaption: string;
       },
     },
@@ -396,7 +435,10 @@ export const fr = {
       headline: "Un réseau d'écrans publicitaires LED à Lubumbashi.",
       summary:
         "Des écrans LED installés à Lubumbashi pour diffuser les messages des annonceurs, en images et en mouvement.",
-      image: null,
+      image: "/media/led-atlas-poster.jpg",
+      video: null,
+      videoPoster: null,
+      videoLabel: "",
       imageAlt: "Écran publicitaire LED Atlas à Lubumbashi",
       deliverablesTitle: "Le dispositif",
       deliverables: [
@@ -444,7 +486,8 @@ export const fr = {
           { value: "—", label: "Plage horaire de diffusion" },
         ],
         videoTitle: "Vidéo de démonstration",
-        video: null,
+        video: "/media/led-atlas.mp4",
+        videoPoster: "/media/led-atlas-poster.jpg",
         videoCaption: "Découvrez le rendu des écrans en situation.",
       },
     },
@@ -461,6 +504,14 @@ export const fr = {
       mapAlt: "Carte de l'Afrique, la RDC et Lubumbashi mis en évidence",
       mapLabel: "Lubumbashi",
       mapSublabel: "Haut-Katanga · RDC",
+      /** Courte boucle vidéo muette affichée dans le hero. */
+      video: {
+        src: "/media/hero-loop.mp4",
+        poster: "/media/hero-loop.jpg",
+        label: "LED Atlas",
+        caption: "Notre réseau d'écrans à Lubumbashi",
+        alt: "Animation : un écran publicitaire LED Atlas dans la ville, de jour puis de nuit",
+      },
       highlights: [
         { title: "Quatre pôles", text: "complémentaires" },
         { title: "Un interlocuteur", text: "pour tout votre projet" },
