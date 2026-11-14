@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+/* ───────────── Identité visuelle ───────────── */
+@theme inline {
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-heading), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@theme static {
+  /* Bleu marine — couleur principale */
+  --color-navy-950: #06122e;
+  --color-navy-900: #0b1f4b;
+  --color-navy-800: #12295f;
+  --color-navy-700: #1b3776;
+  --color-navy-600: #2c4a8f;
+
+  /* Or — accent. Sur fond clair, n'utiliser que gold-700 pour du texte. */
+  --color-gold-200: #f0dfb4;
+  --color-gold-300: #e3c988;
+  --color-gold-400: #d6b45c;
+  --color-gold-500: #c9a13b;
+  --color-gold-600: #a9842b;
+  --color-gold-700: #86651a;
+
+  /* Neutres */
+  --color-mist: #f5f6f9;
+  --color-ink: #1a2542;
+  --color-muted: #4a5573;
+  --color-line: #e3e6ee;
+
+  --color-whatsapp: #17964a;
+
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: #fff;
+    color: var(--color-ink);
+    font-family: var(--font-body), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 1rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-gold-300);
+    color: var(--color-navy-950);
+  }
+
+  /* Navigation au clavier : contour net, adapté au fond. */
+  :focus-visible {
+    outline: 2px solid var(--color-navy-900);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .on-dark :focus-visible,
+  .on-dark:focus-visible {
+    outline-color: var(--color-gold-300);
+  }
+}
+
+/* ───────────── Apparition au défilement ─────────────
+   Le contenu est visible par défaut. Le composant <Reveal> masque, après
+   chargement, les blocs situés sous l'écran, puis les révèle à leur entrée. */
+.reveal[data-reveal="hidden"] {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+}
+
+.reveal[data-reveal="shown"] {
+  transition:
+    opacity 0.8s var(--ease-out-soft),
+    transform 0.8s var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* ───────────── Motifs décoratifs ───────────── */
+.pattern-lines {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgb(201 161 59 / 0.09) 0,
+    rgb(201 161 59 / 0.09) 1px,
+    transparent 1px,
+    transparent 14px
+  );
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+.pulse-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulse-ring 2.8s var(--ease-out-soft) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal[data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .pulse-ring {
+    animation: none;
+    opacity: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
