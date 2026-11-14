@@ -100,10 +100,23 @@ export function HeaderNav({ items, cta, labels }: HeaderNavProps) {
         {open ? <X aria-hidden="true" size={26} /> : <Menu aria-hidden="true" size={26} />}
       </button>
 
+      {/* Voile derrière le menu : un toucher en dehors le referme. */}
+      <div
+        aria-hidden="true"
+        onClick={() => setOpen(false)}
+        className={cn(
+          "absolute inset-x-0 top-full h-[100dvh] bg-navy-950/40 transition-opacity duration-300 lg:hidden",
+          open ? "opacity-100" : "pointer-events-none opacity-0",
+        )}
+      />
+
       <div
         id={MENU_ID}
-        hidden={!open}
-        className="absolute inset-x-0 top-full max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-b border-line bg-white shadow-[0_30px_60px_-30px_rgb(6_18_46/0.35)] lg:hidden"
+        inert={!open}
+        className={cn(
+          "absolute inset-x-0 top-full max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-b border-line bg-white shadow-[0_30px_60px_-30px_rgb(6_18_46/0.35)] transition-[opacity,transform,visibility] duration-300 ease-out lg:hidden",
+          open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0",
+        )}
       >
         <nav aria-label={labels.main} className="px-5 pb-8 pt-2 sm:px-8">
           <ul>

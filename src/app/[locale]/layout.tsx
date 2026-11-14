@@ -40,6 +40,9 @@ export async function generateMetadata({ params }: LocaleParams): Promise<Metada
 
 export const viewport: Viewport = {
   themeColor: "#0b1f4b",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 type RootLayoutProps = LocaleParams & {

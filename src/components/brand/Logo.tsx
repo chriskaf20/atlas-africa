@@ -14,9 +14,47 @@ type LogoProps = {
  * qu'aucun fichier n'est fourni, un logotype provisoire le remplace.
  */
 export function Logo({ tone = "light", className }: LogoProps) {
-  const { src, srcOnDark, width, height } = site.logo;
+  const { src, srcOnDark, width, height, mark } = site.logo;
   const dark = tone === "dark";
   const file = dark ? (srcOnDark ?? src) : src;
+
+  // Monogramme + nom composé en texte : lisible à toutes les tailles d'écran.
+  if (mark.src) {
+    return (
+      <span className={cn("inline-flex items-center gap-3", className)}>
+        <span className={cn("inline-flex shrink-0", dark && "rounded-[3px] bg-white p-1.5")}>
+          <Image
+            src={mark.src}
+            alt=""
+            width={mark.width}
+            height={mark.height}
+            priority={!dark}
+            sizes="96px"
+            className="h-10 w-auto sm:h-11 lg:h-12"
+          />
+        </span>
+        <span className="flex flex-col leading-none">
+          <span
+            className={cn(
+              "font-display text-[1.125rem] font-bold tracking-[0.2em] sm:text-[1.25rem]",
+              dark ? "text-white" : "text-navy-900",
+            )}
+          >
+            ATLAS
+          </span>
+          <span
+            className={cn(
+              "mt-1.5 font-display text-[0.625rem] font-semibold tracking-[0.24em] sm:text-[0.6875rem]",
+              dark ? "text-gold-300" : "text-gold-700",
+            )}
+          >
+            AFRICA GROUP
+          </span>
+          <span className="sr-only"> SARL</span>
+        </span>
+      </span>
+    );
+  }
 
   if (file) {
     // Sans version claire, le logo est présenté sur une pastille blanche.

@@ -22,6 +22,8 @@ export const site = {
     srcOnDark: null as string | null, // ex. "/logo-blanc.png"
     width: 696,
     height: 658,
+    /** Monogramme « AG » seul (fond transparent), utilisé dans l'en-tête et le pied de page. */
+    mark: { src: "/logo-mark.png", width: 336, height: 220 },
   },
 
   contact: {

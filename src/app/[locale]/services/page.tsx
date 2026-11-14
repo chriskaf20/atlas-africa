@@ -156,7 +156,16 @@ export default async function ServicesPage({ params }: LocaleParams) {
 
             <div className="grid gap-5 sm:grid-cols-2">
               {pole.services.map((service, serviceIndex) => (
-                <Reveal key={service.title} delay={(serviceIndex % 2) * 100}>
+                <Reveal
+                  key={service.title}
+                  delay={(serviceIndex % 2) * 100}
+                  // Nombre impair : la dernière carte occupe toute la ligne (pas de trou).
+                  className={cn(
+                    pole.services.length % 2 === 1 &&
+                      serviceIndex === pole.services.length - 1 &&
+                      "sm:col-span-2",
+                  )}
+                >
                   <ServiceCard service={service} />
                 </Reveal>
               ))}

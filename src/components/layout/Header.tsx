@@ -23,7 +23,7 @@ export function Header({ locale, content }: HeaderProps) {
   ].map((item) => ({ ...item, href: href(locale, item.path) }));
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-white">
+    <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/85">
       <Container className="flex h-[4.5rem] items-center justify-between gap-6 lg:h-20">
         <Link
           href={href(locale, routes.home)}
