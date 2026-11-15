@@ -27,14 +27,13 @@ export const site = {
   },
 
   contact: {
-    /** À REMPLACER — numéro affiché. */
-    phoneDisplay: "+243 000 000 000",
-    /** À REMPLACER — même numéro au format international, sans espaces. */
-    phoneE164: "+243000000000",
-    /** À REMPLACER — numéro WhatsApp : indicatif + numéro, chiffres uniquement. */
-    whatsapp: "243000000000",
-    /** À REMPLACER */
-    email: "contact@example.com",
+    /** Numéro affiché. */
+    phoneDisplay: "+243 897 500 994",
+    /** Même numéro au format international, sans espaces. */
+    phoneE164: "+243897500994",
+    /** Numéro WhatsApp : indicatif + numéro, chiffres uniquement. */
+    whatsapp: "243897500994",
+    email: "info@atlasafricagroup.com",
     /** À REMPLACER — rue, numéro, quartier, commune. */
     streetAddress: "Adresse à compléter",
     locality: "Lubumbashi",
