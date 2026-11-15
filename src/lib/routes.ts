@@ -9,6 +9,9 @@ export const routes = {
   contact: "/contact",
 } as const;
 
+/** Préfixe des pages d'offres : /offres/aag-mobilite, etc. */
+export const offersPath = "/offres";
+
 export type RouteKey = keyof typeof routes;
 
 /**
@@ -24,6 +27,11 @@ export function href(locale: Locale, path: string): string {
 export function contactHref(locale: Locale, service?: string): string {
   const base = href(locale, routes.contact);
   return service ? `${base}?service=${encodeURIComponent(service)}` : base;
+}
+
+/** Lien vers la page d'une offre phare. */
+export function offerHref(locale: Locale, id: string): string {
+  return href(locale, `${offersPath}/${id}`);
 }
 
 /** Retire le préfixe de langue d'un chemin : /fr/services → /services. */

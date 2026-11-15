@@ -34,7 +34,7 @@ function VideoCard({ locale, video, className }: { locale: Locale; video: Conten
   return (
     <Link
       href={`${href(locale, routes.work)}#led-atlas`}
-      className={`group block border border-gold-400/50 bg-navy-950 shadow-[0_30px_60px_-20px_rgb(0_0_0/0.6)] ${className ?? ""}`}
+      className={`group block overflow-hidden rounded-2xl border border-gold-400/50 bg-navy-950 shadow-[0_30px_60px_-20px_rgb(0_0_0/0.6)] ${className ?? ""}`}
     >
       <HeroVideo src={video.src} poster={video.poster} alt={video.alt} />
       <span className="flex items-center gap-3 px-4 py-3">

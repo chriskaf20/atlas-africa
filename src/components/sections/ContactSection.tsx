@@ -18,7 +18,7 @@ export function ContactSection({ locale, content }: ContactSectionProps) {
   return (
     <section id="contact" className="bg-mist py-20 lg:py-28">
       <Container>
-        <div className="grid overflow-hidden border border-line bg-white lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="card grid overflow-hidden lg:grid-cols-[0.9fr_1.1fr]">
           <div className="on-dark relative isolate bg-navy-900 p-8 text-white sm:p-12">
             <div aria-hidden="true" className="pattern-lines absolute inset-0 -z-10" />
             <span aria-hidden="true" className="absolute inset-x-0 top-0 h-0.5 bg-gold-500" />

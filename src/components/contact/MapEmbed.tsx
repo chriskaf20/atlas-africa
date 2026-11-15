@@ -42,7 +42,7 @@ export function MapEmbed({ src, title, placeholder }: MapEmbedProps) {
   return (
     <div
       ref={ref}
-      className="relative isolate aspect-[4/3] w-full overflow-hidden border border-line bg-mist sm:aspect-[16/9] lg:aspect-[21/9]"
+      className="relative isolate aspect-[4/3] w-full overflow-hidden rounded-2xl border border-line bg-mist sm:aspect-[16/9] lg:aspect-[21/9]"
     >
       <div className="absolute inset-0 -z-10 flex flex-col items-center justify-center gap-3 text-center">
         <MapPin aria-hidden="true" size={30} strokeWidth={1.25} className="text-gold-600" />

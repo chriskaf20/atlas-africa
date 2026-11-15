@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { CaseStudyCards } from "@/components/sections/CaseStudyCards";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Hero } from "@/components/sections/Hero";
+import { Marquee } from "@/components/sections/Marquee";
+import { OffersGrid } from "@/components/sections/OffersGrid";
 import { MethodSteps } from "@/components/sections/MethodSteps";
 import { PolesGrid } from "@/components/sections/PolesGrid";
 import { SectorsGrid } from "@/components/sections/SectorsGrid";
@@ -30,6 +32,7 @@ export default async function HomePage({ params }: LocaleParams) {
   return (
     <>
       <Hero locale={locale} content={content} />
+      <Marquee items={content.poles.flatMap((pole) => pole.services.map((service) => service.title))} />
 
       {/* Les 4 pôles */}
       <section className="py-20 lg:py-28">
@@ -37,6 +40,18 @@ export default async function HomePage({ params }: LocaleParams) {
           <SectionHeading {...home.poles} />
           <div className="mt-12 lg:mt-16">
             <PolesGrid locale={locale} content={content} />
+          </div>
+        </Container>
+      </section>
+
+      {/* Offres phares */}
+      <section className="border-t border-line py-20 lg:py-28">
+        <Container>
+          <Reveal>
+            <SectionHeading {...home.offers} />
+          </Reveal>
+          <div className="mt-12 lg:mt-16">
+            <OffersGrid locale={locale} content={content} />
           </div>
         </Container>
       </section>

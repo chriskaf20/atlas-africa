@@ -52,6 +52,7 @@ export const fr = {
     closeMenu: "Fermer le menu",
     homeLinkLabel: "ATLAS AFRICA GROUP — retour à l'accueil",
     languageLabel: "Langue",
+    offers: "Offres",
   },
 
   /* ───────────── Libellés communs ───────────── */
@@ -68,6 +69,9 @@ export const fr = {
     mediaSoon: "Visuel à venir",
     videoSoon: "Vidéo à venir",
     figuresNote: "Chiffres communiqués prochainement.",
+    discoverOffer: "Découvrir l'offre",
+    offerLabel: "Offre",
+    directContact: "Ou contactez-nous directement",
     breadcrumbLabel: "Fil d'Ariane",
   },
 
@@ -119,6 +123,21 @@ export const fr = {
             "Digitalisation des processus de gestion",
             "Projets solaires et efficacité énergétique, avec des partenaires techniques",
           ],
+        },
+      ],
+      /** Questions fréquentes affichées sous le pôle. */
+      faq: [
+        {
+          question: "Accompagnez-vous les entreprises étrangères qui s'implantent en RDC ?",
+          answer: "Oui. Nous recherchons des partenaires, assurons une représentation commerciale, aidons à la négociation et accompagnons l'implantation sur place.",
+        },
+        {
+          question: "Pouvez-vous intervenir sur une seule étape d'un projet ?",
+          answer: "Oui. Vous pouvez nous confier une étude seule (marché, faisabilité, business plan) ou la coordination complète du projet, du montage au suivi de réalisation.",
+        },
+        {
+          question: "Comment démarre une collaboration ?",
+          answer: "Par un échange pour qualifier votre besoin. Nous vous remettons ensuite une proposition, puis un contrat qui précise ce qui sera réalisé.",
         },
       ],
       /** Vidéos et visuels présentés sous les services du pôle. */
@@ -190,6 +209,21 @@ export const fr = {
           ],
         },
       ],
+      /** Questions fréquentes affichées sous le pôle. */
+      faq: [
+        {
+          question: "Que pouvez-vous fournir ?",
+          answer: "Des équipements et des consommables. Nous recherchons et qualifions les fournisseurs, puis nous gérons les achats, le négoce et l'import-export selon votre besoin.",
+        },
+        {
+          question: "Sur quels trajets circule AAG Mobilité ?",
+          answer: "À Lubumbashi, pour les transferts entre hôtels et aéroport, et sur l'axe Lubumbashi – Likasi – Kolwezi pour les missions.",
+        },
+        {
+          question: "Assurez-vous vous-mêmes le transport des marchandises ?",
+          answer: "Nous organisons les expéditions, l'entreposage et la distribution avec des opérateurs qualifiés, et vous gardez un seul interlocuteur.",
+        },
+      ],
       showcase: null,
       featured: null,
     },
@@ -246,6 +280,21 @@ export const fr = {
           ],
         },
       ],
+      /** Questions fréquentes affichées sous le pôle. */
+      faq: [
+        {
+          question: "Quels locaux nettoyez-vous ?",
+          answer: "Les bureaux, les commerces et les résidences, en entretien régulier. Nous assurons aussi la remise en état, le nettoyage de fin de chantier et le nettoyage industriel.",
+        },
+        {
+          question: "Le nettoyage par drone est-il déjà disponible ?",
+          answer: "Pas encore. Ce service pour façades, toitures et panneaux solaires sera bientôt proposé : contactez-nous pour être prévenu de son lancement.",
+        },
+        {
+          question: "Pouvez-vous mettre du personnel à disposition ?",
+          answer: "Oui. Nous recrutons, sélectionnons et mettons du personnel à disposition, et nous proposons aussi la formation et des prestations externalisées.",
+        },
+      ],
       showcase: null,
       featured: null,
     },
@@ -297,6 +346,21 @@ export const fr = {
           items: [],
         },
       ],
+      /** Questions fréquentes affichées sous le pôle. */
+      faq: [
+        {
+          question: "Que comprend l'offre clé en main ?",
+          answer: "Un site web, de la publicité, de la vidéo et un suivi mensuel, réunis dans une seule offre.",
+        },
+        {
+          question: "Sur quels canaux diffusez-vous les campagnes ?",
+          answer: "Sur Google, Google Maps et les réseaux sociaux. À Lubumbashi, vos messages peuvent aussi passer sur les écrans LED Atlas.",
+        },
+        {
+          question: "Créez-vous aussi des outils de gestion ?",
+          answer: "Oui. Nous concevons des systèmes de gestion sur mesure pour vos ventes, vos stocks, votre facturation, votre personnel et vos clients.",
+        },
+      ],
       showcase: {
         title: "Nos créations en vidéo",
         intro: "Deux films réalisés par notre équipe pour des projets menés à Lubumbashi.",
@@ -326,6 +390,91 @@ export const fr = {
         cta: "Lancer ma visibilité",
         serviceValue: "offre-cle-en-main",
       },
+    },
+  ],
+
+  /* ───────────── Offres phares (une page chacune : /offres/…) ───────────── */
+  offers: [
+    {
+      /** Identifiant utilisé dans l'adresse de la page. Ne pas modifier. */
+      id: "aag-mobilite",
+      name: "AAG Mobilité",
+      icon: "car",
+      /** Titre du service correspondant dans les pôles (lien « Découvrir l'offre »). */
+      serviceTitle: "AAG Mobilité",
+      metaTitle: "AAG Mobilité — transport avec chauffeur à Lubumbashi",
+      metaDescription:
+        "AAG Mobilité : transport premium avec chauffeur à Lubumbashi (berline et SUV Prado), transferts hôtels et aéroport, mise à disposition pour les entreprises, missions Lubumbashi – Likasi – Kolwezi.",
+      eyebrow: "Supply & Logistics",
+      title: "Vos déplacements avec chauffeur, à Lubumbashi et dans le Haut-Katanga.",
+      intro:
+        "Un transport premium pour vos dirigeants, vos équipes et vos visiteurs : un véhicule adapté, un chauffeur, et un seul interlocuteur pour organiser le tout.",
+      summary: "Transport premium avec chauffeur, transferts et missions.",
+      featuresTitle: "Ce que comprend l'offre",
+      features: [
+        { icon: "car", title: "Berline ou SUV Prado", text: "Le véhicule est choisi selon le trajet et le nombre de passagers." },
+        { icon: "concierge", title: "Transferts hôtels et aéroport", text: "Prise en charge à l'arrivée et dépose au départ." },
+        { icon: "briefcase", title: "Mise à disposition pour les entreprises", text: "Un véhicule avec chauffeur réservé pour vos équipes et vos visiteurs." },
+        { icon: "mapPin", title: "Missions Lubumbashi – Likasi – Kolwezi", text: "Des déplacements professionnels sur l'axe minier du Haut-Katanga." },
+      ],
+      media: null as null | { video: string; poster: string; alt: string },
+      formTitle: "Réserver un véhicule",
+      formIntro: "Indiquez la date, le trajet et le nombre de passagers : nous vous recontactons pour confirmer.",
+      serviceValue: "aag-mobilite",
+    },
+    {
+      id: "aag-cleaning",
+      name: "AAG Cleaning",
+      icon: "sparkles",
+      serviceTitle: "AAG Cleaning",
+      metaTitle: "AAG Cleaning — nettoyage professionnel à Lubumbashi",
+      metaDescription:
+        "AAG Cleaning : entretien régulier de bureaux, commerces et résidences à Lubumbashi, remise en état, nettoyage de fin de chantier et nettoyage industriel.",
+      eyebrow: "People & Facilities",
+      title: "Des locaux propres, entretenus par une équipe professionnelle.",
+      intro:
+        "Entretien régulier ou intervention ponctuelle : nous prenons en charge la propreté de vos bureaux, commerces, résidences et sites.",
+      summary: "Entretien régulier, remise en état et nettoyage industriel.",
+      featuresTitle: "Ce que comprend l'offre",
+      features: [
+        { icon: "building", title: "Entretien régulier", text: "Bureaux, commerces et résidences, selon une fréquence convenue ensemble." },
+        { icon: "sparkles", title: "Remise en état", text: "Une intervention complète pour retrouver des locaux propres." },
+        { icon: "clipboard", title: "Nettoyage de fin de chantier", text: "Des locaux prêts à être livrés ou occupés après les travaux." },
+        { icon: "factory", title: "Nettoyage industriel", text: "Des prestations adaptées aux sites et aux installations industrielles." },
+      ],
+      media: null,
+      formTitle: "Demander un devis de nettoyage",
+      formIntro: "Décrivez vos locaux (type, surface approximative, fréquence souhaitée) : nous vous recontactons.",
+      serviceValue: "aag-cleaning",
+    },
+    {
+      id: "led-atlas",
+      name: "LED Atlas",
+      icon: "monitorPlay",
+      serviceTitle: "",
+      metaTitle: "LED Atlas — publicité sur écrans LED à Lubumbashi",
+      metaDescription:
+        "LED Atlas : diffusez votre publicité sur un réseau d'écrans LED à Lubumbashi. Écrans haute définition, visibles de jour comme de nuit, et rapport de diffusion pour chaque campagne.",
+      eyebrow: "Digital & Communication",
+      title: "Votre marque sur les écrans LED de Lubumbashi.",
+      intro:
+        "Un réseau d'écrans publicitaires LED pour diffuser vos messages en images et en mouvement, sur des axes fréquentés de la ville.",
+      summary: "Publicité sur un réseau d'écrans LED à Lubumbashi.",
+      featuresTitle: "Ce que comprend l'offre",
+      features: [
+        { icon: "monitorPlay", title: "Écrans LED haute définition", text: "Un affichage lumineux et animé, visible de jour comme de nuit." },
+        { icon: "mapPin", title: "Emplacements à Lubumbashi", text: "Des écrans implantés sur des axes fréquentés de la ville." },
+        { icon: "megaphone", title: "Diffusion de vos spots", text: "Vos messages sont programmés et diffusés sur le réseau." },
+        { icon: "clipboard", title: "Rapport de diffusion", text: "Un compte rendu des passages de votre spot pour chaque campagne." },
+      ],
+      media: {
+        video: "/media/led-atlas.mp4",
+        poster: "/media/led-atlas-poster.jpg",
+        alt: "Film de présentation du réseau d'écrans LED Atlas",
+      },
+      formTitle: "Réserver un espace publicitaire",
+      formIntro: "Présentez votre marque et la période souhaitée : nous vous envoyons les emplacements disponibles.",
+      serviceValue: "led-atlas",
     },
   ],
 
@@ -519,6 +668,11 @@ export const fr = {
         { title: "Partenaires", text: "qualifiés" },
       ],
     },
+    offers: {
+      eyebrow: "Offres phares",
+      title: "Trois offres prêtes à réserver.",
+      intro: "Des prestations clairement définies, que vous pouvez demander en quelques minutes.",
+    },
     poles: {
       eyebrow: "Nos pôles",
       title: "Quatre pôles pour couvrir l'ensemble de vos besoins.",
@@ -559,6 +713,7 @@ export const fr = {
     intro:
       "Quatre pôles complémentaires, un seul interlocuteur. Choisissez un service ou confiez-nous l'ensemble de votre projet.",
     polesNavLabel: "Accès rapide aux pôles",
+    faqTitle: "Questions fréquentes",
     cta: {
       title: "Vous ne savez pas par où commencer ?",
       text: "Expliquez-nous votre situation : nous vous orientons vers les bons services.",
@@ -701,6 +856,8 @@ export const fr = {
       { value: "digital-communication", label: "Digital & Communication" },
       { value: "offre-cle-en-main", label: "Digital — offre clé en main" },
       { value: "led-atlas", label: "LED Atlas — affichage publicitaire" },
+      { value: "aag-mobilite", label: "AAG Mobilité — transport avec chauffeur" },
+      { value: "aag-cleaning", label: "AAG Cleaning — nettoyage" },
       { value: "autre", label: "Autre demande" },
     ],
     errors: {
@@ -731,6 +888,7 @@ export const fr = {
       "Votre partenaire pour développer et réaliser vos affaires en RDC, et demain en Afrique.",
     navTitle: "Navigation",
     polesTitle: "Nos pôles",
+    offersTitle: "Nos offres",
     contactTitle: "Contact",
     rights: "Tous droits réservés.",
     location: "Lubumbashi, Haut-Katanga, RDC",
@@ -750,3 +908,4 @@ export type Content = typeof fr;
 export type Pole = Content["poles"][number];
 export type PoleService = Pole["services"][number];
 export type CaseStudy = Content["caseStudies"][number];
+export type Offer = Content["offers"][number];

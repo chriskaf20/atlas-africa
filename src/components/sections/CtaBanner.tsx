@@ -14,7 +14,7 @@ type CtaBannerProps = {
 export function CtaBanner({ title, text, button, whatsapp }: CtaBannerProps) {
   return (
     <section className="on-dark relative isolate overflow-hidden bg-navy-900 text-white">
-      <div aria-hidden="true" className="pattern-lines absolute inset-0 -z-10" />
+      <div aria-hidden="true" className="pattern-lines pattern-drift absolute inset-0 -z-10" />
       <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-gold-500" />
       <Container className="flex flex-col gap-10 py-16 lg:flex-row lg:items-center lg:justify-between lg:py-20">
         <div className="max-w-2xl">

@@ -17,6 +17,8 @@ type MediaProps = {
   /** Indication de largeur pour le chargement adaptatif des images. */
   sizes?: string;
   className?: string;
+  /** false = angles droits (visuel collé au bord d'une carte). */
+  rounded?: boolean;
 };
 
 /**
@@ -33,10 +35,12 @@ export function Media({
   ratio = "aspect-[16/10]",
   sizes = "(min-width: 1024px) 50vw, 100vw",
   className,
+  rounded = true,
 }: MediaProps) {
+  const radius = rounded && "rounded-2xl";
   if (src && kind === "video") {
     return (
-      <div className={cn("relative overflow-hidden bg-navy-950", ratio, className)}>
+      <div className={cn("relative overflow-hidden bg-navy-950", radius, ratio, className)}>
         <video
           src={src}
           controls
@@ -52,8 +56,8 @@ export function Media({
 
   if (src) {
     return (
-      <div className={cn("relative overflow-hidden bg-mist", ratio, className)}>
-        <Image src={src} alt={alt} fill sizes={sizes} className="object-cover" />
+      <div className={cn("relative overflow-hidden bg-mist", radius, ratio, className)}>
+        <Image src={src} alt={alt} fill sizes={sizes} className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]" />
       </div>
     );
   }
@@ -64,7 +68,7 @@ export function Media({
     <div
       role="img"
       aria-label={`${title} — ${caption}`}
-      className={cn("relative isolate overflow-hidden bg-navy-900", ratio, className)}
+      className={cn("relative isolate overflow-hidden bg-navy-900", radius, ratio, className)}
     >
       <div aria-hidden="true" className="pattern-lines absolute inset-0 -z-10" />
       <div

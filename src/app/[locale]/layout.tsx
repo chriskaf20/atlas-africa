@@ -62,6 +62,8 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
         >
           {content.nav.skipToContent}
         </a>
+        {/* Barre de progression de lecture (CSS seul, liée au défilement). */}
+        <div aria-hidden="true" className="scroll-progress" />
         <Header locale={locale} content={content} />
         <main id="contenu" tabIndex={-1} className="flex-1 outline-none">
           {children}

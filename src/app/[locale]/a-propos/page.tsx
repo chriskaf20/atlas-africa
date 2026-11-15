@@ -43,7 +43,7 @@ export default async function AboutPage({ params }: LocaleParams) {
 
       {/* Vision & mission */}
       <section className="py-20 lg:py-28">
-        <Container className="grid gap-px border border-line bg-line md:grid-cols-2">
+        <Container className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2">
           {[page.vision, page.mission].map((block, i) => (
             <Reveal key={block.eyebrow} delay={i * 120} className="bg-white p-8 sm:p-12">
               <Eyebrow>{block.eyebrow}</Eyebrow>
@@ -63,8 +63,8 @@ export default async function AboutPage({ params }: LocaleParams) {
           <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {page.values.items.map((value, i) => (
               <Reveal as="li" key={value.title} delay={i * 100}>
-                <article className="h-full border border-line bg-white p-7">
-                  <span className="grid h-12 w-12 place-items-center border border-gold-500/60 text-navy-900">
+                <article className="card card-hover h-full p-7">
+                  <span className="grid h-12 w-12 place-items-center icon-tile">
                     <Icon name={value.icon as IconName} size={24} strokeWidth={1.4} />
                   </span>
                   <h3 className="mt-6 text-lg font-semibold text-navy-900">{value.title}</h3>

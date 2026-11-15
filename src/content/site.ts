@@ -8,8 +8,8 @@ export const site = {
   legalName: "ATLAS AFRICA GROUP SARL",
   shortName: "AAG",
 
-  /** Adresse publique du site. À REMPLACER (ou définir NEXT_PUBLIC_SITE_URL). */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.example.com",
+  /** Adresse publique du site (modifiable par la variable NEXT_PUBLIC_SITE_URL). */
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.atlasafricagroup.com",
 
   /**
    * Logo. Déposez le fichier PNG dans /public (ex. /public/logo.png), puis

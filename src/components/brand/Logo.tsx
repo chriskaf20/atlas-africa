@@ -22,7 +22,7 @@ export function Logo({ tone = "light", className }: LogoProps) {
   if (mark.src) {
     return (
       <span className={cn("inline-flex items-center gap-3", className)}>
-        <span className={cn("inline-flex shrink-0", dark && "rounded-[3px] bg-white p-1.5")}>
+        <span className={cn("inline-flex shrink-0", dark && "rounded-lg bg-white p-1.5")}>
           <Image
             src={mark.src}
             alt=""
@@ -60,7 +60,7 @@ export function Logo({ tone = "light", className }: LogoProps) {
     // Sans version claire, le logo est présenté sur une pastille blanche.
     const onChip = dark && !srcOnDark;
     return (
-      <span className={cn("inline-flex", onChip && "rounded-[3px] bg-white p-2", className)}>
+      <span className={cn("inline-flex", onChip && "rounded-lg bg-white p-2", className)}>
         <Image
           src={file}
           alt={site.legalName}

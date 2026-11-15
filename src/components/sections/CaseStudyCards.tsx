@@ -19,12 +19,13 @@ export function CaseStudyCards({ locale, content }: CaseStudyCardsProps) {
     <ul className="grid gap-8 md:grid-cols-2">
       {caseStudies.map((study, index) => (
         <Reveal as="li" key={study.id} delay={index * 120}>
-          <article className="group relative flex h-full flex-col border border-line bg-white">
+          <article className="card card-hover group relative flex h-full flex-col overflow-hidden">
             <Media
               src={study.image}
               alt={study.imageAlt}
               title={study.name}
               caption={common.mediaSoon}
+              rounded={false}
             />
             <div className="flex flex-1 flex-col p-7 sm:p-9">
               <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-gold-700">
@@ -43,7 +44,7 @@ export function CaseStudyCards({ locale, content }: CaseStudyCardsProps) {
                 {study.deliverables.map((item) => (
                   <li
                     key={item.title}
-                    className="border border-line px-3 py-1.5 font-display text-xs font-medium text-navy-900"
+                    className="rounded-full border border-line bg-mist px-3 py-1.5 font-display text-xs font-medium text-navy-900"
                   >
                     {item.title}
                   </li>

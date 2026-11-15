@@ -12,7 +12,7 @@ import { getContent, type CaseStudy, type Content } from "@/content";
 import { isLocale, type Locale } from "@/i18n/config";
 import { cn } from "@/lib/cn";
 import { resolveLocale, type LocaleParams } from "@/lib/locale";
-import { contactHref, href, routes } from "@/lib/routes";
+import { contactHref, href, offerHref, routes } from "@/lib/routes";
 import { buildMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: LocaleParams): Promise<Metadata> {
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: LocaleParams): Promise<Metada
 
 function Stats({ items }: { items: { value: string; label: string }[] }) {
   return (
-    <dl className="grid gap-px border border-line bg-line sm:grid-cols-3">
+    <dl className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3">
       {items.map((stat) => (
         <div key={stat.label} className="bg-white p-6">
           <dt className="text-sm text-muted">{stat.label}</dt>
@@ -45,8 +45,10 @@ function CaseSection({
   index,
   locale,
   common,
+  hasOffer,
 }: {
   study: CaseStudy;
+  hasOffer: boolean;
   index: number;
   locale: Locale;
   common: Content["common"];
@@ -71,7 +73,7 @@ function CaseSection({
             <p className="mt-4 font-display text-lg font-medium text-navy-900">{study.headline}</p>
             <p className="mt-4 text-muted">{study.summary}</p>
             <ButtonLink
-              href={contactHref(locale, study.serviceValue)}
+              href={hasOffer ? offerHref(locale, study.id) : contactHref(locale, study.serviceValue)}
               variant="navy"
               arrow
               className="mt-8 w-full sm:w-auto"
@@ -107,8 +109,8 @@ function CaseSection({
         <ul className="mt-6 grid gap-5 md:grid-cols-3">
           {study.deliverables.map((item, i) => (
             <Reveal as="li" key={item.title} delay={i * 100}>
-              <article className="flex h-full flex-col border border-line bg-white p-7">
-                <span className="grid h-12 w-12 place-items-center border border-gold-500/60 text-navy-900">
+              <article className="card card-hover flex h-full flex-col p-7">
+                <span className="grid h-12 w-12 place-items-center icon-tile">
                   <Icon name={item.icon as IconName} size={24} strokeWidth={1.4} />
                 </span>
                 <h4 className="mt-6 text-lg font-semibold text-navy-900">{item.title}</h4>
@@ -171,7 +173,7 @@ function CaseSection({
 
 export default async function WorkPage({ params }: LocaleParams) {
   const locale = await resolveLocale(params);
-  const { workPage, caseStudies, common, nav } = getContent(locale);
+  const { workPage, caseStudies, offers, common, nav } = getContent(locale);
 
   return (
     <>
@@ -193,7 +195,7 @@ export default async function WorkPage({ params }: LocaleParams) {
               <li key={study.id} className="shrink-0">
                 <a
                   href={`#${study.id}`}
-                  className="flex min-h-14 items-center whitespace-nowrap border-b-2 border-transparent px-3 font-display text-[0.8125rem] font-semibold text-navy-900/80 transition-colors hover:border-gold-500 hover:text-navy-900"
+                  className="my-2 flex min-h-10 items-center gap-2.5 whitespace-nowrap rounded-full border border-transparent px-4 font-display text-[0.8125rem] font-semibold text-navy-900/80 transition-colors hover:border-gold-500/50 hover:bg-mist hover:text-navy-900"
                 >
                   {study.name}
                 </a>
@@ -204,7 +206,14 @@ export default async function WorkPage({ params }: LocaleParams) {
       </nav>
 
       {caseStudies.map((study, index) => (
-        <CaseSection key={study.id} study={study} index={index} locale={locale} common={common} />
+        <CaseSection
+          key={study.id}
+          study={study}
+          index={index}
+          locale={locale}
+          common={common}
+          hasOffer={offers.some((offer) => offer.id === study.id)}
+        />
       ))}
 
       <CtaBanner

@@ -80,18 +80,57 @@
   }
 }
 
+/* ───────────── Composants : cartes et pastilles d'icône ─────────────
+   Dans la couche « components » : les utilitaires Tailwind gardent la priorité. */
+@layer components {
+  .card {
+    border: 1px solid var(--color-line);
+    border-radius: 1.25rem;
+    background: #fff;
+    box-shadow:
+      0 1px 2px rgb(11 31 75 / 0.04),
+      0 14px 34px -20px rgb(11 31 75 / 0.2);
+  }
+
+  .card-hover {
+    transition:
+      transform 0.4s var(--ease-out-soft),
+      box-shadow 0.4s var(--ease-out-soft),
+      border-color 0.4s var(--ease-out-soft);
+  }
+
+  @media (hover: hover) {
+    .card-hover:hover {
+      transform: translate3d(0, -4px, 0);
+      border-color: rgb(201 161 59 / 0.5);
+      box-shadow:
+        0 2px 4px rgb(11 31 75 / 0.05),
+        0 34px 60px -30px rgb(11 31 75 / 0.42);
+    }
+  }
+
+  .icon-tile {
+    border: 1px solid rgb(201 161 59 / 0.35);
+    border-radius: 0.875rem;
+    background: linear-gradient(135deg, rgb(240 223 180 / 0.6), rgb(240 223 180 / 0.12));
+    color: var(--color-navy-900);
+  }
+}
+
 /* ───────────── Apparition au défilement ─────────────
    Le contenu est visible par défaut. Le composant <Reveal> masque, après
    chargement, les blocs situés sous l'écran, puis les révèle à leur entrée. */
 .reveal[data-reveal="hidden"] {
   opacity: 0;
-  transform: translate3d(0, 20px, 0);
+  transform: translate3d(0, 28px, 0) scale(0.985);
+  filter: blur(6px);
 }
 
 .reveal[data-reveal="shown"] {
   transition:
-    opacity 0.8s var(--ease-out-soft),
-    transform 0.8s var(--ease-out-soft);
+    opacity 0.9s var(--ease-out-soft),
+    transform 0.9s var(--ease-out-soft),
+    filter 0.9s var(--ease-out-soft);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
@@ -121,6 +160,112 @@
   transform-box: fill-box;
   transform-origin: center;
   animation: pulse-ring 2.8s var(--ease-out-soft) infinite;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+/* ───────────── Mouvement : éléments animés du site ───────────── */
+@keyframes marquee {
+  to { transform: translate3d(-50%, 0, 0); }
+}
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 60s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Filets dorés qui se tracent quand leur bloc apparaît. */
+.draw-line {
+  transform-origin: left;
+}
+.reveal[data-reveal="hidden"] .draw-line {
+  transform: scaleX(0);
+}
+.reveal[data-reveal="shown"] .draw-line {
+  transition: transform 1s var(--ease-out-soft) calc(var(--reveal-delay, 0ms) + 250ms);
+}
+
+/* Reflet qui traverse les boutons dorés de temps en temps. */
+@keyframes btn-shine {
+  0%, 72% { transform: translate3d(-130%, 0, 0); }
+  100% { transform: translate3d(130%, 0, 0); }
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 35%, rgb(255 255 255 / 0.55) 50%, transparent 65%);
+  transform: translate3d(-130%, 0, 0);
+  animation: btn-shine 5s ease-in-out infinite;
+}
+
+/* Onde autour du bouton WhatsApp. */
+@keyframes wa-ping {
+  0% { transform: scale(1); opacity: 0.55; }
+  70%, 100% { transform: scale(1.75); opacity: 0; }
+}
+.wa-ping {
+  animation: wa-ping 2.8s var(--ease-out-soft) infinite;
+}
+
+/* Hachures qui glissent lentement (bandeaux bleu marine). */
+@keyframes pattern-drift {
+  to { background-position: 19.8px 0; }
+}
+.pattern-drift {
+  animation: pattern-drift 5s linear infinite;
+}
+
+/* Cercles des en-têtes de page : respiration lente. */
+@keyframes hero-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+.hero-breathe {
+  transform-origin: center;
+  animation: hero-breathe 12s ease-in-out infinite;
+}
+
+/* L'icône d'une carte s'incline au survol. */
+.icon-tile {
+  transition: transform 0.4s var(--ease-out-soft);
+}
+@media (hover: hover) {
+  .card-hover:hover .icon-tile {
+    transform: rotate(-6deg) scale(1.08);
+  }
+}
+
+/* Barre de progression de lecture, en haut de l'écran. */
+.scroll-progress {
+  display: none;
+}
+@supports (animation-timeline: scroll()) {
+  @keyframes scroll-progress {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+  .scroll-progress {
+    display: block;
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 70;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-gold-600), var(--color-gold-300));
+    transform-origin: left;
+    animation: scroll-progress linear both;
+    animation-timeline: scroll(root);
+  }
 }
 
 /* ───────────── Hero : motion design ─────────────
@@ -248,6 +393,23 @@
 
   .reveal[data-reveal] {
     opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .marquee-track,
+  .btn-shine::after,
+  .wa-ping,
+  .pattern-drift {
+    animation: none !important;
+  }
+
+  .scroll-progress {
+    display: none !important;
+  }
+
+  .reveal .draw-line {
     transform: none !important;
     transition: none !important;
   }

@@ -20,17 +20,19 @@ export function PolesGrid({ locale, content }: PolesGridProps) {
     <ul className="grid gap-6 md:grid-cols-2">
       {poles.map((pole, index) => (
         <Reveal as="li" key={pole.id} delay={(index % 2) * 120}>
-          <article className="group relative flex h-full flex-col border border-line bg-white p-7 transition-shadow duration-300 hover:shadow-[0_30px_60px_-35px_rgb(11_31_75/0.45)] sm:p-9">
+          <article className="group relative flex h-full flex-col card card-hover overflow-hidden p-7 sm:p-9">
             <span
               aria-hidden="true"
               className="absolute left-0 top-0 h-0.5 w-16 bg-gold-500 transition-[width] duration-500 ease-out group-hover:w-full"
             />
 
-            <div className="flex items-start justify-between gap-4">
+            <div className="flex items-center justify-between gap-4">
               <p className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-gold-700">
                 {common.poleLabel} {pole.number}
               </p>
-              <Icon name={pole.icon} size={30} strokeWidth={1.25} className="shrink-0 text-navy-900" />
+              <span className="icon-tile grid h-14 w-14 shrink-0 place-items-center">
+                <Icon name={pole.icon} size={28} strokeWidth={1.4} />
+              </span>
             </div>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">

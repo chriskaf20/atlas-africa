@@ -22,16 +22,18 @@ type ContactFormProps = {
   variant?: "short" | "full";
   content: Content["form"];
   locale: Locale;
+  /** Service présélectionné (pages d'offres). L'URL (?service=…) reste prioritaire. */
+  defaultService?: string;
 };
 
 type Status = "idle" | "sending" | "success" | "error";
 
 const inputClass =
-  "block w-full rounded-[3px] border border-navy-900/50 bg-white px-4 py-3 text-base text-ink " +
+  "block w-full rounded-xl border border-navy-900/30 bg-white px-4 py-3 text-base text-ink " +
   "placeholder:text-muted/80 transition-colors hover:border-navy-900 focus:border-navy-900 " +
   "aria-[invalid=true]:border-red-700";
 
-export function ContactForm({ variant = "full", content, locale }: ContactFormProps) {
+export function ContactForm({ variant = "full", content, locale, defaultService }: ContactFormProps) {
   const uid = useId();
   const full = variant === "full";
 
@@ -47,11 +49,11 @@ export function ContactForm({ variant = "full", content, locale }: ContactFormPr
   // Présélection du service depuis l'URL : /contact?service=led-atlas
   useEffect(() => {
     if (!full) return;
-    const requested = new URLSearchParams(window.location.search).get("service");
+    const requested = new URLSearchParams(window.location.search).get("service") ?? defaultService;
     if (requested && content.serviceOptions.some((option) => option.value === requested)) {
       setValues((current) => ({ ...current, service: requested }));
     }
-  }, [full, content.serviceOptions]);
+  }, [full, content.serviceOptions, defaultService]);
 
   useEffect(() => {
     if (status === "success") successRef.current?.focus();

@@ -20,7 +20,7 @@ export function Eyebrow({ children, tone = "light", className }: EyebrowProps) {
         className,
       )}
     >
-      <span aria-hidden="true" className="h-px w-8 shrink-0 bg-gold-500" />
+      <span aria-hidden="true" className="draw-line h-px w-8 shrink-0 bg-gold-500" />
       {children}
     </p>
   );
@@ -50,7 +50,7 @@ export function SectionHeading({
       {eyebrow ? <Eyebrow tone={tone}>{eyebrow}</Eyebrow> : null}
       <Heading
         className={cn(
-          "mt-5 text-[1.75rem] font-semibold leading-[1.15] tracking-tight sm:text-4xl",
+          "mt-5 text-[1.75rem] font-semibold leading-[1.15] tracking-tight sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]",
           dark ? "text-white" : "text-navy-900",
         )}
       >

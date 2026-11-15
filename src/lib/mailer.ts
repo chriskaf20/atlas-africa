@@ -8,7 +8,7 @@ import type { ContactValues } from "@/lib/validation";
  * Branchement par défaut : Resend (https://resend.com), via trois variables
  * d'environnement (voir `.env.example`) :
  *   RESEND_API_KEY      clé d'API
- *   CONTACT_TO_EMAIL    adresse qui reçoit les demandes
+ *   CONTACT_TO_EMAIL    adresse qui reçoit les demandes (par défaut : l'e-mail du site)
  *   CONTACT_FROM_EMAIL  expéditeur, sur un domaine vérifié chez Resend
  *
  * Pour utiliser un autre service (SMTP, Brevo, Formspree, CRM…), il suffit de
@@ -41,7 +41,7 @@ function formatMessage(message: ContactMessage): { subject: string; text: string
 
 async function deliver(message: ContactMessage): Promise<SendResult> {
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL;
+  const to = process.env.CONTACT_TO_EMAIL ?? site.contact.email;
   const from = process.env.CONTACT_FROM_EMAIL;
 
   if (!apiKey || !to || !from) return { ok: false, reason: "not_configured" };

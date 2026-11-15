@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { Container } from "@/components/ui/Container";
 import type { Content } from "@/content";
-import type { Locale } from "@/i18n/config";
+import { localeLabels, locales, type Locale } from "@/i18n/config";
 import { contactHref, href, routes } from "@/lib/routes";
 import { HeaderNav, type NavItem } from "./HeaderNav";
 
@@ -35,7 +35,9 @@ export function Header({ locale, content }: HeaderProps) {
         <HeaderNav
           items={items}
           cta={{ href: contactHref(locale), label: nav.cta }}
-          labels={{ main: nav.mainLabel, open: nav.openMenu, close: nav.closeMenu }}
+          labels={{ main: nav.mainLabel, open: nav.openMenu, close: nav.closeMenu, language: nav.languageLabel }}
+          locale={locale}
+          languages={locales.map((code) => ({ code, name: localeLabels[code] }))}
         />
       </Container>
     </header>

@@ -6,7 +6,8 @@ import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { buttonClass } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
-import { stripLocale } from "@/lib/routes";
+import type { Locale } from "@/i18n/config";
+import { href as localizedHref, stripLocale } from "@/lib/routes";
 
 export type NavItem = {
   /** Chemin sans préfixe de langue, pour repérer la page active. */
@@ -18,18 +19,49 @@ export type NavItem = {
 type HeaderNavProps = {
   items: NavItem[];
   cta: { href: string; label: string };
-  labels: { main: string; open: string; close: string };
+  labels: { main: string; open: string; close: string; language: string };
+  /** Langue affichée et langues proposées dans le sélecteur. */
+  locale: Locale;
+  languages: { code: Locale; name: string }[];
 };
 
 const MENU_ID = "menu-mobile";
 
-export function HeaderNav({ items, cta, labels }: HeaderNavProps) {
+export function HeaderNav({ items, cta, labels, locale, languages }: HeaderNavProps) {
   const pathname = stripLocale(usePathname());
   const [open, setOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
   const isActive = (path: string) =>
     path === "/" ? pathname === "/" : pathname === path || pathname.startsWith(`${path}/`);
+
+  // Sélecteur de langue : même page, dans l'autre langue.
+  const languageSwitch = (className?: string) =>
+    languages.length > 1 ? (
+      <ul aria-label={labels.language} className={cn("flex items-center gap-1", className)}>
+        {languages.map((language) => {
+          const current = language.code === locale;
+          return (
+            <li key={language.code}>
+              <Link
+                href={localizedHref(language.code, pathname)}
+                hrefLang={language.code}
+                lang={language.code}
+                title={language.name}
+                aria-current={current ? "true" : undefined}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  "grid h-9 min-w-9 place-items-center rounded-full px-2 font-display text-xs font-semibold uppercase tracking-[0.08em] transition-colors",
+                  current ? "bg-navy-900 text-white" : "text-navy-900/75 hover:bg-mist hover:text-navy-900",
+                )}
+              >
+                {language.code}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    ) : null;
 
   useEffect(() => {
     if (!open) return;
@@ -59,7 +91,7 @@ export function HeaderNav({ items, cta, labels }: HeaderNavProps) {
     <>
       {/* Grand écran */}
       <nav aria-label={labels.main} className="hidden lg:block">
-        <ul className="flex items-center gap-9">
+        <ul className="flex items-center gap-7 xl:gap-9">
           {items.map((item) => {
             const active = isActive(item.path);
             return (
@@ -83,9 +115,12 @@ export function HeaderNav({ items, cta, labels }: HeaderNavProps) {
         </ul>
       </nav>
 
-      <Link href={cta.href} className={buttonClass("navy", "hidden lg:inline-flex")}>
-        {cta.label}
-      </Link>
+      <div className="hidden items-center gap-4 lg:flex">
+        {languageSwitch()}
+        <Link href={cta.href} className={buttonClass("navy")}>
+          {cta.label}
+        </Link>
+      </div>
 
       {/* Mobile */}
       <button
@@ -147,6 +182,7 @@ export function HeaderNav({ items, cta, labels }: HeaderNavProps) {
           >
             {cta.label}
           </Link>
+          {languageSwitch("mt-6 justify-center")}
         </nav>
       </div>
     </>

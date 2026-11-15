@@ -1,11 +1,15 @@
 import type { MetadataRoute } from "next";
-import { locales } from "@/i18n/config";
-import { href, routes } from "@/lib/routes";
+import { getContent } from "@/content";
+import { defaultLocale, locales } from "@/i18n/config";
+import { href, offersPath, routes } from "@/lib/routes";
 import { absoluteUrl } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  return Object.values(routes).flatMap((path) =>
+  const offerPaths = getContent(defaultLocale).offers.map((offer) => `${offersPath}/${offer.id}`);
+  const paths = [...Object.values(routes), ...offerPaths];
+
+  return paths.flatMap((path) =>
     locales.map((locale) => ({
       url: absoluteUrl(href(locale, path)),
       lastModified: now,

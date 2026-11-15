@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/Container";
 import type { Content } from "@/content";
 import { site } from "@/content/site";
 import type { Locale } from "@/i18n/config";
-import { href, routes } from "@/lib/routes";
+import { href, offerHref, routes } from "@/lib/routes";
 
 type FooterProps = {
   locale: Locale;
@@ -16,7 +16,7 @@ const titleClass = "font-display text-xs font-semibold uppercase tracking-[0.22e
 const linkClass = "inline-flex min-h-9 items-center text-white/75 transition-colors hover:text-white";
 
 export function Footer({ locale, content }: FooterProps) {
-  const { nav, footer, poles, contactPage } = content;
+  const { nav, footer, poles, offers, contactPage } = content;
   const { contact } = site;
 
   const pages = [
@@ -56,6 +56,16 @@ export function Footer({ locale, content }: FooterProps) {
                 <li key={pole.id}>
                   <Link href={`${href(locale, routes.services)}#${pole.id}`} className={linkClass}>
                     {pole.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <h2 className={`${titleClass} mt-8`}>{footer.offersTitle}</h2>
+            <ul className="mt-5">
+              {offers.map((offer) => (
+                <li key={offer.id}>
+                  <Link href={offerHref(locale, offer.id)} className={linkClass}>
+                    {offer.name}
                   </Link>
                 </li>
               ))}

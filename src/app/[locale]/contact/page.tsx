@@ -46,7 +46,7 @@ export default async function ContactPage({ params }: LocaleParams) {
 
       <section className="py-20 lg:py-28">
         <Container className="grid gap-12 lg:grid-cols-[1.3fr_0.9fr] lg:gap-16">
-          <div className="border border-line bg-white p-7 sm:p-10">
+          <div className="card p-7 sm:p-10">
             <h2 className="font-display text-2xl font-semibold text-navy-900">{page.formTitle}</h2>
             <div className="mt-8">
               <ContactForm variant="full" content={content.form} locale={locale} />
