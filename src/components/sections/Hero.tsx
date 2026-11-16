@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { CSSProperties } from "react";
+import { Fragment, type CSSProperties } from "react";
 import { AfricaMap } from "@/components/brand/AfricaMap";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -22,9 +22,12 @@ function Words({ text, start, step = 45 }: { text: string; start: number; step?:
   return (
     <>
       {text.split(" ").map((word, index) => (
-        <span key={`${word}-${index}`} className="hero-word">
-          <span style={delay(start + index * step)}>{word}</span>{" "}
-        </span>
+        // L'espace est placé hors du masque : à l'intérieur, il serait ignoré.
+        <Fragment key={`${word}-${index}`}>
+          <span className="hero-word">
+            <span style={delay(start + index * step)}>{word}</span>
+          </span>{" "}
+        </Fragment>
       ))}
     </>
   );
@@ -39,10 +42,10 @@ function VideoCard({ locale, video, className }: { locale: Locale; video: Conten
       <HeroVideo src={video.src} poster={video.poster} alt={video.alt} />
       <span className="flex items-center gap-3 px-4 py-3">
         <span aria-hidden="true" className="hero-live h-2 w-2 shrink-0 rounded-full bg-gold-400" />
-        <span className="font-display text-xs font-semibold uppercase tracking-[0.18em] text-white">
+        <span className="shrink-0 whitespace-nowrap font-display text-xs font-semibold uppercase tracking-[0.18em] text-white">
           {video.label}
         </span>
-        <span className="truncate text-xs text-white/70">{video.caption}</span>
+        <span className="min-w-0 truncate text-xs text-white/70">{video.caption}</span>
       </span>
     </Link>
   );
@@ -68,8 +71,8 @@ export function Hero({ locale, content }: HeroProps) {
       {/* Petit écran : la carte sert de fond discret derrière le texte. */}
       <AfricaMap className="hero-fade pointer-events-none absolute -right-28 top-6 -z-10 w-[26rem] opacity-25 sm:-right-16 sm:w-[30rem] lg:hidden" />
 
-      <Container className="grid items-center gap-12 pb-14 pt-16 sm:pt-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10 lg:pb-20 lg:pt-24">
-        <div>
+      <Container className="grid items-center gap-12 pb-12 pt-12 sm:pb-14 sm:pt-20 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10 lg:pb-20 lg:pt-24">
+        <div className="min-w-0">
           <div className="hero-up" style={delay(0)}>
             <Eyebrow tone="dark">{hero.eyebrow}</Eyebrow>
           </div>

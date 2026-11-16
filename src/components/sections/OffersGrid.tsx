@@ -16,9 +16,9 @@ export function OffersGrid({ locale, content }: OffersGridProps) {
   const { offers, common } = content;
 
   return (
-    <ul className="grid gap-6 md:grid-cols-3">
+    <ul className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-6 pt-1 sm:-mx-8 sm:px-8 md:mx-0 md:grid md:gap-6 md:overflow-visible md:p-0 md:grid-cols-3">
       {offers.map((offer, index) => (
-        <Reveal as="li" key={offer.id} delay={index * 110}>
+        <Reveal as="li" key={offer.id} delay={index * 110} className="w-[82%] shrink-0 snap-center sm:w-[46%] md:w-auto">
           <article className="card card-hover group relative flex h-full flex-col p-7 sm:p-8">
             <span className="icon-tile grid h-14 w-14 place-items-center">
               <Icon name={offer.icon} size={28} strokeWidth={1.4} />

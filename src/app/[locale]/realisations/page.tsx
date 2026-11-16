@@ -58,7 +58,7 @@ function CaseSection({
     <section
       id={study.id}
       aria-labelledby={`${study.id}-titre`}
-      className={cn("scroll-mt-24 py-20 lg:py-28", index % 2 === 1 && "bg-mist")}
+      className={cn("scroll-mt-24 py-14 sm:py-20 lg:py-28", index % 2 === 1 && "bg-mist")}
     >
       <Container>
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
@@ -190,7 +190,7 @@ export default async function WorkPage({ params }: LocaleParams) {
 
       <nav aria-label={workPage.casesNavLabel} className="border-b border-line bg-white">
         <Container>
-          <ul className="flex gap-1 overflow-x-auto">
+          <ul className="no-scrollbar flex gap-1 overflow-x-auto">
             {caseStudies.map((study) => (
               <li key={study.id} className="shrink-0">
                 <a

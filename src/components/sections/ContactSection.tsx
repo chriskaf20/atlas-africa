@@ -16,7 +16,7 @@ export function ContactSection({ locale, content }: ContactSectionProps) {
   const { contactPage, common } = content;
 
   return (
-    <section id="contact" className="bg-mist py-20 lg:py-28">
+    <section id="contact" className="bg-mist py-14 sm:py-20 lg:py-28">
       <Container>
         <div className="card grid overflow-hidden lg:grid-cols-[0.9fr_1.1fr]">
           <div className="on-dark relative isolate bg-navy-900 p-8 text-white sm:p-12">

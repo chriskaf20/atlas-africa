@@ -44,7 +44,7 @@ export default async function ContactPage({ params }: LocaleParams) {
         }}
       />
 
-      <section className="py-20 lg:py-28">
+      <section className="py-14 sm:py-20 lg:py-28">
         <Container className="grid gap-12 lg:grid-cols-[1.3fr_0.9fr] lg:gap-16">
           <div className="card p-7 sm:p-10">
             <h2 className="font-display text-2xl font-semibold text-navy-900">{page.formTitle}</h2>
@@ -80,7 +80,7 @@ export default async function ContactPage({ params }: LocaleParams) {
         </Container>
       </section>
 
-      <section aria-labelledby="carte" className="bg-mist py-20 lg:py-28">
+      <section aria-labelledby="carte" className="bg-mist py-14 sm:py-20 lg:py-28">
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 id="carte" className="font-display text-2xl font-semibold text-navy-900">

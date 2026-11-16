@@ -16,9 +16,9 @@ export function CaseStudyCards({ locale, content }: CaseStudyCardsProps) {
   const { caseStudies, common } = content;
 
   return (
-    <ul className="grid gap-8 md:grid-cols-2">
+    <ul className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-6 pt-1 sm:-mx-8 sm:px-8 md:mx-0 md:grid md:gap-6 md:overflow-visible md:p-0 md:grid-cols-2 md:gap-8">
       {caseStudies.map((study, index) => (
-        <Reveal as="li" key={study.id} delay={index * 120}>
+        <Reveal as="li" key={study.id} delay={index * 120} className="w-[86%] shrink-0 snap-center sm:w-[60%] md:w-auto">
           <article className="card card-hover group relative flex h-full flex-col overflow-hidden">
             <Media
               src={study.image}

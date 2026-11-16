@@ -3,12 +3,14 @@ import { DM_Sans, Montserrat } from "next/font/google";
 import type { ReactNode } from "react";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { MobileActionBar } from "@/components/layout/MobileActionBar";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { getContent } from "@/content";
 import { site } from "@/content/site";
 import { isLocale, locales } from "@/i18n/config";
 import { resolveLocale, type LocaleParams } from "@/lib/locale";
+import { contactHref } from "@/lib/routes";
 import "../globals.css";
 
 // Titres : sans-serif géométrique, proche du logo. Texte : sans-serif lisible.
@@ -55,7 +57,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
 
   return (
     <html lang={locale} className={`${heading.variable} ${body.variable}`}>
-      <body className="flex min-h-dvh flex-col">
+      <body className="flex min-h-dvh flex-col pb-[calc(3.5rem+env(safe-area-inset-bottom))] lg:pb-0">
         <a
           href="#contenu"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:bg-navy-900 focus:px-5 focus:py-3 focus:font-display focus:text-sm focus:font-semibold focus:text-white"
@@ -72,6 +74,13 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
         <WhatsAppButton
           label={content.common.whatsappCta}
           message={content.common.whatsappMessage}
+        />
+        <MobileActionBar
+          label={content.common.quickActions}
+          call={content.common.callShort}
+          whatsapp={content.contactPage.whatsappLabel}
+          quote={{ href: contactHref(locale), label: content.common.quoteShort }}
+          whatsappMessage={content.common.whatsappMessage}
         />
         <JsonLd locale={locale} content={content} />
       </body>

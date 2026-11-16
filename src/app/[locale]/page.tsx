@@ -35,7 +35,7 @@ export default async function HomePage({ params }: LocaleParams) {
       <Marquee items={content.poles.flatMap((pole) => pole.services.map((service) => service.title))} />
 
       {/* Les 4 pôles */}
-      <section className="py-20 lg:py-28">
+      <section className="py-14 sm:py-20 lg:py-28">
         <Container>
           <SectionHeading {...home.poles} />
           <div className="mt-12 lg:mt-16">
@@ -45,7 +45,7 @@ export default async function HomePage({ params }: LocaleParams) {
       </section>
 
       {/* Offres phares */}
-      <section className="border-t border-line py-20 lg:py-28">
+      <section className="border-t border-line py-14 sm:py-20 lg:py-28">
         <Container>
           <Reveal>
             <SectionHeading {...home.offers} />
@@ -57,7 +57,7 @@ export default async function HomePage({ params }: LocaleParams) {
       </section>
 
       {/* Secteurs servis */}
-      <section className="bg-mist py-20 lg:py-28">
+      <section className="bg-mist py-14 sm:py-20 lg:py-28">
         <Container>
           <Reveal>
             <SectionHeading {...home.sectors} />
@@ -69,7 +69,7 @@ export default async function HomePage({ params }: LocaleParams) {
       </section>
 
       {/* Méthode */}
-      <section className="on-dark relative isolate overflow-hidden bg-navy-900 py-20 lg:py-28">
+      <section className="on-dark relative isolate overflow-hidden bg-navy-900 py-14 sm:py-20 lg:py-28">
         <div
           aria-hidden="true"
           className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#0b1f4b_0%,#06122e_100%)]"
@@ -85,7 +85,7 @@ export default async function HomePage({ params }: LocaleParams) {
       </section>
 
       {/* Réalisations */}
-      <section className="py-20 lg:py-28">
+      <section className="py-14 sm:py-20 lg:py-28">
         <Container>
           <Reveal className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <SectionHeading {...home.work} />

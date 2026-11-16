@@ -136,7 +136,7 @@ export default async function ServicesPage({ params }: LocaleParams) {
         className="sticky top-[4.5rem] z-30 border-b border-line bg-white/90 backdrop-blur-md lg:top-20"
       >
         <Container>
-          <ul className="-mx-5 flex gap-1 overflow-x-auto px-5 sm:mx-0 sm:px-0">
+          <ul className="no-scrollbar -mx-5 flex gap-1 overflow-x-auto px-5 sm:mx-0 sm:px-0">
             {poles.map((pole) => (
               <li key={pole.id} className="shrink-0">
                 <a

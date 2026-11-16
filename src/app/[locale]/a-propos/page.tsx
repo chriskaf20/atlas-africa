@@ -42,7 +42,7 @@ export default async function AboutPage({ params }: LocaleParams) {
       />
 
       {/* Vision & mission */}
-      <section className="py-20 lg:py-28">
+      <section className="py-14 sm:py-20 lg:py-28">
         <Container className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2">
           {[page.vision, page.mission].map((block, i) => (
             <Reveal key={block.eyebrow} delay={i * 120} className="bg-white p-8 sm:p-12">
@@ -57,7 +57,7 @@ export default async function AboutPage({ params }: LocaleParams) {
       </section>
 
       {/* Valeurs */}
-      <section className="bg-mist py-20 lg:py-28">
+      <section className="bg-mist py-14 sm:py-20 lg:py-28">
         <Container>
           <SectionHeading eyebrow={page.values.eyebrow} title={page.values.title} />
           <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -101,7 +101,7 @@ export default async function AboutPage({ params }: LocaleParams) {
       </section>
 
       {/* Secteurs */}
-      <section className="py-20 lg:py-28">
+      <section className="py-14 sm:py-20 lg:py-28">
         <Container>
           <SectionHeading eyebrow={page.sectors.eyebrow} title={page.sectors.title} />
           <div className="mt-12">

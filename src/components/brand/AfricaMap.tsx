@@ -18,7 +18,7 @@ export function AfricaMap({ alt, label, sublabel, className }: AfricaMapProps) {
   const { width, height, dotSize, continentPath, drcPath, hq } = africaMap;
 
   return (
-    <div className={cn("relative", className)}>
+    <div className={cn(!/\b(absolute|fixed)\b/.test(className ?? "") && "relative", className)}>
       <svg
         viewBox={`0 0 ${width} ${height}`}
         fill="none"

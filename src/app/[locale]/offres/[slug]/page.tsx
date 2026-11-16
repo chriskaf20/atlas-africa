@@ -69,7 +69,7 @@ export default async function OfferPage({ params }: OfferParams) {
         }}
       />
 
-      <section className="py-20 lg:py-28">
+      <section className="py-14 sm:py-20 lg:py-28">
         <Container className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div>
             <Eyebrow>{offer.name}</Eyebrow>

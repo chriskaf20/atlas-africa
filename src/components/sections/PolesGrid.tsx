@@ -17,7 +17,7 @@ export function PolesGrid({ locale, content }: PolesGridProps) {
   const { poles, common } = content;
 
   return (
-    <ul className="grid gap-6 md:grid-cols-2">
+    <ul className="grid gap-4 sm:gap-6 md:grid-cols-2">
       {poles.map((pole, index) => (
         <Reveal as="li" key={pole.id} delay={(index % 2) * 120}>
           <article className="group relative flex h-full flex-col card card-hover overflow-hidden p-7 sm:p-9">
@@ -48,7 +48,8 @@ export function PolesGrid({ locale, content }: PolesGridProps) {
             </div>
             <p className="mt-3 text-muted">{pole.tagline}</p>
 
-            <ul className="mt-7 space-y-2.5 border-t border-line pt-6 text-[0.9375rem] text-ink">
+            {/* Liste des services : masquée sur téléphone pour raccourcir la page. */}
+            <ul className="mt-7 hidden space-y-2.5 border-t border-line pt-6 text-[0.9375rem] text-ink sm:block">
               {pole.services.map((service) => (
                 <li key={service.title} className="flex gap-3">
                   <span aria-hidden="true" className="mt-[0.7em] h-px w-3 shrink-0 bg-gold-500" />
@@ -59,7 +60,7 @@ export function PolesGrid({ locale, content }: PolesGridProps) {
 
             <p
               aria-hidden="true"
-              className="mt-auto flex items-center gap-2 pt-8 font-display text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-navy-900"
+              className="mt-auto flex items-center gap-2 pt-6 font-display sm:pt-8 text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-navy-900"
             >
               {common.discoverPole}
               <ArrowRight size={16} strokeWidth={2} className="transition-transform duration-300 group-hover:translate-x-1" />
