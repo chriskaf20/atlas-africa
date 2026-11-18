@@ -57,6 +57,11 @@ export function getVisual(id: VisualId, locale: Locale): ResolvedVisual {
     return { ...base, kind: spec.kind, src: spec.file, poster, isFallback: false };
   }
 
+  // Vidéo pas encore déposée, mais son image fixe l'est : on affiche l'image.
+  if (spec.kind === "video" && spec.poster && publicFileExists(spec.poster)) {
+    return { ...base, kind: "image", src: spec.poster, poster: null, isFallback: false };
+  }
+
   if (spec.fallback && publicFileExists(spec.fallback.file)) {
     const { fallback } = spec;
     const poster = fallback.poster ?? null;
