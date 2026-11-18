@@ -14,7 +14,13 @@ import { contactHref } from "@/lib/routes";
 import "../globals.css";
 
 // Titres : sans-serif géométrique, proche du logo. Texte : sans-serif lisible.
-const heading = Montserrat({ subsets: ["latin"], variable: "--font-heading", display: "swap" });
+// Italique chargée aussi : les titres de l'accueil mettent un mot en valeur en italique.
+const heading = Montserrat({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  variable: "--font-heading",
+  display: "swap",
+});
 const body = DM_Sans({ subsets: ["latin"], variable: "--font-body", display: "swap" });
 
 export function generateStaticParams() {

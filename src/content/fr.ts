@@ -41,7 +41,8 @@ export const fr = {
   /* ───────────── Navigation ───────────── */
   nav: {
     home: "Accueil",
-    services: "Services",
+    services: "Nos services",
+    sectors: "Secteurs",
     work: "Réalisations",
     about: "À propos",
     contact: "Contact",
@@ -647,62 +648,200 @@ export const fr = {
 
   /* ───────────── Page d'accueil ───────────── */
   home: {
+    /* Le visuel du hero et tous les visuels Higgsfield se règlent dans
+       `src/content/visuals.ts`. */
     hero: {
       eyebrow: "Lubumbashi · Haut-Katanga · RDC",
-      title: "Votre partenaire pour développer et réaliser vos affaires en RDC,",
-      titleAccent: "et demain en Afrique.",
+      /** Première ligne du grand titre. */
+      title: "Vos affaires en RDC,",
+      /** Dernière ligne du titre : ces mots s'affichent tour à tour (un par pôle). */
+      rotating: ["développées.", "approvisionnées.", "accompagnées.", "rendues visibles."],
+      /** Titre complet, lu par les lecteurs d'écran et les moteurs de recherche. */
+      titleFull: "Vos affaires en RDC, développées, approvisionnées, accompagnées et rendues visibles.",
       subtitle:
-        "Nous aidons les entreprises et les investisseurs à trouver les bons partenaires, à structurer leurs projets et à mobiliser les ressources nécessaires : fournisseurs, logistique, personnel, services aux sites et communication.",
-      mapAlt: "Carte de l'Afrique, la RDC et Lubumbashi mis en évidence",
-      mapLabel: "Lubumbashi",
-      mapSublabel: "Haut-Katanga · RDC",
-      /** Courte boucle vidéo muette affichée dans le hero. */
-      video: {
-        src: "/media/hero-loop.mp4",
-        poster: "/media/hero-loop.jpg",
-        label: "LED Atlas",
-        caption: "Notre réseau d'écrans à Lubumbashi",
-        alt: "Animation : un écran publicitaire LED Atlas dans la ville, de jour puis de nuit",
-      },
-      highlights: [
-        { title: "Quatre pôles", text: "complémentaires" },
-        { title: "Un interlocuteur", text: "pour tout votre projet" },
-        { title: "Ancrage local", text: "à Lubumbashi" },
-        { title: "Partenaires", text: "qualifiés" },
+        "Un seul partenaire à Lubumbashi pour trouver les bons partenaires, sécuriser vos approvisionnements, mobiliser le personnel et faire connaître votre entreprise. En RDC, et demain en Afrique.",
+      /**
+       * Compteurs animés. Ne mettez que des chiffres vérifiables : quand vous
+       * en aurez, remplacez-les par vos résultats (projets livrés, clients…).
+       */
+      statsLabel: "ATLAS AFRICA GROUP en chiffres",
+      stats: [
+        { value: 4, suffix: "", label: "pôles d'expertise complémentaires" },
+        { value: 14, suffix: "", label: "services disponibles" },
+        { value: 8, suffix: "", label: "secteurs servis" },
+        { value: 1, suffix: "", label: "interlocuteur pour tout votre projet" },
+      ],
+      /** Carte « trajet » posée sur le visuel (grand écran). */
+      floating: [
+        { title: "Lubumbashi – Likasi – Kolwezi", text: "Missions, transferts et livraisons" },
       ],
     },
-    offers: {
-      eyebrow: "Offres phares",
-      title: "Trois offres prêtes à réserver.",
-      intro: "Des prestations clairement définies, que vous pouvez demander en quelques minutes.",
+
+    /* ───── À propos / Nos valeurs ───── */
+    about: {
+      eyebrow: "À propos",
+      /** Texte révélé mot à mot au défilement. `accent: true` = passage en or. */
+      statement: [
+        { text: "Nous croyons à une chose simple :" },
+        { text: "ce qui est convenu est réalisé.", accent: true },
+        { text: "Avec méthode, avec" },
+        { text: "efficacité,", accent: true },
+        { text: "et un seul interlocuteur, nous faisons avancer vos projets en RDC." },
+      ] as { text: string; accent?: boolean }[],
+      valuesTitle: "Nos valeurs",
+      cta: "Découvrir qui nous sommes",
     },
     poles: {
       eyebrow: "Nos pôles",
       title: "Quatre pôles pour couvrir l'ensemble de vos besoins.",
       intro:
         "Du premier contact d'affaires à la vie quotidienne de vos sites, un seul partenaire coordonne les compétences dont vous avez besoin.",
+      tabsLabel: "Choisir un pôle",
+      servicesLabel: "Les services du pôle",
+      offerLabel: "Offre phare",
+      quoteCta: "Demander un devis",
+    },
+
+
+    /* ───── Section explicative : comment les pôles s'enchaînent ───── */
+    integration: {
+      eyebrow: "Comment ça marche",
+      title: "Un projet, quatre pôles, un seul interlocuteur.",
+      intro:
+        "Exemple : une entreprise s'installe à Kolwezi. Voici comment nos pôles s'enchaînent pour que tout soit prêt, sans multiplier les prestataires.",
+      scenarioLabel: "Scénario type",
+      stepLabel: "Étape",
+      /** `pole` = identifiant du pôle concerné (voir `poles` plus haut). */
+      steps: [
+        {
+          pole: "business-projects",
+          title: "Préparer l'implantation",
+          text: "Étude de marché et de faisabilité, recherche de partenaires locaux, aide à la négociation.",
+          items: ["Étude de faisabilité", "Partenaires identifiés", "Négociation accompagnée"],
+        },
+        {
+          pole: "supply-logistics",
+          title: "Équiper et acheminer",
+          text: "Sourcing des équipements, achats, import et organisation des expéditions jusqu'au site. AAG Mobilité assure les déplacements des équipes.",
+          items: ["Fournisseurs qualifiés", "Expéditions organisées", "Transport avec chauffeur"],
+        },
+        {
+          pole: "people-facilities",
+          title: "Mobiliser les équipes",
+          text: "Recrutement et mise à disposition de personnel, formation, entretien des locaux et nettoyage du site.",
+          items: ["Personnel recruté", "Équipes formées", "Site entretenu"],
+        },
+        {
+          pole: "digital-communication",
+          title: "Gérer et se faire connaître",
+          text: "Outils de gestion sur mesure, site web, campagnes ciblées et présence locale pour attirer vos premiers clients.",
+          items: ["Outil de gestion", "Site web", "Visibilité locale"],
+        },
+      ],
+      methodTitle: "Notre méthode, à chaque étape",
+      cta: "Décrire mon projet",
+    },
+
+    /* ───── Suivi d'un conteneur (exemple illustratif) ───── */
+    tracking: {
+      eyebrow: "Supply & Logistics",
+      title: "Vos marchandises suivies, du fournisseur à votre site.",
+      intro:
+        "Nous organisons chaque expédition avec des opérateurs qualifiés et vous informons à chaque étape. Voici le parcours type d'un conteneur vers le Haut-Katanga.",
+      exampleBadge: "Exemple de parcours",
+      referenceLabel: "Référence",
+      reference: "AAG-EXP-0418",
+      cargoLabel: "Marchandise",
+      cargo: "Conteneur 40' · équipements industriels",
+      originLabel: "Origine",
+      origin: "Port de Dar es Salaam",
+      destinationLabel: "Destination",
+      destination: "Kolwezi, Lualaba",
+      statusLabel: "Étape en cours",
+      progressLabel: "Avancement",
+      stepsLabel: "Étapes du parcours",
+      steps: [
+        {
+          label: "Commande confirmée",
+          place: "Fournisseur qualifié",
+          text: "Le fournisseur est sélectionné, le prix négocié et la commande passée.",
+        },
+        {
+          label: "Arrivée au port",
+          place: "Dar es Salaam",
+          text: "Réception du conteneur et organisation de son enlèvement.",
+        },
+        {
+          label: "Transit routier",
+          place: "Corridor Tanzanie – Zambie",
+          text: "Acheminement par semi-remorque, avec un transporteur qualifié.",
+        },
+        {
+          label: "Passage de la frontière",
+          place: "Kasumbalesa",
+          text: "Suivi des formalités d'importation avec nos partenaires.",
+        },
+        {
+          label: "Livré sur site",
+          place: "Lubumbashi · Kolwezi",
+          text: "Entreposage si nécessaire, puis livraison à l'adresse convenue.",
+        },
+      ],
+      play: "Lire l'animation",
+      pause: "Mettre l'animation en pause",
+      note: "Illustration : chaque parcours est défini avec vous selon l'origine, la marchandise et la destination.",
+      cta: "Organiser une expédition",
+      /** Valeur présélectionnée dans le formulaire de contact. */
+      serviceValue: "supply-logistics",
     },
     sectors: {
       eyebrow: "Secteurs servis",
       title: "Aux côtés des acteurs qui font l'économie du Katanga.",
       intro:
         "Nous intervenons auprès des entreprises, des investisseurs et des institutions, quel que soit leur secteur.",
-    },
-    method: {
-      eyebrow: "Notre méthode",
-      title: "Une démarche claire, en quatre étapes.",
-      intro: "Vous savez à tout moment où en est votre projet et ce qui vient ensuite.",
-    },
-    work: {
-      eyebrow: "Réalisations",
-      title: "Des projets concrets, menés à Lubumbashi.",
-      intro: "Deux exemples de ce que nous réalisons pour nos clients et pour nos propres activités.",
+      previous: "Secteur précédent",
+      next: "Secteur suivant",
+      cta: "Parler de votre projet",
+      /** Texte et mots-clés de chaque carte (clé = champ `icon` du secteur, voir `sectors`). */
+      details: {
+        pickaxe: {
+          text: "Équipements et consommables, transport des équipes, personnel et entretien des sites miniers.",
+          tags: ["Approvisionnement", "Mobilité", "Personnel"],
+        },
+        fuel: {
+          text: "Fournitures, logistique et services aux sites pour les acteurs des hydrocarbures.",
+          tags: ["Logistique", "Services aux sites"],
+        },
+        zap: {
+          text: "Projets solaires et efficacité énergétique, menés avec des partenaires techniques.",
+          tags: ["Études", "Solaire", "Partenaires"],
+        },
+        factory: {
+          text: "Sourcing, nettoyage industriel et personnel pour faire tourner vos installations.",
+          tags: ["Sourcing", "Nettoyage industriel"],
+        },
+        building: {
+          text: "Coordination de projets, nettoyage de fin de chantier et remise en état des locaux.",
+          tags: ["Projets", "Fin de chantier"],
+        },
+        store: {
+          text: "Site web, boutique en ligne, campagnes publicitaires et écrans LED pour vendre plus.",
+          tags: ["Digital", "Publicité", "LED"],
+        },
+        concierge: {
+          text: "Transport avec chauffeur, entretien des locaux et outils de gestion sur mesure.",
+          tags: ["Mobilité", "Entretien", "Gestion"],
+        },
+        landmark: {
+          text: "Études, accompagnement de projets et prestations externalisées pour les organismes.",
+          tags: ["Études", "Prestations externalisées"],
+        },
+      } as Record<string, { text: string; tags: string[] }>,
     },
     contact: {
       eyebrow: "Contact",
-      title: "Un projet, un besoin ? Parlons-en.",
+      title: "Un projet, un besoin ? Parlons-en.",
       text: "Décrivez-nous votre besoin en quelques lignes. Nous vous recontactons pour le préciser et vous adresser une proposition.",
-      directTitle: "Vous préférez un échange direct ?",
     },
   },
 

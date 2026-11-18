@@ -73,7 +73,7 @@ export function HeaderNav({ items, cta, labels, locale, languages }: HeaderNavPr
       }
     };
     // Le menu mobile n'a plus lieu d'être si la fenêtre passe en grand format.
-    const desktop = window.matchMedia("(min-width: 1024px)");
+    const desktop = window.matchMedia("(min-width: 1280px)");
     const onResize = () => desktop.matches && setOpen(false);
 
     document.addEventListener("keydown", onKeyDown);
@@ -90,8 +90,9 @@ export function HeaderNav({ items, cta, labels, locale, languages }: HeaderNavPr
   return (
     <>
       {/* Grand écran */}
-      <nav aria-label={labels.main} className="hidden lg:block">
-        <ul className="flex items-center gap-7 xl:gap-9">
+      <nav aria-label={labels.main} className="hidden xl:block">
+        {/* Navigation « en pilule » : la page active est surlignée en bleu marine. */}
+        <ul className="flex items-center gap-0.5 rounded-full border border-line bg-mist/80 p-1">
           {items.map((item) => {
             const active = isActive(item.path);
             return (
@@ -100,11 +101,10 @@ export function HeaderNav({ items, cta, labels, locale, languages }: HeaderNavPr
                   href={item.href}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "relative py-2 font-display text-[0.8125rem] font-semibold uppercase tracking-[0.1em] transition-colors",
-                    "after:absolute after:inset-x-0 after:bottom-0 after:h-px after:origin-left after:bg-gold-500 after:transition-transform after:duration-300",
+                    "block whitespace-nowrap rounded-full px-3 py-2 font-display text-[0.75rem] font-semibold uppercase tracking-[0.08em] transition-colors duration-300 xl:px-4 xl:text-[0.8125rem]",
                     active
-                      ? "text-navy-900 after:scale-x-100"
-                      : "text-navy-900/75 after:scale-x-0 hover:text-navy-900 hover:after:scale-x-100",
+                      ? "bg-navy-900 text-white shadow-[0_8px_20px_-10px_rgb(11_31_75/0.7)]"
+                      : "text-navy-900/75 hover:bg-white hover:text-navy-900",
                   )}
                 >
                   {item.label}
@@ -115,9 +115,9 @@ export function HeaderNav({ items, cta, labels, locale, languages }: HeaderNavPr
         </ul>
       </nav>
 
-      <div className="hidden items-center gap-4 lg:flex">
+      <div className="hidden items-center gap-4 xl:flex">
         {languageSwitch()}
-        <Link href={cta.href} className={buttonClass("navy")}>
+        <Link href={cta.href} className={buttonClass("navy", "whitespace-nowrap")}>
           {cta.label}
         </Link>
       </div>
@@ -130,7 +130,7 @@ export function HeaderNav({ items, cta, labels, locale, languages }: HeaderNavPr
         aria-controls={MENU_ID}
         aria-label={open ? labels.close : labels.open}
         onClick={() => setOpen((value) => !value)}
-        className="-mr-2 grid h-12 w-12 place-items-center text-navy-900 lg:hidden"
+        className="-mr-2 grid h-12 w-12 place-items-center text-navy-900 xl:hidden"
       >
         {open ? <X aria-hidden="true" size={26} /> : <Menu aria-hidden="true" size={26} />}
       </button>
@@ -140,7 +140,7 @@ export function HeaderNav({ items, cta, labels, locale, languages }: HeaderNavPr
         aria-hidden="true"
         onClick={() => setOpen(false)}
         className={cn(
-          "absolute inset-x-0 top-full h-[100dvh] bg-navy-950/40 transition-opacity duration-300 lg:hidden",
+          "absolute inset-x-0 top-full h-[100dvh] bg-navy-950/40 transition-opacity duration-300 xl:hidden",
           open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       />
@@ -149,7 +149,7 @@ export function HeaderNav({ items, cta, labels, locale, languages }: HeaderNavPr
         id={MENU_ID}
         inert={!open}
         className={cn(
-          "absolute inset-x-0 top-full max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-b border-line bg-white shadow-[0_30px_60px_-30px_rgb(6_18_46/0.35)] transition-[opacity,transform,visibility] duration-300 ease-out lg:hidden",
+          "absolute inset-x-0 top-full max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-b border-line bg-white shadow-[0_30px_60px_-30px_rgb(6_18_46/0.35)] transition-[opacity,transform,visibility] duration-300 ease-out xl:hidden",
           open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0",
         )}
       >

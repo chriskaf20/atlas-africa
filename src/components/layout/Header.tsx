@@ -14,13 +14,15 @@ type HeaderProps = {
 export function Header({ locale, content }: HeaderProps) {
   const { nav } = content;
 
+  // « À propos » reste accessible depuis la page d'accueil et le pied de page.
   const items: NavItem[] = [
-    { path: routes.home, label: nav.home },
-    { path: routes.services, label: nav.services },
-    { path: routes.work, label: nav.work },
-    { path: routes.about, label: nav.about },
-    { path: routes.contact, label: nav.contact },
-  ].map((item) => ({ ...item, href: href(locale, item.path) }));
+    { path: routes.home, label: nav.home, href: href(locale, routes.home) },
+    { path: routes.services, label: nav.services, href: href(locale, routes.services) },
+    // Ancre vers la section Secteurs de l'accueil : jamais marquée « page active ».
+    { path: "#secteurs", label: nav.sectors, href: `${href(locale, routes.home)}#secteurs` },
+    { path: routes.work, label: nav.work, href: href(locale, routes.work) },
+    { path: routes.contact, label: nav.contact, href: href(locale, routes.contact) },
+  ];
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/85">

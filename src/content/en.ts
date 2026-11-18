@@ -36,7 +36,8 @@ export const en: Content = {
 
   nav: {
     home: "Home",
-    services: "Services",
+    services: "Our services",
+    sectors: "Sectors",
     work: "Our work",
     about: "About",
     contact: "Contact",
@@ -591,58 +592,180 @@ export const en: Content = {
   home: {
     hero: {
       eyebrow: "Lubumbashi · Haut-Katanga · DRC",
-      title: "Your partner to develop and deliver your business in the DRC,",
-      titleAccent: "and tomorrow across Africa.",
+      title: "Your business in the DRC,",
+      rotating: ["developed.", "supplied.", "staffed.", "made visible."],
+      titleFull: "Your business in the DRC, developed, supplied, staffed and made visible.",
       subtitle:
-        "We help companies and investors find the right partners, structure their projects and mobilise the resources they need: suppliers, logistics, staff, site services and communication.",
-      mapAlt: "Map of Africa with the DRC and Lubumbashi highlighted",
-      mapLabel: "Lubumbashi",
-      mapSublabel: "Haut-Katanga · DRC",
-      video: {
-        src: "/media/hero-loop.mp4",
-        poster: "/media/hero-loop.jpg",
-        label: "LED Atlas",
-        caption: "Our screen network in Lubumbashi",
-        alt: "Animation: an LED Atlas advertising screen in the city, by day then by night",
-      },
-      highlights: [
-        { title: "Four divisions", text: "that complement each other" },
-        { title: "One point of contact", text: "for your whole project" },
-        { title: "Local roots", text: "in Lubumbashi" },
-        { title: "Qualified", text: "partners" },
+        "One partner in Lubumbashi to find the right partners, secure your supplies, mobilise staff and get your company known. In the DRC, and tomorrow across Africa.",
+      statsLabel: "ATLAS AFRICA GROUP in figures",
+      stats: [
+        { value: 4, suffix: "", label: "complementary divisions" },
+        { value: 14, suffix: "", label: "available services" },
+        { value: 8, suffix: "", label: "sectors served" },
+        { value: 1, suffix: "", label: "point of contact for your whole project" },
+      ],
+      floating: [
+        { title: "Lubumbashi – Likasi – Kolwezi", text: "Assignments, transfers and deliveries" },
       ],
     },
-    offers: {
-      eyebrow: "Featured offers",
-      title: "Three offers ready to book.",
-      intro: "Clearly defined services that you can request in a few minutes.",
+
+    about: {
+      eyebrow: "About us",
+      statement: [
+        { text: "We believe in one simple thing:" },
+        { text: "what is agreed gets done.", accent: true },
+        { text: "With method, with" },
+        { text: "efficiency,", accent: true },
+        { text: "and a single point of contact, we move your projects forward in the DRC." },
+      ] as { text: string; accent?: boolean }[],
+      valuesTitle: "Our values",
+      cta: "Find out who we are",
     },
     poles: {
       eyebrow: "Our divisions",
       title: "Four divisions to cover all your needs.",
       intro:
         "From the first business contact to the day-to-day running of your sites, a single partner coordinates the skills you need.",
+      tabsLabel: "Choose a division",
+      servicesLabel: "Services in this division",
+      offerLabel: "Featured offer",
+      quoteCta: "Request a quote",
+    },
+
+
+    integration: {
+      eyebrow: "How it works",
+      title: "One project, four divisions, one point of contact.",
+      intro:
+        "Example: a company sets up in Kolwezi. Here is how our divisions work in sequence so that everything is ready, without multiplying contractors.",
+      scenarioLabel: "Typical scenario",
+      stepLabel: "Step",
+      steps: [
+        {
+          pole: "business-projects",
+          title: "Prepare the set-up",
+          text: "Market and feasibility studies, search for local partners, negotiation support.",
+          items: ["Feasibility study", "Partners identified", "Negotiation support"],
+        },
+        {
+          pole: "supply-logistics",
+          title: "Equip and ship",
+          text: "Equipment sourcing, purchasing, import and shipments organised to the site. AAG Mobilité handles staff travel.",
+          items: ["Vetted suppliers", "Organised shipments", "Chauffeur-driven transport"],
+        },
+        {
+          pole: "people-facilities",
+          title: "Mobilise the teams",
+          text: "Recruitment and provision of staff, training, office upkeep and site cleaning.",
+          items: ["Staff recruited", "Teams trained", "Site maintained"],
+        },
+        {
+          pole: "digital-communication",
+          title: "Manage and get known",
+          text: "Custom management tools, website, targeted campaigns and local presence to attract your first customers.",
+          items: ["Management tool", "Website", "Local visibility"],
+        },
+      ],
+      methodTitle: "Our method, at every step",
+      cta: "Describe my project",
+    },
+
+    tracking: {
+      eyebrow: "Supply & Logistics",
+      title: "Your goods tracked, from supplier to site.",
+      intro:
+        "We organise every shipment with qualified operators and keep you informed at each step. Here is the typical journey of a container to Haut-Katanga.",
+      exampleBadge: "Example journey",
+      referenceLabel: "Reference",
+      reference: "AAG-EXP-0418",
+      cargoLabel: "Cargo",
+      cargo: "40' container · industrial equipment",
+      originLabel: "Origin",
+      origin: "Port of Dar es Salaam",
+      destinationLabel: "Destination",
+      destination: "Kolwezi, Lualaba",
+      statusLabel: "Current step",
+      progressLabel: "Progress",
+      stepsLabel: "Journey steps",
+      steps: [
+        {
+          label: "Order confirmed",
+          place: "Vetted supplier",
+          text: "The supplier is selected, the price negotiated and the order placed.",
+        },
+        {
+          label: "Arrival at port",
+          place: "Dar es Salaam",
+          text: "The container is received and its collection organised.",
+        },
+        {
+          label: "Road transit",
+          place: "Tanzania – Zambia corridor",
+          text: "Carried by semi-trailer truck with a qualified haulier.",
+        },
+        {
+          label: "Border crossing",
+          place: "Kasumbalesa",
+          text: "Import formalities followed up with our partners.",
+        },
+        {
+          label: "Delivered on site",
+          place: "Lubumbashi · Kolwezi",
+          text: "Warehousing if needed, then delivery to the agreed address.",
+        },
+      ],
+      play: "Play the animation",
+      pause: "Pause the animation",
+      note: "Illustration: each journey is defined with you according to origin, cargo and destination.",
+      cta: "Organise a shipment",
+      serviceValue: "supply-logistics",
     },
     sectors: {
       eyebrow: "Sectors served",
       title: "Alongside the players who drive Katanga's economy.",
       intro: "We work with companies, investors and institutions, whatever their sector.",
-    },
-    method: {
-      eyebrow: "Our method",
-      title: "A clear approach, in four steps.",
-      intro: "At any time, you know where your project stands and what comes next.",
-    },
-    work: {
-      eyebrow: "Our work",
-      title: "Real projects, carried out in Lubumbashi.",
-      intro: "Two examples of what we deliver for our clients and for our own activities.",
+      previous: "Previous sector",
+      next: "Next sector",
+      cta: "Talk about your project",
+      details: {
+        pickaxe: {
+          text: "Equipment and consumables, staff transport, personnel and upkeep of mining sites.",
+          tags: ["Supply", "Mobility", "Staffing"],
+        },
+        fuel: {
+          text: "Supplies, logistics and site services for oil and gas operators.",
+          tags: ["Logistics", "Site services"],
+        },
+        zap: {
+          text: "Solar and energy-efficiency projects, carried out with technical partners.",
+          tags: ["Studies", "Solar", "Partners"],
+        },
+        factory: {
+          text: "Sourcing, industrial cleaning and staff to keep your facilities running.",
+          tags: ["Sourcing", "Industrial cleaning"],
+        },
+        building: {
+          text: "Project coordination, post-construction cleaning and premises restoration.",
+          tags: ["Projects", "Post-construction"],
+        },
+        store: {
+          text: "Website, online shop, ad campaigns and LED screens to sell more.",
+          tags: ["Digital", "Advertising", "LED"],
+        },
+        concierge: {
+          text: "Chauffeur-driven transport, premises upkeep and custom management tools.",
+          tags: ["Mobility", "Upkeep", "Management"],
+        },
+        landmark: {
+          text: "Studies, project support and outsourced services for organisations.",
+          tags: ["Studies", "Outsourced services"],
+        },
+      } as Record<string, { text: string; tags: string[] }>,
     },
     contact: {
       eyebrow: "Contact",
       title: "A project, a need? Let's talk.",
       text: "Describe your need in a few lines. We will contact you to clarify it and send you a proposal.",
-      directTitle: "Prefer to talk directly?",
     },
   },
 
