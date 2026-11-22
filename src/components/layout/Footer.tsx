@@ -5,7 +5,7 @@ import { Container } from "@/components/ui/Container";
 import type { Content } from "@/content";
 import { site } from "@/content/site";
 import type { Locale } from "@/i18n/config";
-import { href, offerHref, routes } from "@/lib/routes";
+import { href, offerHref, poleHref, routes } from "@/lib/routes";
 
 type FooterProps = {
   locale: Locale;
@@ -21,9 +21,11 @@ export function Footer({ locale, content }: FooterProps) {
 
   const pages = [
     { href: href(locale, routes.home), label: nav.home },
-    { href: href(locale, routes.services), label: nav.services },
+    { href: href(locale, routes.expertises), label: nav.expertises },
+    { href: href(locale, routes.howItWorks), label: nav.howItWorks },
+    { href: href(locale, routes.sectors), label: nav.sectors },
     { href: href(locale, routes.work), label: nav.work },
-    { href: href(locale, routes.about), label: nav.about },
+    { href: href(locale, routes.group), label: nav.group },
     { href: href(locale, routes.contact), label: nav.contact },
   ];
 
@@ -54,7 +56,7 @@ export function Footer({ locale, content }: FooterProps) {
             <ul className="mt-5">
               {poles.map((pole) => (
                 <li key={pole.id}>
-                  <Link href={`${href(locale, routes.services)}#${pole.id}`} className={linkClass}>
+                  <Link href={poleHref(locale, pole.id)} className={linkClass}>
                     {pole.name}
                   </Link>
                 </li>
@@ -78,8 +80,12 @@ export function Footer({ locale, content }: FooterProps) {
               <li className="flex gap-3">
                 <MapPin aria-hidden="true" size={18} strokeWidth={1.5} className="mt-1 shrink-0 text-gold-400" />
                 <address className="not-italic leading-relaxed">
-                  {contact.streetAddress}
-                  <br />
+                  {contact.streetAddress ? (
+                    <>
+                      {contact.streetAddress}
+                      <br />
+                    </>
+                  ) : null}
                   {contact.locality}, {contact.region}
                   <br />
                   {contactPage.country}
@@ -105,7 +111,20 @@ export function Footer({ locale, content }: FooterProps) {
           <p>
             © {new Date().getFullYear()} {site.legalName}. {footer.rights}
           </p>
-          <p>{footer.location}</p>
+          <nav aria-label={footer.legalTitle}>
+            <ul className="flex flex-wrap gap-x-6">
+              <li>
+                <Link href={href(locale, routes.legal)} className={linkClass}>
+                  {nav.legal}
+                </Link>
+              </li>
+              <li>
+                <Link href={href(locale, routes.privacy)} className={linkClass}>
+                  {nav.privacy}
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
       </Container>
     </footer>

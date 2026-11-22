@@ -14,6 +14,10 @@ export type NavItem = {
   path: string;
   href: string;
   label: string;
+  /** Libellé court affiché sur grand écran (sinon `label`). */
+  shortLabel?: string;
+  /** Affiché uniquement dans le menu (bouton à 3 barres), pas dans la barre. */
+  menuOnly?: boolean;
 };
 
 type HeaderNavProps = {
@@ -72,17 +76,11 @@ export function HeaderNav({ items, cta, labels, locale, languages }: HeaderNavPr
         toggleRef.current?.focus();
       }
     };
-    // Le menu mobile n'a plus lieu d'être si la fenêtre passe en grand format.
-    const desktop = window.matchMedia("(min-width: 1280px)");
-    const onResize = () => desktop.matches && setOpen(false);
-
     document.addEventListener("keydown", onKeyDown);
-    desktop.addEventListener("change", onResize);
     document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
-      desktop.removeEventListener("change", onResize);
       document.body.style.overflow = "";
     };
   }, [open]);
@@ -93,7 +91,7 @@ export function HeaderNav({ items, cta, labels, locale, languages }: HeaderNavPr
       <nav aria-label={labels.main} className="hidden xl:block">
         {/* Navigation « en pilule » : la page active est surlignée en bleu marine. */}
         <ul className="flex items-center gap-0.5 rounded-full border border-line bg-mist/80 p-1">
-          {items.map((item) => {
+          {items.filter((item) => !item.menuOnly).map((item) => {
             const active = isActive(item.path);
             return (
               <li key={item.path}>
@@ -101,13 +99,13 @@ export function HeaderNav({ items, cta, labels, locale, languages }: HeaderNavPr
                   href={item.href}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "block whitespace-nowrap rounded-full px-3 py-2 font-display text-[0.75rem] font-semibold uppercase tracking-[0.08em] transition-colors duration-300 xl:px-4 xl:text-[0.8125rem]",
+                    "block whitespace-nowrap rounded-full px-3 py-2 font-display text-[0.75rem] font-semibold uppercase tracking-[0.06em] transition-colors duration-300 2xl:px-4",
                     active
                       ? "bg-navy-900 text-white shadow-[0_8px_20px_-10px_rgb(11_31_75/0.7)]"
                       : "text-navy-900/75 hover:bg-white hover:text-navy-900",
                   )}
                 >
-                  {item.label}
+                  {item.shortLabel ?? item.label}
                 </Link>
               </li>
             );
@@ -122,7 +120,7 @@ export function HeaderNav({ items, cta, labels, locale, languages }: HeaderNavPr
         </Link>
       </div>
 
-      {/* Mobile */}
+      {/* Bouton menu (3 barres) : sur tous les écrans, ouvre le menu complet. */}
       <button
         ref={toggleRef}
         type="button"
@@ -130,7 +128,7 @@ export function HeaderNav({ items, cta, labels, locale, languages }: HeaderNavPr
         aria-controls={MENU_ID}
         aria-label={open ? labels.close : labels.open}
         onClick={() => setOpen((value) => !value)}
-        className="-mr-2 grid h-12 w-12 place-items-center text-navy-900 xl:hidden"
+        className="-mr-2 grid h-12 w-12 shrink-0 place-items-center rounded-full text-navy-900 transition-colors hover:bg-mist xl:mr-0"
       >
         {open ? <X aria-hidden="true" size={26} /> : <Menu aria-hidden="true" size={26} />}
       </button>
@@ -140,7 +138,7 @@ export function HeaderNav({ items, cta, labels, locale, languages }: HeaderNavPr
         aria-hidden="true"
         onClick={() => setOpen(false)}
         className={cn(
-          "absolute inset-x-0 top-full h-[100dvh] bg-navy-950/40 transition-opacity duration-300 xl:hidden",
+          "absolute inset-x-0 top-full h-[100dvh] bg-navy-950/40 transition-opacity duration-300",
           open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       />
@@ -149,12 +147,12 @@ export function HeaderNav({ items, cta, labels, locale, languages }: HeaderNavPr
         id={MENU_ID}
         inert={!open}
         className={cn(
-          "absolute inset-x-0 top-full max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-b border-line bg-white shadow-[0_30px_60px_-30px_rgb(6_18_46/0.35)] transition-[opacity,transform,visibility] duration-300 ease-out xl:hidden",
+          "absolute inset-x-0 top-full max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-b border-line bg-white shadow-[0_30px_60px_-30px_rgb(6_18_46/0.35)] transition-[opacity,transform,visibility] duration-300 ease-out",
           open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0",
         )}
       >
-        <nav aria-label={labels.main} className="px-5 pb-8 pt-2 sm:px-8">
-          <ul>
+        <nav aria-label={labels.main} className="mx-auto w-full max-w-[76rem] px-5 pb-8 pt-2 sm:px-8">
+          <ul className="xl:grid xl:grid-cols-3 xl:gap-x-10">
             {items.map((item) => {
               const active = isActive(item.path);
               return (
@@ -178,11 +176,11 @@ export function HeaderNav({ items, cta, labels, locale, languages }: HeaderNavPr
           <Link
             href={cta.href}
             onClick={() => setOpen(false)}
-            className={buttonClass("navy", "mt-7 w-full")}
+            className={buttonClass("navy", "mt-7 w-full xl:hidden")}
           >
             {cta.label}
           </Link>
-          {languageSwitch("mt-6 justify-center")}
+          {languageSwitch("mt-6 justify-center xl:hidden")}
         </nav>
       </div>
     </>

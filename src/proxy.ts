@@ -2,12 +2,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import { defaultLocale, locales } from "@/i18n/config";
 
 /**
- * Routage des langues.
- *
- * - La langue par défaut (français) est servie sans préfixe : /services
- *   est réécrit en interne vers /fr/services.
- * - /fr/services est redirigé vers /services pour éviter les doublons.
- * - Les autres langues (ex. /en/services) passent telles quelles.
+ * Routage des langues : toutes les pages sont servies sous /fr/… ou /en/….
  */
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -16,17 +11,14 @@ export function proxy(request: NextRequest) {
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`),
   );
 
-  if (prefixed === defaultLocale) {
-    const url = request.nextUrl.clone();
-    url.pathname = pathname.slice(defaultLocale.length + 1) || "/";
-    return NextResponse.redirect(url, 308);
-  }
-
   if (prefixed) return NextResponse.next();
 
+  // Adresse sans langue (ancien format) : redirection vers la version française.
+  // Toutes les pages ont un préfixe de langue : le routeur de Next ne confond
+  // plus une page (/services) avec une langue, ce qui évite les préchargements en 404.
   const url = request.nextUrl.clone();
   url.pathname = `/${defaultLocale}${pathname === "/" ? "" : pathname}`;
-  return NextResponse.rewrite(url);
+  return NextResponse.redirect(url, 308);
 }
 
 export const config = {

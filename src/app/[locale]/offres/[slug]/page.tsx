@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ContactLinks } from "@/components/contact/ContactLinks";
+import { Badge } from "@/components/ui/Badge";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { PageHero } from "@/components/sections/PageHero";
 import { Container } from "@/components/ui/Container";
@@ -72,7 +73,10 @@ export default async function OfferPage({ params }: OfferParams) {
       <section className="py-14 sm:py-20 lg:py-28">
         <Container className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div>
-            <Eyebrow>{offer.name}</Eyebrow>
+            <div className="flex flex-wrap items-center gap-3">
+              <Eyebrow>{offer.name}</Eyebrow>
+              {offer.status ? <Badge tone="neutral">{offer.status}</Badge> : null}
+            </div>
             <h2 className="mt-5 text-[1.75rem] font-semibold leading-[1.15] tracking-tight text-navy-900 sm:text-4xl">
               {offer.featuresTitle}
             </h2>
@@ -90,6 +94,26 @@ export default async function OfferPage({ params }: OfferParams) {
               ))}
             </ul>
 
+            {/* Déroulé : intervention, réservation ou campagne */}
+            {offer.process ? (
+              <div className="mt-14">
+                <h2 className="font-display text-2xl font-semibold text-navy-900">{offer.process.title}</h2>
+                <ol className="mt-6 space-y-4">
+                  {offer.process.steps.map((step, index) => (
+                    <Reveal as="li" key={step.title} delay={index * 70} className="flex gap-5">
+                      <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold-500 font-display text-sm font-semibold tabular-nums text-gold-700">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div className="pt-1.5">
+                        <p className="font-display text-base font-semibold text-navy-900">{step.title}</p>
+                        <p className="mt-1 text-muted">{step.text}</p>
+                      </div>
+                    </Reveal>
+                  ))}
+                </ol>
+              </div>
+            ) : null}
+
             {offer.media ? (
               <Reveal className="mt-10">
                 <Media
@@ -98,7 +122,7 @@ export default async function OfferPage({ params }: OfferParams) {
                   poster={offer.media.poster}
                   alt={offer.media.alt}
                   title={offer.name}
-                  caption={common.videoSoon}
+                  caption={offer.name}
                   ratio="aspect-video"
                   className="border border-line"
                 />

@@ -1,7 +1,7 @@
 import type { Content } from "@/content";
 import { site } from "@/content/site";
 import type { Locale } from "@/i18n/config";
-import { href, routes } from "@/lib/routes";
+import { href, poleHref, routes } from "@/lib/routes";
 import { absoluteUrl, OG_IMAGE_PATH } from "@/lib/seo";
 
 type JsonLdProps = {
@@ -13,7 +13,6 @@ type JsonLdProps = {
 export function JsonLd({ locale, content }: JsonLdProps) {
   const { contact, geo } = site;
   const home = absoluteUrl(href(locale, routes.home));
-  const services = absoluteUrl(href(locale, routes.services));
 
   const data = {
     "@context": "https://schema.org",
@@ -29,7 +28,8 @@ export function JsonLd({ locale, content }: JsonLdProps) {
     email: contact.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: contact.streetAddress,
+      // Rue publiée seulement si elle est confirmée (voir site.ts).
+      ...(contact.streetAddress ? { streetAddress: contact.streetAddress } : {}),
       addressLocality: contact.locality,
       addressRegion: contact.region,
       addressCountry: contact.countryCode,
@@ -54,13 +54,14 @@ export function JsonLd({ locale, content }: JsonLdProps) {
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: content.nav.services,
+      name: content.nav.expertises,
       itemListElement: content.poles.map((pole) => ({
         "@type": "OfferCatalog",
         name: pole.name,
         description: pole.summary,
-        url: `${services}#${pole.id}`,
-        itemListElement: pole.services.map((service) => ({
+        url: absoluteUrl(poleHref(locale, pole.id)),
+        // Les services en développement ne sont pas proposés.
+        itemListElement: pole.services.filter((service) => service.delivery !== "development").map((service) => ({
           "@type": "Offer",
           itemOffered: { "@type": "Service", name: service.title },
         })),

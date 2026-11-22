@@ -34,8 +34,11 @@ export const site = {
     /** Numéro WhatsApp : indicatif + numéro, chiffres uniquement. */
     whatsapp: "243897500994",
     email: "info@atlasafricagroup.com",
-    /** À REMPLACER — rue, numéro, quartier, commune. */
-    streetAddress: "Adresse à compléter",
+    /**
+     * Rue, numéro, quartier, commune. Laisser null tant que l'adresse n'est pas
+     * confirmée : le site affiche alors seulement la ville (jamais de texte provisoire).
+     */
+    streetAddress: null as string | null,
     locality: "Lubumbashi",
     region: "Haut-Katanga",
     countryCode: "CD",

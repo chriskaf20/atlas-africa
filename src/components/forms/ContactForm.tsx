@@ -2,10 +2,13 @@
 
 import { CircleAlert, CircleCheck } from "lucide-react";
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from "react";
+import Link from "next/link";
 import { buttonClass } from "@/components/ui/Button";
 import type { Content } from "@/content";
 import type { Locale } from "@/i18n/config";
 import { cn } from "@/lib/cn";
+import { extraFieldKind, fieldsFor, type ExtraFieldKey, type ExtraValues } from "@/lib/form-schema";
+import { href, routes } from "@/lib/routes";
 import {
   contactFields,
   emptyContactValues,
@@ -42,6 +45,13 @@ export function ContactForm({ variant = "full", content, locale, defaultService 
   const [status, setStatus] = useState<Status>("idle");
   const [failure, setFailure] = useState<string | null>(null);
   const [trap, setTrap] = useState("");
+  // Précisions propres au service choisi (formulaires spécialisés).
+  const [extras, setExtras] = useState<ExtraValues>({});
+  // Heure d'affichage du formulaire : un envoi trop rapide trahit un robot.
+  const startedAt = useRef<number | null>(null);
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
 
   const formRef = useRef<HTMLFormElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
@@ -97,7 +107,13 @@ export function ContactForm({ variant = "full", content, locale, defaultService 
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...clean, website: trap, locale }),
+        body: JSON.stringify({
+          ...clean,
+          extras,
+          website: trap,
+          elapsed: startedAt.current ? Date.now() - startedAt.current : 0,
+          locale,
+        }),
       });
       const data = (await response.json().catch(() => null)) as {
         ok?: boolean;
@@ -107,6 +123,7 @@ export function ContactForm({ variant = "full", content, locale, defaultService 
 
       if (response.ok && data?.ok) {
         setValues(emptyContactValues);
+        setExtras({});
         setStatus("success");
         return;
       }
@@ -119,7 +136,11 @@ export function ContactForm({ variant = "full", content, locale, defaultService 
       }
 
       setFailure(
-        data?.reason === "not_configured" ? content.failure.notConfigured : content.failure.generic,
+        data?.reason === "not_configured"
+          ? content.failure.notConfigured
+          : response.status === 429
+            ? content.failure.tooMany
+            : content.failure.generic,
       );
       setStatus("error");
     } catch {
@@ -180,6 +201,7 @@ export function ContactForm({ variant = "full", content, locale, defaultService 
   );
 
   const sending = status === "sending";
+  const extraKeys: ExtraFieldKey[] = fieldsFor(values.service);
 
   return (
     <form ref={formRef} onSubmit={onSubmit} noValidate className="relative">
@@ -269,6 +291,59 @@ export function ContactForm({ variant = "full", content, locale, defaultService 
           true,
         )}
       </div>
+
+      {/* Précisions selon le service choisi (formulaire spécialisé). */}
+      {full && extraKeys.length > 0 ? (
+        <fieldset className="mt-8 rounded-2xl border border-line bg-mist/60 p-5 sm:p-6">
+          <legend className="px-2 font-display text-sm font-semibold text-navy-900">
+            {content.detailsTitle} <span className="font-sans font-normal text-muted">({content.optional})</span>
+          </legend>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {extraKeys.map((key) => {
+              const def = content.fields[key];
+              const id = `${uid}-x-${key}`;
+              const value = extras[key] ?? "";
+              const onChange = (next: string) => setExtras((current) => ({ ...current, [key]: next }));
+              const kind = extraFieldKind[key];
+              return (
+                <div key={key}>
+                  <label htmlFor={id} className="mb-2 block font-display text-sm font-semibold text-navy-900">
+                    {def.label}
+                  </label>
+                  {kind === "select" && def.options ? (
+                    <select id={id} name={key} value={value} onChange={(event) => onChange(event.target.value)} className={inputClass}>
+                      <option value="">—</option>
+                      {def.options.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <input
+                      id={id}
+                      name={key}
+                      type={kind === "date" ? "date" : "text"}
+                      value={value}
+                      maxLength={200}
+                      placeholder={def.placeholder}
+                      onChange={(event) => onChange(event.target.value)}
+                      className={inputClass}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </fieldset>
+      ) : null}
+
+      <p className="mt-6 text-sm text-muted">
+        {content.privacyNote}{" "}
+        <Link href={href(locale, routes.privacy)} className="font-medium text-navy-900 underline decoration-gold-500 underline-offset-4">
+          {content.privacyLink}
+        </Link>
+      </p>
 
       {/* Champ piège anti-robots : invisible et hors navigation clavier. */}
       <div aria-hidden="true" className="absolute left-[-9999px] top-0 h-px w-px overflow-hidden">

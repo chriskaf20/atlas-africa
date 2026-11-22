@@ -14,15 +14,18 @@ type HeaderProps = {
 export function Header({ locale, content }: HeaderProps) {
   const { nav } = content;
 
-  // « À propos » reste accessible depuis la page d'accueil et le pied de page.
+  // Libellé court sur grand écran (`shortLabel`), intitulé complet dans le menu mobile.
+  // Barre : rubriques principales. Menu (bouton à 3 barres) : toutes les rubriques,
+  // dont « Accueil », « Comment ça marche » et « Le Groupe » (`menuOnly`).
   const items: NavItem[] = [
-    { path: routes.home, label: nav.home, href: href(locale, routes.home) },
-    { path: routes.services, label: nav.services, href: href(locale, routes.services) },
-    // Ancre vers la section Secteurs de l'accueil : jamais marquée « page active ».
-    { path: "#secteurs", label: nav.sectors, href: `${href(locale, routes.home)}#secteurs` },
-    { path: routes.work, label: nav.work, href: href(locale, routes.work) },
-    { path: routes.contact, label: nav.contact, href: href(locale, routes.contact) },
-  ];
+    { path: routes.home, label: nav.home, menuOnly: true },
+    { path: routes.expertises, label: nav.expertises, shortLabel: nav.short.expertises },
+    { path: routes.howItWorks, label: nav.howItWorks, menuOnly: true },
+    { path: routes.sectors, label: nav.sectors, shortLabel: nav.short.sectors },
+    { path: routes.work, label: nav.work, shortLabel: nav.short.work },
+    { path: routes.group, label: nav.group, shortLabel: nav.short.group, menuOnly: true },
+    { path: routes.contact, label: nav.contact },
+  ].map((item) => ({ ...item, href: href(locale, item.path) }));
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-white/95 backdrop-blur-md supports-[backdrop-filter]:bg-white/85">

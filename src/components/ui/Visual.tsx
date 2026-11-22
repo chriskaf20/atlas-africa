@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ImageIcon, Play } from "lucide-react";
 import type { VisualRatio } from "@/content/visuals";
 import { cn } from "@/lib/cn";
 import type { ResolvedVisual } from "@/lib/visuals";
@@ -43,6 +42,8 @@ type VisualProps = {
   className?: string;
   /** Classes appliquées à l'image ou à la vidéo elle-même. */
   mediaClassName?: string;
+  /** Affiche la mention « Illustration » sur les images générées (oui par défaut). */
+  showIllustration?: boolean;
 };
 
 export function Visual({
@@ -54,6 +55,7 @@ export function Visual({
   zoomOnHover = false,
   className,
   mediaClassName,
+  showIllustration = true,
 }: VisualProps) {
   const frame = cn(
     "overflow-hidden bg-navy-950",
@@ -70,10 +72,19 @@ export function Visual({
     ...(visual.dev ? { "data-higgsfield-file": visual.dev.file, "data-higgsfield-prompt": visual.dev.prompt } : {}),
   };
 
+  // Mention « Illustration » sur les images générées : elles ne montrent pas une réalisation réelle.
+  const chip =
+    visual.illustration && showIllustration ? (
+      <span className="pointer-events-none absolute bottom-2.5 right-2.5 z-10 rounded-full bg-navy-950/60 px-2 py-0.5 font-display text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-white/85 backdrop-blur-sm">
+        {visual.illustrationLabel}
+      </span>
+    ) : null;
+
   if (visual.src && visual.kind === "video") {
     return (
       <div className={frame} {...data}>
         <LoopVideo src={visual.src} poster={visual.poster} alt={decorative ? undefined : visual.alt} className={media} />
+        {chip}
       </div>
     );
   }
@@ -86,20 +97,20 @@ export function Visual({
           alt={decorative ? "" : visual.alt}
           fill
           sizes={sizes}
+          quality={90}
           {...(priority ? { loading: "eager" as const, fetchPriority: "high" as const } : {})}
           className={media}
         />
+        {chip}
       </div>
     );
   }
 
-  // Emplacement provisoire, en attendant le fichier Higgsfield.
-  const Glyph = visual.kind === "video" ? Play : ImageIcon;
+  // Pas encore d'image : composition aux couleurs de la marque, sans texte provisoire.
   return (
     <div
       {...data}
-      // L'image n'existe pas encore : on annonce un emplacement, pas une scène inventée.
-      {...(decorative ? { "aria-hidden": true } : { role: "img", "aria-label": `${visual.label} — ${visual.soon}` })}
+      {...(decorative ? { "aria-hidden": true } : { role: "img", "aria-label": visual.label })}
       className={cn(frame, "isolate")}
     >
       <div aria-hidden="true" className="pattern-lines absolute inset-0 -z-10" />
@@ -108,24 +119,25 @@ export function Visual({
         className="absolute inset-0 -z-10 bg-[radial-gradient(120%_90%_at_80%_0%,rgb(44_74_143/0.7),transparent_60%),radial-gradient(80%_60%_at_0%_100%,rgb(201_161_59/0.18),transparent_70%)]"
       />
       <div aria-hidden="true" className="visual-sheen absolute inset-0 -z-10" />
-      <div aria-hidden="true" className="flex h-full flex-col items-center justify-center gap-3 p-5 text-center">
-        <span className="grid h-11 w-11 place-items-center rounded-full border border-gold-400/60 text-gold-300">
-          <Glyph size={18} strokeWidth={1.5} />
-        </span>
-        <span className="font-display text-base font-semibold tracking-tight text-white sm:text-lg">{visual.label}</span>
-        <span className="font-display text-[0.625rem] font-semibold uppercase tracking-[0.22em] text-white/60">
-          {visual.soon}
-        </span>
+      <svg aria-hidden="true" viewBox="0 0 400 400" fill="none" className="absolute -right-16 -top-16 -z-10 h-72 w-72 opacity-70">
+        <circle cx="200" cy="200" r="60" stroke="#d6b45c" strokeOpacity="0.45" />
+        <circle cx="200" cy="200" r="120" stroke="#d6b45c" strokeOpacity="0.25" />
+        <circle cx="200" cy="200" r="190" stroke="#d6b45c" strokeOpacity="0.12" />
+      </svg>
+      <div aria-hidden="true" className="flex h-full flex-col items-start justify-end gap-2 p-5 sm:p-6">
+        {/* Visuel décoratif : la carte affiche déjà son titre, on évite le doublon. */}
+        {decorative ? null : (
+          <>
+            <span className="h-px w-8 bg-gold-400" />
+            <span className="font-display text-base font-semibold tracking-tight text-white sm:text-lg">{visual.label}</span>
+          </>
+        )}
         {visual.dev ? (
           <code className="mt-1 max-w-full truncate rounded bg-black/40 px-2 py-1 font-mono text-[0.625rem] text-gold-200">
             public{visual.dev.file}
           </code>
         ) : null}
       </div>
-      <span
-        aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold-500 to-transparent"
-      />
     </div>
   );
 }

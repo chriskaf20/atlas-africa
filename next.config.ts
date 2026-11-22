@@ -27,6 +27,20 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
+    qualities: [75, 90],
+  },
+  /** Anciennes adresses (avant la refonte) : redirection permanente. */
+  async redirects() {
+    const moved = [
+      { from: "/a-propos", to: "/groupe" },
+      { from: "/expertises", to: "/services" },
+      { from: "/expertises/:slug", to: "/services/:slug" },
+    ];
+    return moved.flatMap(({ from, to }) => [
+      { source: from, destination: `/fr${to}`, permanent: true },
+      { source: `/fr${from}`, destination: `/fr${to}`, permanent: true },
+      { source: `/en${from}`, destination: `/en${to}`, permanent: true },
+    ]);
   },
   async headers() {
     return [

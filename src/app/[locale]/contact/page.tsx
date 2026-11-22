@@ -63,8 +63,12 @@ export default async function ContactPage({ params }: LocaleParams) {
               <span>
                 <span className="block font-display text-sm font-semibold text-navy-900">{page.addressLabel}</span>
                 <span className="block text-muted">
-                  {contact.streetAddress}
-                  <br />
+                  {contact.streetAddress ? (
+                    <>
+                      {contact.streetAddress}
+                      <br />
+                    </>
+                  ) : null}
                   {contact.locality}, {contact.region}
                   <br />
                   {page.country}
@@ -90,7 +94,7 @@ export default async function ContactPage({ params }: LocaleParams) {
               href={site.map.linkUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-display text-sm font-semibold text-navy-900 underline decoration-gold-500 underline-offset-4"
+              className="inline-flex min-h-11 items-center gap-2 font-display text-sm font-semibold text-navy-900 underline decoration-gold-500 underline-offset-4"
             >
               {page.mapOpen}
               <ExternalLink aria-hidden="true" size={16} />

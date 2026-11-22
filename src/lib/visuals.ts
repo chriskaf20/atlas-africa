@@ -20,8 +20,10 @@ export type ResolvedVisual = {
   ratio: VisualRatio;
   alt: string;
   label: string;
-  /** Mention affichée dans l'emplacement provisoire (« Visuel à venir »). */
-  soon: string;
+  /** true : image d'illustration (générée), signalée comme telle à l'écran. */
+  illustration: boolean;
+  /** Libellé de la mention « Illustration ». */
+  illustrationLabel: string;
   /** true : un visuel existant est affiché en attendant le fichier Higgsfield. */
   isFallback: boolean;
   /** Développement uniquement : chemin attendu et prompt, pour l'emplacement provisoire. */
@@ -42,24 +44,24 @@ function publicFileExists(publicPath: string): boolean {
 export function getVisual(id: VisualId, locale: Locale): ResolvedVisual {
   const spec: VisualSpec = visuals[id];
   const { common } = getContent(locale);
-  const soon = spec.kind === "video" ? common.videoSoon : common.mediaSoon;
   const base = {
     id,
     ratio: spec.ratio,
     alt: spec.alt[locale],
     label: spec.label[locale],
-    soon,
+    illustration: false,
+    illustrationLabel: common.illustration,
     dev: isDev ? { file: spec.file, prompt: spec.prompt } : null,
   };
 
   if (publicFileExists(spec.file)) {
     const poster = spec.poster && publicFileExists(spec.poster) ? spec.poster : null;
-    return { ...base, kind: spec.kind, src: spec.file, poster, isFallback: false };
+    return { ...base, illustration: true, kind: spec.kind, src: spec.file, poster, isFallback: false };
   }
 
   // Vidéo pas encore déposée, mais son image fixe l'est : on affiche l'image.
   if (spec.kind === "video" && spec.poster && publicFileExists(spec.poster)) {
-    return { ...base, kind: "image", src: spec.poster, poster: null, isFallback: false };
+    return { ...base, illustration: true, kind: "image", src: spec.poster, poster: null, isFallback: false };
   }
 
   if (spec.fallback && publicFileExists(spec.fallback.file)) {
@@ -67,7 +69,15 @@ export function getVisual(id: VisualId, locale: Locale): ResolvedVisual {
     const poster = fallback.poster ?? null;
     // La description du futur visuel Higgsfield ne correspond pas à l'image affichée :
     // on se contente de son libellé court.
-    return { ...base, alt: spec.label[locale], kind: fallback.kind, src: fallback.file, poster, isFallback: true };
+    return {
+      ...base,
+      alt: spec.label[locale],
+      illustration: fallback.file.includes("/higgsfield/"),
+      kind: fallback.kind,
+      src: fallback.file,
+      poster,
+      isFallback: true,
+    };
   }
 
   return { ...base, kind: spec.kind, src: null, poster: null, isFallback: false };

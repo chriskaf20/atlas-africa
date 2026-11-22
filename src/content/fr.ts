@@ -6,47 +6,69 @@
  *  sans toucher aux noms des champs (à gauche des « : »).
  *
  *  Les coordonnées (téléphone, e-mail, adresse, WhatsApp) sont dans
- *  `src/content/site.ts`.
+ *  `src/content/site.ts`. Les visuels sont dans `src/content/visuals.ts`.
+ *
+ *  Règle : ne publier que des informations confirmées. Les informations à
+ *  vérifier sont listées dans `docs/registre-validation.md`.
  *
  *  Les champs `icon` renvoient à la liste d'icônes de
  *  `src/components/ui/Icon.tsx`.
  * ─────────────────────────────────────────────────────────────────────────
  */
 
+import type { ExtraFieldKey } from "@/lib/form-schema";
+import type {
+  CaseStudy,
+  FormFieldContent,
+  Leader,
+  LegalSection,
+  Offer,
+  Pole,
+  Sector,
+} from "./types";
+
 export const fr = {
   /* ───────────── Référencement (SEO) ───────────── */
   meta: {
-    title: "ATLAS AFRICA GROUP — Votre partenaire d'affaires à Lubumbashi, RDC",
+    title: "ATLAS AFRICA GROUP — Groupe multisectoriel en RDC",
     description:
-      "ATLAS AFRICA GROUP SARL accompagne les entreprises et les investisseurs en RDC : développement d'affaires, approvisionnement et logistique, personnel et services aux sites, communication digitale. Basé à Lubumbashi, Haut-Katanga.",
+      "ATLAS AFRICA GROUP accompagne les entreprises, les institutions et les investisseurs en RDC : développement d'affaires et de projets, approvisionnement et logistique, ressources humaines et facility management, digital, médias et communication. Basé à Lubumbashi.",
     keywords: [
       "ATLAS AFRICA GROUP",
+      "groupe multisectoriel RDC",
+      "services aux entreprises RDC",
       "Lubumbashi",
       "Haut-Katanga",
-      "RDC",
-      "développement d'affaires",
-      "apport d'affaires",
-      "approvisionnement",
-      "logistique",
-      "transport avec chauffeur",
-      "recrutement",
+      "développement d'affaires RDC",
+      "approvisionnement et logistique",
+      "transport avec chauffeur Lubumbashi",
+      "recrutement RDC",
+      "facility management",
       "nettoyage industriel",
       "création de site web",
-      "publicité en ligne",
+      "publicité digitale",
       "écrans LED publicitaires",
     ],
-    ogImageAlt: "ATLAS AFRICA GROUP — Votre partenaire d'affaires en RDC",
+    ogImageAlt: "ATLAS AFRICA GROUP — Vos ambitions. Notre capacité d'action.",
   },
 
   /* ───────────── Navigation ───────────── */
   nav: {
     home: "Accueil",
-    services: "Nos services",
-    sectors: "Secteurs",
-    work: "Réalisations",
-    about: "À propos",
+    expertises: "Nos services",
+    howItWorks: "Comment ça marche",
+    sectors: "Industries & Secteurs",
+    work: "Projets & Réalisations",
+    group: "Le Groupe",
     contact: "Contact",
-    cta: "Demander un devis",
+    /** Libellés courts de l'en-tête sur grand écran. */
+    short: {
+      expertises: "Services",
+      sectors: "Secteurs",
+      work: "Réalisations",
+      group: "Le Groupe",
+    },
+    cta: "Présenter un projet",
     skipToContent: "Aller au contenu",
     mainLabel: "Navigation principale",
     openMenu: "Ouvrir le menu",
@@ -54,22 +76,20 @@ export const fr = {
     homeLinkLabel: "ATLAS AFRICA GROUP — retour à l'accueil",
     languageLabel: "Langue",
     offers: "Offres",
+    legal: "Mentions légales",
+    privacy: "Confidentialité",
   },
 
   /* ───────────── Libellés communs ───────────── */
   common: {
     quoteCta: "Demander un devis",
-    servicesCta: "Découvrir nos services",
+    projectCta: "Présenter un projet",
+    expertisesCta: "Découvrir nos services",
     discoverPole: "Découvrir le pôle",
     poleLabel: "Pôle",
-    newBadge: "Nouveau",
-    viewCase: "Voir la réalisation",
     allWork: "Toutes nos réalisations",
     whatsappCta: "Discuter sur WhatsApp",
     whatsappMessage: "Bonjour, je souhaite échanger avec ATLAS AFRICA GROUP au sujet de…",
-    mediaSoon: "Visuel à venir",
-    videoSoon: "Vidéo à venir",
-    figuresNote: "Chiffres communiqués prochainement.",
     discoverOffer: "Découvrir l'offre",
     callShort: "Appeler",
     quoteShort: "Devis",
@@ -77,59 +97,112 @@ export const fr = {
     offerLabel: "Offre",
     directContact: "Ou contactez-nous directement",
     breadcrumbLabel: "Fil d'Ariane",
+    /** Mention posée sur les visuels d'illustration (images non contractuelles). */
+    illustration: "Illustration",
+    /** Qui réalise la prestation. */
+    delivery: {
+      internal: "Par nos équipes",
+      partners: "Avec des partenaires qualifiés",
+      development: "En développement",
+    },
+    /** Statut des projets. */
+    status: {
+      completed: "Réalisation achevée",
+      ongoing: "En cours",
+      development: "En développement",
+    },
   },
 
-  /* ───────────── Les 4 pôles et leurs services ───────────── */
+  /* ───────────── Les 4 pôles d'expertise ─────────────
+   *  Chaque pôle a sa page : /expertises/<id>.
+   */
   poles: [
     {
       id: "business-projects",
       number: "01",
       icon: "briefcase",
-      name: "Business & Projects",
-      badge: null as string | null,
+      name: "Business & Projects Development",
+      badge: null,
       tagline: "Ouvrir les bonnes portes, structurer vos projets.",
       summary:
-        "Nous vous aidons à entrer sur le marché congolais, à trouver les bons partenaires et à mener vos projets, de l'étude à la réalisation.",
+        "Nous identifions les opportunités, mettons en relation les bons acteurs et structurons vos projets en RDC, de l'étude à la réalisation.",
+      metaTitle: "Business & Projects Development — développement d'affaires en RDC",
+      metaDescription:
+        "Développement d'affaires, mise en relation B2B, structuration de projets, conseil commercial, accompagnement des investisseurs et développement de partenariats en RDC.",
+      headline: "Faire avancer vos affaires et vos projets en RDC.",
+      intro:
+        "Entrer sur un marché, trouver des partenaires fiables, structurer un projet : nous vous accompagnons à chaque étape, avec une connaissance du terrain congolais et un réseau d'acteurs locaux.",
+      problems: [
+        "Vous souhaitez vous implanter en RDC sans interlocuteur fiable sur place.",
+        "Vous cherchez des partenaires, des fournisseurs ou des clients qualifiés.",
+        "Votre projet doit être étudié, chiffré et planifié avant d'être lancé.",
+        "Vous avez besoin d'un représentant pour négocier et suivre vos intérêts localement.",
+      ],
       services: [
         {
           icon: "handshake",
           title: "Développement d'affaires",
-          badge: null as string | null,
-          description: null as string | null,
-          items: [
-            "Apport d'affaires",
-            "Recherche de partenaires",
-            "Représentation commerciale",
-            "Aide à la négociation",
-            "Accompagnement à l'implantation en RDC",
-          ],
+          description: null,
+          items: ["Apport d'affaires", "Identification d'opportunités commerciales", "Représentation commerciale"],
+          delivery: "internal",
+        },
+        {
+          icon: "network",
+          title: "Facilitation et mise en relation B2B",
+          description: null,
+          items: ["Recherche de partenaires et de fournisseurs", "Organisation de rencontres d'affaires", "Aide à la négociation"],
+          delivery: "internal",
         },
         {
           icon: "clipboard",
-          title: "Études et gestion de projets",
-          badge: null,
+          title: "Structuration et accompagnement de projets",
           description: null,
           items: [
             "Études de marché et de faisabilité",
-            "Business plans",
-            "Montage de projets",
-            "Planification",
-            "Coordination et suivi de réalisation",
+            "Business plans et montage de projets",
+            "Planification, coordination et suivi de réalisation",
           ],
+          delivery: "internal",
+        },
+        {
+          icon: "target",
+          title: "Conseil et stratégie commerciale",
+          description: null,
+          items: ["Analyse de marché et positionnement", "Stratégie d'entrée sur le marché congolais", "Plans d'action commerciaux"],
+          delivery: "internal",
+        },
+        {
+          icon: "globe",
+          title: "Accompagnement des investisseurs",
+          description: null,
+          items: ["Accompagnement à l'implantation en RDC", "Mise en relation avec les acteurs locaux", "Suivi de vos intérêts sur place"],
+          delivery: "internal",
+        },
+        {
+          icon: "heartHandshake",
+          title: "Développement de partenariats",
+          description: null,
+          items: ["Partenariats commerciaux et techniques", "Alliances avec des entreprises locales", "Suivi de la relation partenaire"],
+          delivery: "internal",
         },
         {
           icon: "energy",
-          title: "Technologies et énergie",
-          badge: null,
-          description: null,
-          items: [
-            "Solutions numériques",
-            "Digitalisation des processus de gestion",
-            "Projets solaires et efficacité énergétique, avec des partenaires techniques",
-          ],
+          title: "Projets énergétiques",
+          description: "Projets solaires et d'efficacité énergétique, menés avec des partenaires techniques.",
+          items: [],
+          delivery: "partners",
         },
       ],
-      /** Questions fréquentes affichées sous le pôle. */
+      groups: [],
+      sectors: ["mines", "energy", "construction", "industry", "business", "institutions"],
+      advantages: [
+        { title: "Connaissance du terrain", text: "Une équipe basée à Lubumbashi, au contact des acteurs économiques du Haut-Katanga." },
+        { title: "Un réseau d'acteurs qualifiés", text: "Des fournisseurs, prestataires et partenaires identifiés et vérifiés." },
+        { title: "Un seul interlocuteur", text: "Nous coordonnons les étapes et les intervenants de votre projet." },
+        { title: "Des engagements écrits", text: "Une proposition claire, un contrat précis, un suivi régulier." },
+      ],
+      caseStudies: [],
+      formType: "business-projects",
       faq: [
         {
           question: "Accompagnez-vous les entreprises étrangères qui s'implantent en RDC ?",
@@ -144,88 +217,103 @@ export const fr = {
           answer: "Par un échange pour qualifier votre besoin. Nous vous remettons ensuite une proposition, puis un contrat qui précise ce qui sera réalisé.",
         },
       ],
-      /** Vidéos et visuels présentés sous les services du pôle. */
-      showcase: null as null | {
-        title: string;
-        intro: string;
-        items: {
-          src: string;
-          poster: string;
-          title: string;
-          caption: string;
-          orientation: "landscape" | "portrait";
-        }[];
-      },
-      featured: null as null | {
-        eyebrow: string;
-        title: string;
-        description: string;
-        items: string[];
-        cta: string;
-        /** Valeur présélectionnée dans le formulaire de contact. */
-        serviceValue: string;
-      },
+      showcase: null,
+      featured: null,
     },
     {
       id: "supply-logistics",
       number: "02",
       icon: "truck",
-      name: "Supply & Logistics",
+      name: "Supply, Trading & Logistics",
       badge: null,
-      tagline: "Approvisionner, acheminer, déplacer.",
+      tagline: "Approvisionner, acheminer, livrer.",
       summary:
-        "Du sourcing à la livraison, nous sécurisons vos approvisionnements et organisons vos flux avec des opérateurs qualifiés.",
+        "Du sourcing à la livraison, nous sécurisons vos approvisionnements et coordonnons vos flux avec des opérateurs qualifiés.",
+      metaTitle: "Supply, Trading & Logistics — approvisionnement et logistique en RDC",
+      metaDescription:
+        "Sourcing et approvisionnement, commerce B2B, transport et logistique, coordination de la chaîne d'approvisionnement et transport avec chauffeur (AAG Mobilité) dans le Haut-Katanga.",
+      headline: "Vos approvisionnements sécurisés, de la commande à votre site.",
+      intro:
+        "Nous identifions les bons fournisseurs, organisons l'acheminement avec des opérateurs qualifiés et vous tenons informé à chaque étape, jusqu'à la livraison.",
+      problems: [
+        "Vos équipements ou consommables arrivent en retard sur site.",
+        "Vous multipliez les fournisseurs et les transporteurs sans coordination.",
+        "Vous avez besoin de produits difficiles à trouver localement.",
+        "Vos équipes et vos visiteurs doivent se déplacer en sécurité dans le Haut-Katanga.",
+      ],
       services: [
         {
           icon: "package",
-          title: "Approvisionnement et commerce",
-          badge: null,
+          title: "Approvisionnement et sourcing",
           description: null,
-          items: [
-            "Sourcing et qualification de fournisseurs",
-            "Achats",
-            "Négoce",
-            "Import-export",
-            "Fourniture d'équipements et de consommables",
-          ],
+          items: ["Sourcing et qualification de fournisseurs", "Achats", "Fourniture d'équipements et de consommables"],
+          delivery: "internal",
+        },
+        {
+          icon: "store",
+          title: "Commerce B2B",
+          description: null,
+          items: ["Négoce", "Fourniture aux entreprises et aux sites"],
+          delivery: "internal",
+        },
+        {
+          icon: "route",
+          title: "Coordination de la chaîne d'approvisionnement",
+          description: null,
+          items: ["Planification des flux", "Suivi des commandes et des expéditions", "Un interlocuteur pour tous les intervenants"],
+          delivery: "internal",
         },
         {
           icon: "warehouse",
           title: "Transport et logistique",
-          badge: null,
           description: null,
-          items: [
-            "Organisation des expéditions",
-            "Entreposage",
-            "Distribution avec des opérateurs qualifiés",
-          ],
+          items: ["Organisation des expéditions", "Entreposage", "Livraison sur site"],
+          delivery: "partners",
+        },
+        {
+          icon: "truck",
+          title: "Solutions de distribution",
+          description: null,
+          items: ["Distribution avec des opérateurs qualifiés", "Tournées de livraison"],
+          delivery: "partners",
+        },
+        {
+          icon: "globe",
+          title: "Appui aux opérations d'import-export",
+          description: "Organisation et suivi de vos opérations d'import-export, avec des partenaires habilités.",
+          items: [],
+          delivery: "partners",
         },
         {
           icon: "car",
           title: "AAG Mobilité",
-          badge: null,
           description: "Transport premium avec chauffeur.",
-          items: [
-            "Berline et SUV Prado",
-            "Transferts hôtels et aéroport",
-            "Mise à disposition pour les entreprises",
-            "Missions Lubumbashi – Likasi – Kolwezi",
-          ],
+          items: ["Berline et SUV Prado", "Transferts hôtels et aéroport", "Mise à disposition pour les entreprises", "Missions Lubumbashi – Likasi – Kolwezi"],
+          delivery: "internal",
         },
       ],
-      /** Questions fréquentes affichées sous le pôle. */
+      groups: [],
+      sectors: ["mines", "energy", "construction", "industry", "business"],
+      advantages: [
+        { title: "Des fournisseurs vérifiés", text: "Chaque fournisseur est qualifié avant la première commande." },
+        { title: "Un suivi à chaque étape", text: "Vous savez à tout moment où en est votre commande." },
+        { title: "Des opérateurs qualifiés", text: "Transport, entreposage et formalités confiés à des partenaires reconnus." },
+        { title: "Ancrage dans le Haut-Katanga", text: "Lubumbashi, Likasi, Kolwezi : nous connaissons les axes et leurs contraintes." },
+      ],
+      caseStudies: [],
+      formType: "supply-logistics",
       faq: [
         {
           question: "Que pouvez-vous fournir ?",
-          answer: "Des équipements et des consommables. Nous recherchons et qualifions les fournisseurs, puis nous gérons les achats, le négoce et l'import-export selon votre besoin.",
-        },
-        {
-          question: "Sur quels trajets circule AAG Mobilité ?",
-          answer: "À Lubumbashi, pour les transferts entre hôtels et aéroport, et sur l'axe Lubumbashi – Likasi – Kolwezi pour les missions.",
+          answer: "Des équipements et des consommables. Nous recherchons et qualifions les fournisseurs, puis nous gérons les achats et le négoce selon votre besoin.",
         },
         {
           question: "Assurez-vous vous-mêmes le transport des marchandises ?",
           answer: "Nous organisons les expéditions, l'entreposage et la distribution avec des opérateurs qualifiés, et vous gardez un seul interlocuteur.",
+        },
+        {
+          question: "Sur quels trajets circule AAG Mobilité ?",
+          answer: "À Lubumbashi, pour les transferts entre hôtels et aéroport, et sur l'axe Lubumbashi – Likasi – Kolwezi pour les missions.",
         },
       ],
       showcase: null,
@@ -235,68 +323,96 @@ export const fr = {
       id: "people-facilities",
       number: "03",
       icon: "users",
-      name: "People & Facilities",
+      name: "People, Facilities & Environment",
       badge: null,
       tagline: "Les équipes et les services qui font vivre vos sites.",
       summary:
-        "Personnel, propreté, environnement : nous prenons en charge les fonctions de soutien pour que vos équipes se concentrent sur leur métier.",
+        "Personnel, propreté, entretien, environnement : nous prenons en charge les fonctions de soutien pour que vos équipes se concentrent sur leur métier.",
+      metaTitle: "People, Facilities & Environment — RH, nettoyage et facility management",
+      metaDescription:
+        "Recrutement et mise à disposition de personnel, facility management, nettoyage professionnel et industriel (AAG Cleaning), entretien de bâtiments, assainissement et services environnementaux à Lubumbashi.",
+      headline: "Des sites entretenus, des équipes disponibles.",
+      intro:
+        "Nous recrutons et mettons à disposition du personnel, et nous assurons l'entretien de vos locaux et de vos installations, pour que vos activités ne s'arrêtent jamais.",
+      problems: [
+        "Vous devez renforcer vos équipes rapidement, avec des profils fiables.",
+        "L'entretien de vos bureaux ou de votre site mobilise trop de ressources internes.",
+        "Un chantier se termine et les locaux doivent être livrés propres.",
+        "Vous devez gérer vos espaces verts, l'assainissement ou vos déchets dans les règles.",
+      ],
       services: [
         {
-          icon: "userCheck",
-          title: "Ressources humaines",
-          badge: null,
+          icon: "users",
+          title: "Recrutement et placement",
           description: null,
-          items: [
-            "Recrutement et sélection",
-            "Mise à disposition de personnel",
-            "Formation",
-            "Prestations externalisées",
-          ],
+          items: ["Recrutement et sélection", "Mise à disposition de personnel"],
+          delivery: "internal",
+        },
+        {
+          icon: "userCheck",
+          title: "Gestion des ressources humaines",
+          description: null,
+          items: ["Prestations externalisées", "Formation des équipes"],
+          delivery: "internal",
+        },
+        {
+          icon: "building",
+          title: "Facility management",
+          description: null,
+          items: ["Coordination des services aux sites", "Gestion des prestataires d'entretien", "Suivi de la qualité des prestations"],
+          delivery: "internal",
         },
         {
           icon: "sparkles",
-          title: "AAG Cleaning",
-          badge: null,
+          title: "Nettoyage professionnel et industriel",
+          description: "Les prestations d'AAG Cleaning.",
+          items: ["Entretien régulier de bureaux, commerces et résidences", "Remise en état", "Nettoyage de fin de chantier", "Nettoyage industriel"],
+          delivery: "internal",
+        },
+        {
+          icon: "wrench",
+          title: "Entretien de bâtiments et d'installations",
           description: null,
-          items: [
-            "Entretien régulier de bureaux, commerces et résidences",
-            "Remise en état",
-            "Nettoyage de fin de chantier",
-            "Nettoyage industriel",
-          ],
+          items: ["Maintenance courante", "Entretien des installations"],
+          delivery: "partners",
+        },
+        {
+          icon: "leaf",
+          title: "Assainissement et services environnementaux",
+          description: null,
+          items: ["Entretien des espaces verts", "Assainissement", "Gestion des déchets avec des partenaires habilités"],
+          delivery: "partners",
         },
         {
           icon: "drone",
           title: "Nettoyage par drone",
-          badge: "Bientôt disponible",
           description: null,
           items: ["Façades", "Toitures", "Panneaux solaires"],
-        },
-        {
-          icon: "leaf",
-          title: "Environnement",
-          badge: null,
-          description: null,
-          items: [
-            "Entretien des espaces verts",
-            "Assainissement",
-            "Gestion des déchets avec des partenaires habilités",
-          ],
+          delivery: "development",
         },
       ],
-      /** Questions fréquentes affichées sous le pôle. */
+      groups: [],
+      sectors: ["mines", "industry", "construction", "business", "institutions", "energy"],
+      advantages: [
+        { title: "Des équipes encadrées", text: "Chaque intervention est préparée et suivie par un responsable." },
+        { title: "Des prestations contrôlées", text: "La qualité est vérifiée avec vous à la réception." },
+        { title: "Le respect de vos consignes", text: "Nos équipes appliquent les règles de sécurité de vos sites." },
+        { title: "De la souplesse", text: "Interventions ponctuelles ou contrats d'entretien réguliers." },
+      ],
+      caseStudies: [],
+      formType: "people-facilities",
       faq: [
         {
           question: "Quels locaux nettoyez-vous ?",
           answer: "Les bureaux, les commerces et les résidences, en entretien régulier. Nous assurons aussi la remise en état, le nettoyage de fin de chantier et le nettoyage industriel.",
         },
         {
-          question: "Le nettoyage par drone est-il déjà disponible ?",
-          answer: "Pas encore. Ce service pour façades, toitures et panneaux solaires sera bientôt proposé : contactez-nous pour être prévenu de son lancement.",
-        },
-        {
           question: "Pouvez-vous mettre du personnel à disposition ?",
           answer: "Oui. Nous recrutons, sélectionnons et mettons du personnel à disposition, et nous proposons aussi la formation et des prestations externalisées.",
+        },
+        {
+          question: "Le nettoyage par drone est-il déjà disponible ?",
+          answer: "Pas encore. Ce service pour façades, toitures et panneaux solaires est en développement : contactez-nous pour être prévenu de son lancement.",
         },
       ],
       showcase: null,
@@ -306,51 +422,95 @@ export const fr = {
       id: "digital-communication",
       number: "04",
       icon: "megaphone",
-      name: "Digital & Communication",
-      badge: "Nouveau",
+      name: "Digital, Media & Communication",
+      badge: null,
       tagline: "Rendre votre entreprise visible, là où vos clients vous cherchent.",
       summary:
-        "Site web, vidéo, publicité en ligne et présence locale : tout ce qu'il faut pour être trouvé, puis choisi.",
+        "Solutions numériques, marketing et création, médias et affichage dynamique : tout ce qu'il faut pour être trouvé, puis choisi.",
+      metaTitle: "Digital, Media & Communication — sites web, marketing et écrans LED",
+      metaDescription:
+        "Création de sites internet, digitalisation des processus, communication institutionnelle, identité de marque, vidéos, publicité digitale et affichage dynamique sur écrans LED à Lubumbashi.",
+      headline: "Être trouvé, être choisi.",
+      intro:
+        "Du site internet à l'écran de rue, nous concevons et diffusons les outils qui rendent votre entreprise visible et simplifient sa gestion.",
+      problems: [
+        "Vos clients ne vous trouvent pas sur Google ni sur les réseaux sociaux.",
+        "Votre image ne reflète pas le sérieux de votre entreprise.",
+        "Vous gérez encore vos ventes, vos stocks ou votre facturation sur papier.",
+        "Vous voulez toucher le public de Lubumbashi au-delà du digital.",
+      ],
+      groups: [
+        { id: "digital", title: "Digital Solutions", text: "Des outils numériques qui simplifient votre gestion." },
+        { id: "creative", title: "Marketing & Creative", text: "Une image de marque claire et des contenus qui marquent." },
+        { id: "media", title: "Media & Outdoor Advertising", text: "Votre message diffusé en ligne et sur les écrans de la ville." },
+      ],
       services: [
         {
           icon: "monitor",
-          title: "Création de sites web sur mesure",
-          badge: null,
+          title: "Création de sites internet",
           description: "Des sites modernes, adaptés à l'image de votre entreprise.",
-          items: [] as string[],
+          items: [],
+          delivery: "internal",
+          group: "digital",
         },
         {
           icon: "dashboard",
-          title: "Création de systèmes de gestion d'entreprise",
-          badge: null,
-          description:
-            "Des outils sur mesure pour gérer vos ventes, vos stocks, votre facturation, votre personnel et vos clients, depuis un seul espace.",
+          title: "Digitalisation des processus",
+          description: "Des outils sur mesure pour gérer vos ventes, vos stocks, votre facturation, votre personnel et vos clients, depuis un seul espace.",
           items: [],
+          delivery: "internal",
+          group: "digital",
+        },
+        {
+          icon: "presentation",
+          title: "Communication institutionnelle",
+          description: "Présentations, supports et messages pour vos partenaires, vos clients et les institutions.",
+          items: [],
+          delivery: "internal",
+          group: "creative",
+        },
+        {
+          icon: "palette",
+          title: "Marketing et identité de marque",
+          description: "Positionnement, identité visuelle et présence locale sur Google pour attirer vos clients.",
+          items: [],
+          delivery: "internal",
+          group: "creative",
         },
         {
           icon: "video",
-          title: "Réalisation de vidéos publicitaires",
-          badge: null,
-          description: "Des contenus vidéo percutants, conçus pour marquer les esprits.",
+          title: "Production de contenus visuels",
+          description: "Des vidéos publicitaires et des contenus percutants, conçus pour marquer les esprits.",
           items: [],
+          delivery: "internal",
+          group: "creative",
         },
         {
           icon: "target",
-          title: "Campagnes publicitaires ciblées",
-          badge: null,
-          description: "Des actions visibles sur Google, Google Maps et les réseaux sociaux.",
+          title: "Publicité digitale",
+          description: "Des campagnes ciblées sur Google, Google Maps et les réseaux sociaux.",
           items: [],
+          delivery: "internal",
+          group: "media",
         },
         {
-          icon: "mapPin",
-          title: "Optimisation de la présence locale",
-          badge: null,
-          description:
-            "Création et gestion de votre fiche Google pour attirer des clients locaux.",
+          icon: "monitorPlay",
+          title: "Affichage dynamique et écrans LED",
+          description: "Vos spots diffusés sur le réseau d'écrans LED Atlas à Lubumbashi.",
           items: [],
+          delivery: "internal",
+          group: "media",
         },
       ],
-      /** Questions fréquentes affichées sous le pôle. */
+      sectors: ["industry", "business", "institutions", "construction"],
+      advantages: [
+        { title: "Créatif et technique", text: "Une même équipe conçoit, développe et diffuse." },
+        { title: "Des réalisations concrètes", text: "Zando Yeto et LED Atlas : des projets menés à Lubumbashi." },
+        { title: "Une offre clé en main", text: "Site, publicité, vidéo et suivi mensuel réunis." },
+        { title: "En ligne et dans la rue", text: "Du digital aux écrans LED de la ville." },
+      ],
+      caseStudies: ["zando-yeto", "led-atlas"],
+      formType: "digital-communication",
       faq: [
         {
           question: "Que comprend l'offre clé en main ?",
@@ -374,14 +534,14 @@ export const fr = {
             poster: "/media/led-atlas-poster.jpg",
             title: "LED Atlas",
             caption: "Film de présentation du réseau d'écrans LED",
-            orientation: "landscape" as const,
+            orientation: "landscape",
           },
           {
             src: "/media/zando-yetu.mp4",
             poster: "/media/zando-yetu-poster.jpg",
             title: "Zando Yeto",
             caption: "Vidéo de lancement de la boutique en ligne",
-            orientation: "portrait" as const,
+            orientation: "portrait",
           },
         ],
       },
@@ -395,196 +555,250 @@ export const fr = {
         serviceValue: "offre-cle-en-main",
       },
     },
-  ],
+  ] as Pole[],
 
-  /* ───────────── Offres phares (une page chacune : /offres/…) ───────────── */
+  /* ───────────── Offres spécialisées (une page chacune : /offres/…) ───────────── */
   offers: [
-    {
-      /** Identifiant utilisé dans l'adresse de la page. Ne pas modifier. */
-      id: "aag-mobilite",
-      name: "AAG Mobilité",
-      icon: "car",
-      /** Titre du service correspondant dans les pôles (lien « Découvrir l'offre »). */
-      serviceTitle: "AAG Mobilité",
-      metaTitle: "AAG Mobilité — transport avec chauffeur à Lubumbashi",
-      metaDescription:
-        "AAG Mobilité : transport premium avec chauffeur à Lubumbashi (berline et SUV Prado), transferts hôtels et aéroport, mise à disposition pour les entreprises, missions Lubumbashi – Likasi – Kolwezi.",
-      eyebrow: "Supply & Logistics",
-      title: "Vos déplacements avec chauffeur, à Lubumbashi et dans le Haut-Katanga.",
-      intro:
-        "Un transport premium pour vos dirigeants, vos équipes et vos visiteurs : un véhicule adapté, un chauffeur, et un seul interlocuteur pour organiser le tout.",
-      summary: "Transport premium avec chauffeur, transferts et missions.",
-      featuresTitle: "Ce que comprend l'offre",
-      features: [
-        { icon: "car", title: "Berline ou SUV Prado", text: "Le véhicule est choisi selon le trajet et le nombre de passagers." },
-        { icon: "concierge", title: "Transferts hôtels et aéroport", text: "Prise en charge à l'arrivée et dépose au départ." },
-        { icon: "briefcase", title: "Mise à disposition pour les entreprises", text: "Un véhicule avec chauffeur réservé pour vos équipes et vos visiteurs." },
-        { icon: "mapPin", title: "Missions Lubumbashi – Likasi – Kolwezi", text: "Des déplacements professionnels sur l'axe minier du Haut-Katanga." },
-      ],
-      media: null as null | { video: string; poster: string; alt: string },
-      formTitle: "Réserver un véhicule",
-      formIntro: "Indiquez la date, le trajet et le nombre de passagers : nous vous recontactons pour confirmer.",
-      serviceValue: "aag-mobilite",
-    },
     {
       id: "aag-cleaning",
       name: "AAG Cleaning",
       icon: "sparkles",
-      serviceTitle: "AAG Cleaning",
-      metaTitle: "AAG Cleaning — nettoyage professionnel à Lubumbashi",
+      serviceTitle: "Nettoyage professionnel et industriel",
+      metaTitle: "AAG Cleaning — nettoyage professionnel et industriel à Lubumbashi",
       metaDescription:
-        "AAG Cleaning : entretien régulier de bureaux, commerces et résidences à Lubumbashi, remise en état, nettoyage de fin de chantier et nettoyage industriel.",
-      eyebrow: "People & Facilities",
+        "AAG Cleaning : nettoyage de bureaux, nettoyage industriel, nettoyage après construction, entretien de bâtiments et contrats d'entretien périodiques à Lubumbashi.",
+      eyebrow: "People, Facilities & Environment",
       title: "Des locaux propres, entretenus par une équipe professionnelle.",
       intro:
-        "Entretien régulier ou intervention ponctuelle : nous prenons en charge la propreté de vos bureaux, commerces, résidences et sites.",
-      summary: "Entretien régulier, remise en état et nettoyage industriel.",
-      featuresTitle: "Ce que comprend l'offre",
+        "Entretien régulier ou intervention ponctuelle : nous prenons en charge la propreté de vos bureaux, commerces, résidences et sites industriels, avec un contrôle de la qualité à chaque passage.",
+      summary: "Nettoyage de bureaux, industriel et après construction.",
+      status: null,
+      featuresTitle: "Nos prestations",
       features: [
-        { icon: "building", title: "Entretien régulier", text: "Bureaux, commerces et résidences, selon une fréquence convenue ensemble." },
-        { icon: "sparkles", title: "Remise en état", text: "Une intervention complète pour retrouver des locaux propres." },
-        { icon: "clipboard", title: "Nettoyage de fin de chantier", text: "Des locaux prêts à être livrés ou occupés après les travaux." },
+        { icon: "building", title: "Nettoyage de bureaux", text: "Bureaux, commerces et résidences, selon une fréquence convenue ensemble." },
         { icon: "factory", title: "Nettoyage industriel", text: "Des prestations adaptées aux sites et aux installations industrielles." },
+        { icon: "clipboard", title: "Nettoyage après construction", text: "Des locaux prêts à être livrés ou occupés après les travaux." },
+        { icon: "wrench", title: "Entretien de bâtiments", text: "L'entretien courant de vos espaces communs et de vos installations." },
+        { icon: "sparkles", title: "Surfaces et mobilier", text: "Le traitement des sols, des vitres, des surfaces et du mobilier." },
+        { icon: "calendar", title: "Contrats périodiques", text: "Un planning d'entretien régulier, ajusté à votre activité." },
+        { icon: "shield", title: "Qualité et sécurité", text: "Un contrôle à chaque intervention et le respect des consignes de vos sites." },
       ],
+      process: {
+        title: "Comment se déroule une intervention",
+        steps: [
+          { title: "Visite et évaluation", text: "Nous visitons vos locaux pour comprendre vos besoins." },
+          { title: "Devis détaillé", text: "Vous recevez une proposition claire : prestations, fréquence, prix." },
+          { title: "Planification", text: "Nous fixons ensemble les horaires et les modalités d'intervention." },
+          { title: "Intervention", text: "Nos équipes interviennent avec le matériel adapté." },
+          { title: "Contrôle qualité", text: "Nous vérifions la prestation avec vous et ajustons si besoin." },
+        ],
+      },
       media: null,
       formTitle: "Demander un devis de nettoyage",
       formIntro: "Décrivez vos locaux (type, surface approximative, fréquence souhaitée) : nous vous recontactons.",
       serviceValue: "aag-cleaning",
     },
     {
+      id: "aag-mobilite",
+      name: "AAG Mobilité",
+      icon: "car",
+      serviceTitle: "AAG Mobilité",
+      metaTitle: "AAG Mobilité — transport avec chauffeur à Lubumbashi",
+      metaDescription:
+        "AAG Mobilité : transport premium avec chauffeur à Lubumbashi (berline et SUV Prado), transferts hôtels et aéroport, mise à disposition pour les entreprises, missions Lubumbashi – Likasi – Kolwezi.",
+      eyebrow: "Supply, Trading & Logistics",
+      title: "Vos déplacements avec chauffeur, à Lubumbashi et dans le Haut-Katanga.",
+      intro:
+        "Un transport premium pour vos dirigeants, vos équipes et vos visiteurs : un véhicule adapté, un chauffeur, et un seul interlocuteur pour organiser le tout.",
+      summary: "Transport premium avec chauffeur, transferts et missions.",
+      status: null,
+      featuresTitle: "Véhicules et trajets",
+      features: [
+        { icon: "car", title: "Berline ou SUV Prado", text: "Le véhicule est choisi selon le trajet et le nombre de passagers." },
+        { icon: "concierge", title: "Transferts hôtels et aéroport", text: "Prise en charge à l'arrivée et dépose au départ." },
+        { icon: "briefcase", title: "Mise à disposition pour les entreprises", text: "Un véhicule avec chauffeur réservé pour vos équipes et vos visiteurs." },
+        { icon: "mapPin", title: "Missions Lubumbashi – Likasi – Kolwezi", text: "Des déplacements professionnels sur l'axe minier du Haut-Katanga." },
+      ],
+      process: {
+        title: "Comment réserver",
+        steps: [
+          { title: "Votre demande", text: "Indiquez la date, le trajet et le nombre de passagers." },
+          { title: "Confirmation", text: "Nous vous confirmons le véhicule, l'horaire et les conditions." },
+          { title: "Prise en charge", text: "Votre chauffeur vous attend au lieu et à l'heure convenus." },
+        ],
+      },
+      media: null,
+      formTitle: "Réserver un véhicule",
+      formIntro: "Indiquez la date, le trajet et le nombre de passagers : nous vous recontactons pour confirmer.",
+      serviceValue: "aag-mobilite",
+    },
+    {
       id: "led-atlas",
       name: "LED Atlas",
       icon: "monitorPlay",
-      serviceTitle: "",
+      serviceTitle: "Affichage dynamique et écrans LED",
       metaTitle: "LED Atlas — publicité sur écrans LED à Lubumbashi",
       metaDescription:
-        "LED Atlas : diffusez votre publicité sur un réseau d'écrans LED à Lubumbashi. Écrans haute définition, visibles de jour comme de nuit, et rapport de diffusion pour chaque campagne.",
-      eyebrow: "Digital & Communication",
+        "LED Atlas : affichage dynamique (DOOH) sur un réseau d'écrans LED à Lubumbashi. Diffusion de vos spots, rapport de diffusion et partenariats pour les annonceurs.",
+      eyebrow: "Digital, Media & Communication",
       title: "Votre marque sur les écrans LED de Lubumbashi.",
       intro:
-        "Un réseau d'écrans publicitaires LED pour diffuser vos messages en images et en mouvement, sur des axes fréquentés de la ville.",
-      summary: "Publicité sur un réseau d'écrans LED à Lubumbashi.",
-      featuresTitle: "Ce que comprend l'offre",
+        "LED Atlas est notre service d'affichage dynamique : vos messages diffusés en images et en mouvement, sur des écrans LED installés à Lubumbashi.",
+      summary: "Affichage dynamique sur écrans LED à Lubumbashi.",
+      status: null,
+      featuresTitle: "Le concept",
       features: [
         { icon: "monitorPlay", title: "Écrans LED haute définition", text: "Un affichage lumineux et animé, visible de jour comme de nuit." },
-        { icon: "mapPin", title: "Emplacements à Lubumbashi", text: "Des écrans implantés sur des axes fréquentés de la ville." },
         { icon: "megaphone", title: "Diffusion de vos spots", text: "Vos messages sont programmés et diffusés sur le réseau." },
         { icon: "clipboard", title: "Rapport de diffusion", text: "Un compte rendu des passages de votre spot pour chaque campagne." },
+        { icon: "handshake", title: "Partenariats", text: "Annonceurs, agences et propriétaires d'emplacements : parlons-en." },
       ],
+      process: {
+        title: "Comment fonctionne une campagne",
+        steps: [
+          { title: "Votre brief", text: "Votre marque, votre message et la période souhaitée." },
+          { title: "Le spot", text: "Vous fournissez votre visuel, ou notre équipe le crée pour vous." },
+          { title: "La programmation", text: "Nous planifions les créneaux de diffusion de votre campagne." },
+          { title: "Le rapport", text: "Vous recevez le compte rendu de diffusion à la fin de la campagne." },
+        ],
+      },
       media: {
         video: "/media/led-atlas.mp4",
         poster: "/media/led-atlas-poster.jpg",
         alt: "Film de présentation du réseau d'écrans LED Atlas",
       },
-      formTitle: "Réserver un espace publicitaire",
-      formIntro: "Présentez votre marque et la période souhaitée : nous vous envoyons les emplacements disponibles.",
+      formTitle: "Annoncer sur LED Atlas",
+      formIntro: "Présentez votre marque et la période souhaitée : nous revenons vers vous avec une proposition.",
       serviceValue: "led-atlas",
     },
-  ],
+  ] as Offer[],
 
-  /* ───────────── Secteurs servis ───────────── */
+  /* ───────────── Industries & Secteurs ───────────── */
   sectors: [
-    { icon: "pickaxe", label: "Mines" },
-    { icon: "fuel", label: "Hydrocarbures" },
-    { icon: "zap", label: "Énergie" },
-    { icon: "factory", label: "Industrie" },
-    { icon: "building", label: "Construction et immobilier" },
-    { icon: "store", label: "Commerce" },
-    { icon: "concierge", label: "Services" },
-    { icon: "landmark", label: "Organismes publics et privés" },
-  ],
+    {
+      id: "mines",
+      icon: "pickaxe",
+      label: "Mines et ressources naturelles",
+      short: "Mines",
+      text: "Équipements et consommables, transport des équipes, personnel et entretien des sites miniers du Haut-Katanga et du Lualaba.",
+      needs: ["Fournitures et pièces pour les sites", "Transport du personnel", "Main-d'œuvre et entretien des sites"],
+      poles: ["supply-logistics", "people-facilities", "business-projects"],
+    },
+    {
+      id: "energy",
+      icon: "zap",
+      label: "Énergie et hydrocarbures",
+      short: "Énergie",
+      text: "Projets solaires et d'efficacité énergétique avec des partenaires techniques, fournitures et services aux sites.",
+      needs: ["Études de projets énergétiques", "Approvisionnement des sites", "Services aux installations"],
+      poles: ["business-projects", "supply-logistics", "people-facilities"],
+    },
+    {
+      id: "construction",
+      icon: "building",
+      label: "Construction et infrastructures",
+      short: "Construction",
+      text: "Coordination de projets, approvisionnement de chantier, nettoyage de fin de chantier et remise en état.",
+      needs: ["Montage et suivi de projets", "Approvisionnement de chantier", "Nettoyage après travaux"],
+      poles: ["business-projects", "supply-logistics", "people-facilities"],
+    },
+    {
+      id: "industry",
+      icon: "factory",
+      label: "Industrie et commerce",
+      short: "Industrie et commerce",
+      text: "Sourcing, logistique, nettoyage industriel, sites internet et campagnes pour vendre davantage.",
+      needs: ["Sourcing et logistique", "Nettoyage industriel", "Visibilité et ventes en ligne"],
+      poles: ["supply-logistics", "people-facilities", "digital-communication"],
+    },
+    {
+      id: "business",
+      icon: "briefcase",
+      label: "Entreprises et immobilier",
+      short: "Entreprises et immobilier",
+      text: "Entretien de bureaux et de résidences, transport avec chauffeur, outils de gestion et communication.",
+      needs: ["Entretien des locaux", "Déplacements des équipes", "Outils de gestion et communication"],
+      poles: ["people-facilities", "supply-logistics", "digital-communication"],
+    },
+    {
+      id: "institutions",
+      icon: "landmark",
+      label: "Institutions et organisations",
+      short: "Institutions",
+      text: "Études, accompagnement de projets, prestations externalisées et communication institutionnelle.",
+      needs: ["Études et accompagnement", "Prestations externalisées", "Communication institutionnelle"],
+      poles: ["business-projects", "people-facilities", "digital-communication"],
+    },
+  ] as Sector[],
 
-  /* ───────────── Méthode en 4 étapes ───────────── */
+  /* ───────────── Notre méthode (5 étapes) ───────────── */
   method: [
     {
-      title: "Qualification",
-      description:
-        "Nous écoutons votre besoin et précisons ensemble le périmètre, les contraintes et les priorités.",
+      title: "Analyse des besoins",
+      description: "Nous écoutons votre besoin et précisons ensemble le périmètre, les contraintes et les priorités.",
     },
     {
-      title: "Proposition et contrat",
-      description:
-        "Vous recevez une proposition claire : prestations, moyens, délais et conditions. Le contrat fixe les engagements de chacun.",
+      title: "Identification de solutions",
+      description: "Nous identifions les solutions, les ressources et les partenaires adaptés à votre situation.",
     },
     {
-      title: "Réalisation",
-      description:
-        "Nous mobilisons les ressources et les partenaires qualifiés, coordonnons l'exécution et vous tenons informé.",
+      title: "Proposition commerciale",
+      description: "Vous recevez une proposition claire : prestations, moyens, délais et conditions. Le contrat fixe les engagements de chacun.",
     },
     {
-      title: "Réception et suivi",
-      description:
-        "Nous validons avec vous ce qui a été livré, puis restons disponibles pour le suivi et les ajustements.",
+      title: "Coordination et exécution",
+      description: "Nous mobilisons les équipes et les partenaires qualifiés, coordonnons l'exécution et vous tenons informé.",
+    },
+    {
+      title: "Suivi et amélioration",
+      description: "Nous validons avec vous ce qui a été livré, puis ajustons nos prestations dans la durée.",
     },
   ],
 
-  /* ───────────── Réalisations (études de cas) ─────────────
-   *  `image` / `video` : laisser null pour afficher un emplacement provisoire,
-   *  ou indiquer un fichier déposé dans /public (ex. "/realisations/zando.jpg").
-   *  `stats` : remplacer « — » par la valeur réelle quand elle est disponible.
+  /* ───────────── Projets & Réalisations ─────────────
+   *  Uniquement des projets réels. `status` : "completed" (achevé),
+   *  "ongoing" (en cours) ou "development" (en développement).
+   *  `results` : uniquement des chiffres mesurés (sinon, laisser vide).
    */
   caseStudies: [
     {
       id: "zando-yeto",
       name: "Zando Yeto",
-      sector: "Mode",
+      sector: "Mode et commerce en ligne",
       icon: "shoppingBag",
+      status: "completed",
+      location: "Lubumbashi",
+      intervention: "Site e-commerce, vidéo publicitaire et campagnes ciblées",
+      poles: ["digital-communication"],
       headline: "Une marque de mode, visible et vendue en ligne.",
       summary:
         "Site e-commerce, vidéo et campagnes publicitaires : un dispositif complet pour présenter les collections et vendre en ligne.",
-      image: "/media/zando-yetu-card.jpg" as string | null,
-      /** Vidéo de présentation (format vertical) et son image d'attente. */
-      video: "/media/zando-yetu.mp4" as string | null,
-      videoPoster: "/media/zando-yetu-poster.jpg" as string | null,
+      image: "/media/zando-yetu-card.jpg",
+      video: "/media/zando-yetu.mp4",
+      videoPoster: "/media/zando-yetu-poster.jpg",
       videoLabel: "Vidéo de lancement Zando Yeto",
       imageAlt: "Aperçu du site e-commerce Zando Yeto",
       deliverablesTitle: "Ce que nous avons réalisé",
       deliverables: [
-        {
-          icon: "monitor",
-          title: "Site e-commerce",
-          description: "Une boutique en ligne pour présenter les collections et recevoir les commandes.",
-          image: null as string | null,
-        },
-        {
-          icon: "video",
-          title: "Vidéo",
-          description: "Une vidéo publicitaire pour faire connaître la marque.",
-          image: null,
-        },
-        {
-          icon: "target",
-          title: "Campagnes publicitaires",
-          description: "Des campagnes ciblées pour amener des visiteurs vers la boutique.",
-          image: null,
-        },
+        { icon: "monitor", title: "Site e-commerce", description: "Une boutique en ligne pour présenter les collections et recevoir les commandes." },
+        { icon: "video", title: "Vidéo", description: "Une vidéo publicitaire pour faire connaître la marque." },
+        { icon: "target", title: "Campagnes publicitaires", description: "Des campagnes ciblées pour amener des visiteurs vers la boutique." },
       ],
-      statsTitle: "En chiffres",
-      stats: [
-        { value: "—", label: "Produits en ligne" },
-        { value: "—", label: "Vues de la vidéo" },
-        { value: "—", label: "Personnes touchées par les campagnes" },
-      ],
+      resultsTitle: "Résultats",
+      results: [],
       cta: "Lancer un projet similaire",
       serviceValue: "digital-communication",
-      advertisers: null as null | {
-        title: string;
-        intro: string;
-        locationsTitle: string;
-        locations: { name: string; detail: string }[];
-        visibilityTitle: string;
-        visibility: { value: string; label: string }[];
-        videoTitle: string;
-        video: string | null;
-        videoPoster: string | null;
-        videoCaption: string;
-      },
+      advertisers: null,
     },
     {
       id: "led-atlas",
       name: "LED Atlas",
-      sector: "Affichage",
+      sector: "Affichage dynamique",
       icon: "monitorPlay",
+      status: "ongoing",
+      location: "Lubumbashi",
+      intervention: "Réseau d'écrans publicitaires LED et diffusion pour les annonceurs",
+      poles: ["digital-communication"],
       headline: "Un réseau d'écrans publicitaires LED à Lubumbashi.",
       summary:
         "Des écrans LED installés à Lubumbashi pour diffuser les messages des annonceurs, en images et en mouvement.",
@@ -595,123 +809,117 @@ export const fr = {
       imageAlt: "Écran publicitaire LED Atlas à Lubumbashi",
       deliverablesTitle: "Le dispositif",
       deliverables: [
-        {
-          icon: "monitorPlay",
-          title: "Écrans LED",
-          description: "Un affichage lumineux et animé, visible de jour comme de nuit.",
-          image: null,
-        },
-        {
-          icon: "mapPin",
-          title: "Emplacements à Lubumbashi",
-          description: "Des écrans implantés sur des axes fréquentés de la ville.",
-          image: null,
-        },
-        {
-          icon: "megaphone",
-          title: "Diffusion pour les annonceurs",
-          description: "Vos spots programmés et diffusés sur le réseau.",
-          image: null,
-        },
+        { icon: "monitorPlay", title: "Écrans LED", description: "Un affichage lumineux et animé, visible de jour comme de nuit." },
+        { icon: "mapPin", title: "Emplacements à Lubumbashi", description: "Des écrans implantés sur des axes fréquentés de la ville." },
+        { icon: "megaphone", title: "Diffusion pour les annonceurs", description: "Vos spots programmés et diffusés sur le réseau." },
       ],
-      statsTitle: "En chiffres",
-      stats: [
-        { value: "—", label: "Écrans en service" },
-        { value: "—", label: "Emplacements" },
-        { value: "—", label: "Heures de diffusion par jour" },
-      ],
+      resultsTitle: "Résultats",
+      results: [],
       cta: "Annoncer sur LED Atlas",
       serviceValue: "led-atlas",
       advertisers: {
         title: "Pour les annonceurs",
-        intro:
-          "Présentez votre marque sur les écrans LED Atlas. Voici ce que nous mettons à votre disposition.",
-        locationsTitle: "Emplacements",
-        locations: [
-          { name: "Emplacement 1", detail: "Adresse et description à préciser" },
-          { name: "Emplacement 2", detail: "Adresse et description à préciser" },
-          { name: "Emplacement 3", detail: "Adresse et description à préciser" },
-        ],
-        visibilityTitle: "Visibilité",
-        visibility: [
-          { value: "—", label: "Passages quotidiens devant les écrans" },
-          { value: "—", label: "Diffusions de votre spot par jour" },
-          { value: "—", label: "Plage horaire de diffusion" },
-        ],
+        intro: "Présentez votre marque sur les écrans LED Atlas : découvrez le rendu des écrans en situation.",
         videoTitle: "Vidéo de démonstration",
         video: "/media/led-atlas.mp4",
         videoPoster: "/media/led-atlas-poster.jpg",
-        videoCaption: "Découvrez le rendu des écrans en situation.",
+        videoCaption: "Le rendu des écrans LED Atlas en situation.",
       },
     },
-  ],
+  ] as CaseStudy[],
+
 
   /* ───────────── Page d'accueil ───────────── */
   home: {
-    /* Le visuel du hero et tous les visuels Higgsfield se règlent dans
-       `src/content/visuals.ts`. */
     hero: {
-      eyebrow: "Lubumbashi · Haut-Katanga · RDC",
-      /** Première ligne du grand titre. */
-      title: "Vos affaires en RDC,",
-      /** Dernière ligne du titre : ces mots s'affichent tour à tour (un par pôle). */
-      rotating: ["développées.", "approvisionnées.", "accompagnées.", "rendues visibles."],
-      /** Titre complet, lu par les lecteurs d'écran et les moteurs de recherche. */
-      titleFull: "Vos affaires en RDC, développées, approvisionnées, accompagnées et rendues visibles.",
+      eyebrow: "Groupe multisectoriel · Lubumbashi · RDC",
+      title: "Vos ambitions.",
+      titleAccent: "Notre capacité d'action.",
       subtitle:
-        "Un seul partenaire à Lubumbashi pour trouver les bons partenaires, sécuriser vos approvisionnements, mobiliser le personnel et faire connaître votre entreprise. En RDC, et demain en Afrique.",
-      /**
-       * Compteurs animés. Ne mettez que des chiffres vérifiables : quand vous
-       * en aurez, remplacez-les par vos résultats (projets livrés, clients…).
-       */
-      statsLabel: "ATLAS AFRICA GROUP en chiffres",
-      stats: [
-        { value: 4, suffix: "", label: "pôles d'expertise complémentaires" },
-        { value: 14, suffix: "", label: "services disponibles" },
-        { value: 8, suffix: "", label: "secteurs servis" },
-        { value: 1, suffix: "", label: "interlocuteur pour tout votre projet" },
-      ],
-      /** Carte « trajet » posée sur le visuel (grand écran). */
-      floating: [
-        { title: "Lubumbashi – Likasi – Kolwezi", text: "Missions, transferts et livraisons" },
-      ],
+        "Atlas Africa Group accompagne les entreprises, les institutions et les investisseurs dans le développement de leurs activités, la structuration de leurs projets et la mise en œuvre de solutions opérationnelles en République démocratique du Congo.",
     },
-
-    /* ───── À propos / Nos valeurs ───── */
-    about: {
-      eyebrow: "À propos",
-      /** Texte révélé mot à mot au défilement. `accent: true` = passage en or. */
-      statement: [
-        { text: "Nous croyons à une chose simple :" },
-        { text: "ce qui est convenu est réalisé.", accent: true },
-        { text: "Avec méthode, avec" },
-        { text: "efficacité,", accent: true },
-        { text: "et un seul interlocuteur, nous faisons avancer vos projets en RDC." },
-      ] as { text: string; accent?: boolean }[],
-      valuesTitle: "Nos valeurs",
-      cta: "Découvrir qui nous sommes",
+    value: {
+      eyebrow: "Notre proposition de valeur",
+      title: "Pourquoi choisir Atlas Africa Group.",
+      intro:
+        "Un groupe multisectoriel, présent dans tous les domaines utiles à vos activités, avec un seul interlocuteur pour les coordonner.",
+      items: [
+        { icon: "mapPin", title: "Compréhension du marché congolais", text: "Une équipe basée à Lubumbashi, au contact des acteurs économiques du Haut-Katanga." },
+        { icon: "layers", title: "Approche multisectorielle", text: "Quatre pôles complémentaires, des affaires à la vie quotidienne de vos sites." },
+        { icon: "handshake", title: "Développement de partenariats", text: "Nous travaillons avec des partenaires qualifiés et les entreprises locales." },
+        { icon: "userCheck", title: "Accompagnement personnalisé", text: "Chaque proposition part de votre besoin réel, pas d'un catalogue." },
+        { icon: "route", title: "Coordination des services et des projets", text: "Un seul interlocuteur coordonne les intervenants, du premier échange au suivi." },
+      ],
     },
     poles: {
-      eyebrow: "Nos pôles",
-      title: "Quatre pôles pour couvrir l'ensemble de vos besoins.",
-      intro:
-        "Du premier contact d'affaires à la vie quotidienne de vos sites, un seul partenaire coordonne les compétences dont vous avez besoin.",
-      tabsLabel: "Choisir un pôle",
-      servicesLabel: "Les services du pôle",
-      offerLabel: "Offre phare",
-      quoteCta: "Demander un devis",
+      eyebrow: "Nos quatre pôles",
+      title: "Quatre expertises, un seul partenaire.",
+      intro: "Du premier contact d'affaires à la vie quotidienne de vos sites, nous coordonnons les compétences dont vous avez besoin.",
     },
+    sectors: {
+      eyebrow: "Industries & Secteurs",
+      title: "Aux côtés des acteurs qui font l'économie du Congo et de l'Afrique.",
+      intro: "Nous intervenons auprès des entreprises, des investisseurs et des institutions, dans tous les grands secteurs.",
+      cta: "Tous les secteurs",
+      previous: "Secteur précédent",
+      next: "Secteur suivant",
+    },
+    work: {
+      eyebrow: "Projets & Réalisations",
+      title: "Des projets réels, avec leur statut actuel.",
+      intro: "Nous ne présentons que des projets authentiques, menés par nos équipes.",
+    },
+    group: {
+      eyebrow: "Le Groupe",
+      title: "Une société congolaise, une ambition africaine.",
+      text: "ATLAS AFRICA GROUP SARL est basée à Lubumbashi, dans le Haut-Katanga. Société opérationnelle aujourd'hui, groupe demain : nous grandissons pas à pas, en RDC d'abord, puis vers d'autres pays africains.",
+      cta: "Découvrir le groupe",
+    },
+    contact: {
+      eyebrow: "Contact",
+      title: "Parlons de votre prochain projet.",
+      text: "Décrivez votre besoin en quelques lignes : nous vous recontactons pour le préciser et vous adresser une proposition.",
+    },
+  },
 
+  /* ───────────── Page « Nos expertises » ───────────── */
+  expertisesPage: {
+    metaTitle: "Nos services",
+    metaDescription:
+      "Les quatre pôles d'ATLAS AFRICA GROUP : Business & Projects Development, Supply, Trading & Logistics, People, Facilities & Environment, Digital, Media & Communication.",
+    eyebrow: "Nos services",
+    title: "Tous nos services, expliqués pôle par pôle.",
+    intro:
+      "Choisissez un service précis ou confiez-nous l'ensemble de votre projet : nous coordonnons les compétences internes et les partenaires qualifiés, avec un seul interlocuteur.",
+    showAll: "Voir tous les services",
+    showLess: "Réduire",
+    servicesCount: "services",
+    offers: {
+      eyebrow: "Offres spécialisées",
+      title: "Trois offres prêtes à réserver.",
+      intro: "Des prestations clairement définies, que vous pouvez demander en quelques minutes.",
+    },
+    cta: {
+      title: "Vous ne savez pas par où commencer ?",
+      text: "Expliquez-nous votre situation : nous vous orientons vers les bons services.",
+      button: "Présenter un projet",
+    },
+  },
 
-    /* ───── Section explicative : comment les pôles s'enchaînent ───── */
+  /* ───────────── Page « Comment ça marche » ───────────── */
+  howItWorksPage: {
+    metaTitle: "Comment ça marche",
+    metaDescription: "Comment ATLAS AFRICA GROUP coordonne ses quatre pôles pour vos projets : un scénario type et notre méthode en cinq étapes.",
+    eyebrow: "Comment ça marche",
+    title: "Un projet, quatre pôles, un seul interlocuteur.",
+    intro: "Découvrez comment nos pôles s'enchaînent sur un projet, puis notre méthode, étape par étape.",
     integration: {
-      eyebrow: "Comment ça marche",
+      eyebrow: "Comment nos pôles travaillent ensemble",
       title: "Un projet, quatre pôles, un seul interlocuteur.",
       intro:
         "Exemple : une entreprise s'installe à Kolwezi. Voici comment nos pôles s'enchaînent pour que tout soit prêt, sans multiplier les prestataires.",
       scenarioLabel: "Scénario type",
       stepLabel: "Étape",
-      /** `pole` = identifiant du pôle concerné (voir `poles` plus haut). */
       steps: [
         {
           pole: "business-projects",
@@ -722,7 +930,7 @@ export const fr = {
         {
           pole: "supply-logistics",
           title: "Équiper et acheminer",
-          text: "Sourcing des équipements, achats, import et organisation des expéditions jusqu'au site. AAG Mobilité assure les déplacements des équipes.",
+          text: "Sourcing des équipements, achats et organisation des expéditions jusqu'au site. AAG Mobilité assure les déplacements des équipes.",
           items: ["Fournisseurs qualifiés", "Expéditions organisées", "Transport avec chauffeur"],
         },
         {
@@ -734,223 +942,167 @@ export const fr = {
         {
           pole: "digital-communication",
           title: "Gérer et se faire connaître",
-          text: "Outils de gestion sur mesure, site web, campagnes ciblées et présence locale pour attirer vos premiers clients.",
-          items: ["Outil de gestion", "Site web", "Visibilité locale"],
+          text: "Outils de gestion sur mesure, site internet, campagnes ciblées et présence locale pour attirer vos premiers clients.",
+          items: ["Outil de gestion", "Site internet", "Visibilité locale"],
         },
       ],
-      methodTitle: "Notre méthode, à chaque étape",
-      cta: "Décrire mon projet",
     },
-
-    /* ───── Suivi d'un conteneur (exemple illustratif) ───── */
-    tracking: {
-      eyebrow: "Supply & Logistics",
-      title: "Vos marchandises suivies, du fournisseur à votre site.",
-      intro:
-        "Nous organisons chaque expédition avec des opérateurs qualifiés et vous informons à chaque étape. Voici le parcours type d'un conteneur vers le Haut-Katanga.",
-      exampleBadge: "Exemple de parcours",
-      referenceLabel: "Référence",
-      reference: "AAG-EXP-0418",
-      cargoLabel: "Marchandise",
-      cargo: "Conteneur 40' · équipements industriels",
-      originLabel: "Origine",
-      origin: "Port de Dar es Salaam",
-      destinationLabel: "Destination",
-      destination: "Kolwezi, Lualaba",
-      statusLabel: "Étape en cours",
-      progressLabel: "Avancement",
-      stepsLabel: "Étapes du parcours",
-      steps: [
-        {
-          label: "Commande confirmée",
-          place: "Fournisseur qualifié",
-          text: "Le fournisseur est sélectionné, le prix négocié et la commande passée.",
-        },
-        {
-          label: "Arrivée au port",
-          place: "Dar es Salaam",
-          text: "Réception du conteneur et organisation de son enlèvement.",
-        },
-        {
-          label: "Transit routier",
-          place: "Corridor Tanzanie – Zambie",
-          text: "Acheminement par semi-remorque, avec un transporteur qualifié.",
-        },
-        {
-          label: "Passage de la frontière",
-          place: "Kasumbalesa",
-          text: "Suivi des formalités d'importation avec nos partenaires.",
-        },
-        {
-          label: "Livré sur site",
-          place: "Lubumbashi · Kolwezi",
-          text: "Entreposage si nécessaire, puis livraison à l'adresse convenue.",
-        },
-      ],
-      play: "Lire l'animation",
-      pause: "Mettre l'animation en pause",
-      note: "Illustration : chaque parcours est défini avec vous selon l'origine, la marchandise et la destination.",
-      cta: "Organiser une expédition",
-      /** Valeur présélectionnée dans le formulaire de contact. */
-      serviceValue: "supply-logistics",
+    method: {
+      eyebrow: "Notre méthode, à chaque étape",
+      title: "Cinq étapes, du premier échange au suivi.",
+      intro: "Vous savez à tout moment où en est votre projet et ce qui vient ensuite.",
     },
-    sectors: {
-      eyebrow: "Secteurs servis",
-      title: "Aux côtés des acteurs qui font l'économie du Katanga.",
-      intro:
-        "Nous intervenons auprès des entreprises, des investisseurs et des institutions, quel que soit leur secteur.",
-      previous: "Secteur précédent",
-      next: "Secteur suivant",
-      cta: "Parler de votre projet",
-      /** Texte et mots-clés de chaque carte (clé = champ `icon` du secteur, voir `sectors`). */
-      details: {
-        pickaxe: {
-          text: "Équipements et consommables, transport des équipes, personnel et entretien des sites miniers.",
-          tags: ["Approvisionnement", "Mobilité", "Personnel"],
-        },
-        fuel: {
-          text: "Fournitures, logistique et services aux sites pour les acteurs des hydrocarbures.",
-          tags: ["Logistique", "Services aux sites"],
-        },
-        zap: {
-          text: "Projets solaires et efficacité énergétique, menés avec des partenaires techniques.",
-          tags: ["Études", "Solaire", "Partenaires"],
-        },
-        factory: {
-          text: "Sourcing, nettoyage industriel et personnel pour faire tourner vos installations.",
-          tags: ["Sourcing", "Nettoyage industriel"],
-        },
-        building: {
-          text: "Coordination de projets, nettoyage de fin de chantier et remise en état des locaux.",
-          tags: ["Projets", "Fin de chantier"],
-        },
-        store: {
-          text: "Site web, boutique en ligne, campagnes publicitaires et écrans LED pour vendre plus.",
-          tags: ["Digital", "Publicité", "LED"],
-        },
-        concierge: {
-          text: "Transport avec chauffeur, entretien des locaux et outils de gestion sur mesure.",
-          tags: ["Mobilité", "Entretien", "Gestion"],
-        },
-        landmark: {
-          text: "Études, accompagnement de projets et prestations externalisées pour les organismes.",
-          tags: ["Études", "Prestations externalisées"],
-        },
-      } as Record<string, { text: string; tags: string[] }>,
-    },
-    contact: {
-      eyebrow: "Contact",
-      title: "Un projet, un besoin ? Parlons-en.",
-      text: "Décrivez-nous votre besoin en quelques lignes. Nous vous recontactons pour le préciser et vous adresser une proposition.",
-    },
-  },
-
-  /* ───────────── Page Services ───────────── */
-  servicesPage: {
-    metaTitle: "Services",
-    metaDescription:
-      "Les quatre pôles d'ATLAS AFRICA GROUP : Business & Projects, Supply & Logistics, People & Facilities, Digital & Communication. Des services pour les entreprises et les investisseurs en RDC.",
-    eyebrow: "Nos services",
-    title: "Tout ce qu'il faut pour réaliser vos affaires en RDC.",
-    intro:
-      "Quatre pôles complémentaires, un seul interlocuteur. Choisissez un service ou confiez-nous l'ensemble de votre projet.",
-    polesNavLabel: "Accès rapide aux pôles",
-    faqTitle: "Questions fréquentes",
     cta: {
-      title: "Vous ne savez pas par où commencer ?",
-      text: "Expliquez-nous votre situation : nous vous orientons vers les bons services.",
-      button: "Demander un devis",
+      title: "Prêt à démarrer ?",
+      text: "Décrivez votre besoin : nous vous recontactons pour la première étape, l'analyse.",
+      button: "Présenter un projet",
     },
   },
 
-  /* ───────────── Page Réalisations ───────────── */
-  workPage: {
-    metaTitle: "Réalisations",
+  /* ───────────── Page d'un pôle (libellés communs) ───────────── */
+  polePage: {
+    problemsTitle: "Les besoins auxquels nous répondons",
+    servicesTitle: "Nos services",
+    deliveryNote:
+      "Pour chaque service, nous indiquons s'il est réalisé par nos équipes, avec des partenaires qualifiés, ou s'il est en développement.",
+    sectorsTitle: "Secteurs concernés",
+    advantagesTitle: "Pourquoi travailler avec nous",
+    methodTitle: "Notre méthode d'intervention",
+    referencesTitle: "Références",
+    offersTitle: "Offres spécialisées",
+    faqTitle: "Questions fréquentes",
+    formTitle: "Parlons de votre besoin",
+    formIntro: "Décrivez votre besoin : nous vous recontactons pour le préciser et vous adresser une proposition.",
+    otherPoles: "Nos autres expertises",
+  },
+
+  /* ───────────── Page « Industries & Secteurs » ───────────── */
+  sectorsPage: {
+    metaTitle: "Industries & Secteurs",
     metaDescription:
-      "Études de cas d'ATLAS AFRICA GROUP : Zando Yeto (site e-commerce, vidéo et campagnes publicitaires) et LED Atlas (réseau d'écrans publicitaires LED à Lubumbashi).",
-    eyebrow: "Réalisations",
+      "Mines, énergie, construction, industrie, entreprises et institutions : les secteurs accompagnés par ATLAS AFRICA GROUP en RDC.",
+    eyebrow: "Industries & Secteurs",
+    title: "Un partenaire pour tous les grands secteurs de l'économie congolaise.",
+    intro:
+      "Chaque secteur a ses contraintes. Nous mobilisons, pour chacun, les pôles et les partenaires adaptés.",
+    needsTitle: "Besoins fréquents",
+    polesTitle: "Pôles mobilisés",
+    cta: {
+      title: "Votre secteur n'apparaît pas ?",
+      text: "Nous intervenons dans tous les domaines utiles à vos activités. Parlons de votre besoin.",
+      button: "Présenter un projet",
+    },
+  },
+
+  /* ───────────── Page « Projets & Réalisations » ───────────── */
+  workPage: {
+    metaTitle: "Projets & Réalisations",
+    metaDescription:
+      "Projets d'ATLAS AFRICA GROUP, classés selon leur statut réel : Zando Yeto (site e-commerce, vidéo et campagnes) et LED Atlas (écrans publicitaires LED à Lubumbashi).",
+    eyebrow: "Projets & Réalisations",
     title: "Ce que nous faisons, concrètement.",
     intro:
-      "Deux réalisations qui illustrent notre manière de travailler : un besoin précis, un dispositif complet, un suivi dans la durée.",
-    casesNavLabel: "Accès rapide aux réalisations",
+      "Nous ne présentons que des projets réels, avec leur statut actuel. Chaque projet indique notre contribution exacte.",
+    groups: {
+      completed: { title: "Réalisations achevées", intro: "Des projets livrés." },
+      ongoing: { title: "En cours", intro: "Des projets et des activités en cours." },
+      development: { title: "Projets en développement", intro: "Des projets en préparation." },
+    },
+    fields: {
+      sector: "Secteur",
+      location: "Zone",
+      intervention: "Notre intervention",
+      status: "Statut",
+    },
+    viewCase: "Voir le projet",
     cta: {
       title: "Votre projet pourrait être le prochain.",
       text: "Parlons de vos objectifs et de la manière dont nous pouvons vous aider à les atteindre.",
-      button: "Demander un devis",
+      button: "Présenter un projet",
     },
   },
 
-  /* ───────────── Page À propos ───────────── */
-  aboutPage: {
-    metaTitle: "À propos",
+  /* ───────────── Page « Le Groupe » ───────────── */
+  groupPage: {
+    metaTitle: "Le Groupe",
     metaDescription:
-      "ATLAS AFRICA GROUP SARL, société basée à Lubumbashi : notre vision, notre mission, nos valeurs et notre approche — une société opérationnelle, puis un groupe.",
-    eyebrow: "À propos",
+      "ATLAS AFRICA GROUP SARL, groupe multisectoriel basé à Lubumbashi : qui nous sommes, notre mission, notre vision, nos valeurs, notre modèle opérationnel et notre implantation.",
+    eyebrow: "Le Groupe",
     title: "Une société congolaise, une ambition africaine.",
     intro:
       "ATLAS AFRICA GROUP SARL est basée à Lubumbashi, dans le Haut-Katanga. Nous aidons ceux qui entreprennent et investissent en RDC à faire aboutir leurs projets.",
+    who: {
+      eyebrow: "Qui sommes-nous ?",
+      title: "Un groupe multisectoriel, un seul interlocuteur.",
+      text: "Nous intervenons dans tous les domaines utiles aux entreprises, aux institutions et aux investisseurs : affaires et projets, approvisionnement et logistique, ressources humaines et services aux sites, digital, médias et communication. Nous coordonnons nos équipes et des partenaires qualifiés pour livrer des solutions complètes.",
+    },
+    /** Notre histoire : section masquée tant que la liste est vide (voir le registre de validation). */
+    history: {
+      eyebrow: "Notre histoire",
+      title: "Les étapes clés",
+      items: [] as { year: string; text: string }[],
+    },
     vision: {
-      eyebrow: "Vision",
+      eyebrow: "Notre vision",
       title: "Devenir un partenaire de référence en RDC, puis en Afrique.",
       text: "Nous voulons être le partenaire vers lequel on se tourne pour développer et réaliser ses affaires : d'abord en RDC, et demain sur le continent.",
     },
     mission: {
-      eyebrow: "Mission",
+      eyebrow: "Notre mission",
       title: "Faire aboutir les projets de nos clients.",
       text: "Aider les entreprises et les investisseurs à trouver les bons partenaires, à structurer leurs projets et à mobiliser les ressources nécessaires : fournisseurs, logistique, personnel, services aux sites et communication.",
     },
     values: {
-      eyebrow: "Valeurs",
+      eyebrow: "Nos valeurs",
       title: "Ce qui guide notre travail.",
       items: [
-        {
-          icon: "shield",
-          title: "Fiabilité",
-          text: "Nous tenons nos engagements : ce qui est convenu est réalisé.",
-        },
-        {
-          icon: "eye",
-          title: "Transparence",
-          text: "Des propositions claires, des contrats précis, une information régulière.",
-        },
-        {
-          icon: "award",
-          title: "Qualité",
-          text: "Des partenaires qualifiés et des prestations vérifiées à la réception.",
-        },
-        {
-          icon: "heartHandshake",
-          title: "Engagement local",
-          text: "Nous travaillons avec les compétences et les entreprises du Haut-Katanga.",
-        },
+        { icon: "shield", title: "Fiabilité", text: "Nous tenons nos engagements : ce qui est convenu est réalisé." },
+        { icon: "eye", title: "Transparence", text: "Des propositions claires, des contrats précis, une information régulière." },
+        { icon: "award", title: "Qualité", text: "Des partenaires qualifiés et des prestations vérifiées à la réception." },
+        { icon: "heartHandshake", title: "Engagement local", text: "Nous travaillons avec les compétences et les entreprises du Haut-Katanga." },
       ],
     },
-    approach: {
-      eyebrow: "Notre approche",
-      title: "Une société opérationnelle, puis un groupe.",
-      intro:
-        "Nous avançons par étapes : faire d'abord, grandir ensuite sur ce qui a fait ses preuves.",
+    model: {
+      eyebrow: "Notre modèle opérationnel",
+      title: "Nos équipes, des partenaires qualifiés, un seul interlocuteur.",
+      intro: "Nous indiquons toujours qui réalise chaque prestation.",
+      items: [
+        { title: "Nos équipes", text: "Les prestations que nous réalisons nous-mêmes : coordination, conseil, nettoyage, recrutement, création digitale, AAG Mobilité, LED Atlas." },
+        { title: "Nos partenaires qualifiés", text: "Les prestations confiées à des partenaires que nous sélectionnons et suivons : transport, entreposage, formalités, gestion des déchets, projets énergétiques." },
+        { title: "Nos projets en développement", text: "Les services en préparation, annoncés comme tels, comme le nettoyage par drone." },
+      ],
       steps: [
-        {
-          label: "Aujourd'hui",
-          title: "Une société opérationnelle",
-          text: "Des prestations concrètes, réalisées à Lubumbashi et dans le Haut-Katanga à travers quatre pôles complémentaires.",
-        },
-        {
-          label: "Demain",
-          title: "Un groupe",
-          text: "Des activités qui se développent pas à pas, en RDC d'abord, puis vers d'autres pays africains.",
-        },
+        { label: "Aujourd'hui", title: "Une société opérationnelle", text: "Des prestations concrètes, réalisées à Lubumbashi et dans le Haut-Katanga à travers quatre pôles complémentaires." },
+        { label: "Demain", title: "Un groupe", text: "Des activités qui se développent pas à pas, en RDC d'abord, puis vers d'autres pays africains." },
       ],
     },
-    sectors: {
-      eyebrow: "Secteurs servis",
-      title: "Nous travaillons avec tous les secteurs de l'économie.",
+    /** Équipe dirigeante : section masquée tant que la liste est vide. */
+    leadership: {
+      eyebrow: "Notre équipe dirigeante",
+      title: "La direction du groupe",
+      leaders: [] as Leader[],
+    },
+    presence: {
+      eyebrow: "Notre implantation",
+      title: "Basés à Lubumbashi, au cœur du Haut-Katanga.",
+      text: "Depuis Lubumbashi, nous intervenons dans le Haut-Katanga et sur l'axe minier Lubumbashi – Likasi – Kolwezi.",
+      places: [{ city: "Lubumbashi", region: "Haut-Katanga · RDC", role: "Base opérationnelle" }],
+    },
+    commitment: {
+      eyebrow: "Notre engagement professionnel",
+      title: "Des engagements simples, tenus.",
+      items: [
+        "Une proposition écrite et un contrat avant chaque mission.",
+        "Un interlocuteur désigné, joignable pendant toute la mission.",
+        "Des partenaires sélectionnés et suivis par nos équipes.",
+        "La confidentialité des informations que vous nous confiez.",
+        "Le respect des consignes de sécurité de vos sites.",
+      ],
     },
     cta: {
       title: "Travaillons ensemble.",
       text: "Présentez-nous votre projet : nous vous dirons comment nous pouvons y contribuer.",
-      button: "Nous contacter",
+      button: "Présenter un projet",
     },
   },
 
@@ -958,11 +1110,11 @@ export const fr = {
   contactPage: {
     metaTitle: "Contact",
     metaDescription:
-      "Contactez ATLAS AFRICA GROUP SARL à Lubumbashi (Haut-Katanga, RDC) : demande de devis, formulaire de contact, WhatsApp, téléphone et e-mail.",
+      "Contactez ATLAS AFRICA GROUP à Lubumbashi (Haut-Katanga, RDC) : demande de devis, formulaires spécialisés, WhatsApp, téléphone et e-mail.",
     eyebrow: "Contact",
     title: "Parlons de votre projet.",
     intro:
-      "Remplissez le formulaire ou écrivez-nous sur WhatsApp. Nous revenons vers vous pour préciser votre besoin.",
+      "Choisissez le service concerné : le formulaire s'adapte à votre demande. Vous pouvez aussi nous écrire sur WhatsApp.",
     formTitle: "Votre demande",
     detailsTitle: "Nos coordonnées",
     addressLabel: "Adresse",
@@ -976,32 +1128,71 @@ export const fr = {
     mapOpen: "Ouvrir dans Google Maps",
   },
 
-  /* ───────────── Formulaire de contact ───────────── */
+  /* ───────────── Formulaires ───────────── */
   form: {
     name: "Nom complet",
-    company: "Entreprise",
+    company: "Entreprise ou organisation",
     phone: "Téléphone",
     email: "E-mail",
-    service: "Service souhaité",
-    message: "Message",
+    service: "Service concerné",
+    message: "Description du besoin",
     optional: "facultatif",
     requiredHint: "Les champs marqués d'un astérisque (*) sont obligatoires.",
     servicePlaceholder: "Sélectionnez un service",
     messagePlaceholder: "Décrivez votre besoin en quelques lignes…",
+    detailsTitle: "Précisions sur votre demande",
     submit: "Envoyer ma demande",
     sending: "Envoi en cours…",
-    /** Options de la liste « Service souhaité ». Ne pas modifier les `value`. */
+    privacyNote: "Vos informations servent uniquement à traiter votre demande.",
+    privacyLink: "Politique de confidentialité",
+    /** Options de la liste « Service concerné ». Ne pas modifier les `value`. */
     serviceOptions: [
-      { value: "business-projects", label: "Business & Projects" },
-      { value: "supply-logistics", label: "Supply & Logistics" },
-      { value: "people-facilities", label: "People & Facilities" },
-      { value: "digital-communication", label: "Digital & Communication" },
-      { value: "offre-cle-en-main", label: "Digital — offre clé en main" },
-      { value: "led-atlas", label: "LED Atlas — affichage publicitaire" },
-      { value: "aag-mobilite", label: "AAG Mobilité — transport avec chauffeur" },
+      { value: "business-projects", label: "Développement d'affaires et projets" },
+      { value: "supply-logistics", label: "Approvisionnement et commerce" },
+      { value: "logistics", label: "Transport et logistique" },
+      { value: "hr", label: "Ressources humaines et recrutement" },
+      { value: "people-facilities", label: "Facility management et environnement" },
       { value: "aag-cleaning", label: "AAG Cleaning — nettoyage" },
+      { value: "aag-mobilite", label: "AAG Mobilité — transport avec chauffeur" },
+      { value: "digital-communication", label: "Digital, médias et communication" },
+      { value: "offre-cle-en-main", label: "Digital — offre clé en main" },
+      { value: "led-atlas", label: "LED Atlas — publicité sur écrans LED" },
+      { value: "partenariat", label: "Demande de partenariat" },
       { value: "autre", label: "Autre demande" },
     ],
+    /** Libellés des champs complémentaires (affichés selon le service choisi). */
+    fields: {
+      location: { label: "Ville ou site concerné", placeholder: "Ex. Lubumbashi, Kolwezi…" },
+      timeline: { label: "Échéance souhaitée", options: ["Dès que possible", "Sous un mois", "D'ici trois mois", "Plus tard"] },
+      projectType: { label: "Nature du projet", placeholder: "Ex. implantation, site internet, étude…" },
+      sector: {
+        label: "Secteur d'activité",
+        options: ["Mines et ressources naturelles", "Énergie et hydrocarbures", "Construction et infrastructures", "Industrie et commerce", "Entreprises et immobilier", "Institutions et organisations", "Autre"],
+      },
+      stage: { label: "Stade du projet", options: ["Idée", "Étude en cours", "Financement en cours", "Prêt à démarrer"] },
+      products: { label: "Produits ou équipements recherchés" },
+      quantity: { label: "Quantités estimées" },
+      origin: { label: "Origine de la marchandise" },
+      destination: { label: "Destination" },
+      cargo: { label: "Nature de la marchandise", placeholder: "Ex. conteneur 40', palettes…" },
+      need: { label: "Type de besoin", options: ["Recrutement", "Mise à disposition de personnel", "Formation", "Prestations externalisées"] },
+      headcount: { label: "Nombre de personnes" },
+      profile: { label: "Profils recherchés" },
+      duration: { label: "Durée de la mission" },
+      premises: { label: "Type de locaux", options: ["Bureaux", "Commerce", "Résidence", "Site industriel", "Chantier"] },
+      surface: { label: "Surface approximative", placeholder: "Ex. 300 m²" },
+      frequency: { label: "Fréquence souhaitée", options: ["Intervention ponctuelle", "Chaque semaine", "Plusieurs fois par semaine", "Chaque jour"] },
+      date: { label: "Date du trajet" },
+      route: { label: "Trajet", placeholder: "Ex. aéroport → hôtel, Lubumbashi → Kolwezi" },
+      passengers: { label: "Nombre de passagers" },
+      vehicle: { label: "Véhicule souhaité", options: ["Berline", "SUV Prado", "Indifférent"] },
+      brand: { label: "Marque à promouvoir" },
+      period: { label: "Période de diffusion souhaitée" },
+      objective: { label: "Objectif de la campagne" },
+      organization: { label: "Organisation" },
+      partnershipType: { label: "Type de partenariat", options: ["Commercial", "Technique", "Fournisseur", "Investissement", "Autre"] },
+      country: { label: "Pays" },
+    } as Record<ExtraFieldKey, FormFieldContent>,
     errors: {
       required: "Ce champ est obligatoire.",
       nameTooShort: "Indiquez votre nom complet.",
@@ -1021,17 +1212,110 @@ export const fr = {
         "L'envoi n'a pas abouti. Réessayez dans un instant, ou contactez-nous par WhatsApp ou par téléphone.",
       notConfigured:
         "Le formulaire n'est pas encore activé. Contactez-nous par WhatsApp ou par téléphone.",
+      tooMany: "Vous avez envoyé plusieurs demandes en peu de temps. Réessayez dans quelques minutes.",
     },
+  },
+
+  /* ───────────── Mentions légales ───────────── */
+  legalPage: {
+    metaTitle: "Mentions légales",
+    metaDescription: "Mentions légales du site d'ATLAS AFRICA GROUP SARL.",
+    eyebrow: "Informations légales",
+    title: "Mentions légales",
+    intro: "Informations sur l'éditeur du site et les conditions d'utilisation.",
+    sections: [
+      {
+        title: "Éditeur du site",
+        paragraphs: [
+          "Le site atlasafricagroup.com est édité par ATLAS AFRICA GROUP SARL, société à responsabilité limitée basée à Lubumbashi, Haut-Katanga, République démocratique du Congo.",
+        ],
+      },
+      {
+        title: "Propriété intellectuelle",
+        paragraphs: [
+          "Les textes, logos, vidéos et éléments graphiques de ce site sont la propriété d'ATLAS AFRICA GROUP SARL, sauf mention contraire. Toute reproduction sans autorisation écrite est interdite.",
+        ],
+      },
+      {
+        title: "Visuels d'illustration",
+        paragraphs: [
+          "Certaines images du site sont des visuels d'illustration, signalés comme tels. Ils ne représentent pas des réalisations ou des installations d'ATLAS AFRICA GROUP. Les projets réels sont présentés dans la rubrique « Projets & Réalisations ».",
+        ],
+      },
+      {
+        title: "Responsabilité",
+        paragraphs: [
+          "Les informations publiées sur ce site sont fournies à titre indicatif. Les prestations, conditions et délais sont précisés dans chaque proposition commerciale et chaque contrat.",
+        ],
+      },
+      {
+        title: "Données personnelles",
+        paragraphs: [
+          "Le traitement des informations transmises par les formulaires est décrit dans notre politique de confidentialité.",
+        ],
+      },
+    ] as LegalSection[],
+  },
+
+  /* ───────────── Politique de confidentialité ───────────── */
+  privacyPage: {
+    metaTitle: "Politique de confidentialité",
+    metaDescription: "Comment ATLAS AFRICA GROUP traite les informations transmises par les formulaires du site.",
+    eyebrow: "Informations légales",
+    title: "Politique de confidentialité",
+    intro: "Ce que nous faisons des informations que vous nous transmettez.",
+    sections: [
+      {
+        title: "Responsable du traitement",
+        paragraphs: ["ATLAS AFRICA GROUP SARL, Lubumbashi, Haut-Katanga, République démocratique du Congo."],
+      },
+      {
+        title: "Données collectées",
+        paragraphs: [
+          "Lorsque vous utilisez un formulaire, nous recevons les informations que vous saisissez : nom, entreprise, téléphone, e-mail, service concerné, description de votre besoin et précisions éventuelles.",
+        ],
+      },
+      {
+        title: "Utilisation",
+        paragraphs: [
+          "Ces informations servent uniquement à répondre à votre demande et à assurer le suivi de la relation commerciale. Elles ne sont ni vendues ni cédées à des tiers.",
+        ],
+      },
+      {
+        title: "Destinataires",
+        paragraphs: [
+          "Les demandes sont reçues par l'équipe d'ATLAS AFRICA GROUP. Elles transitent par un service d'envoi d'e-mails utilisé uniquement pour leur acheminement.",
+        ],
+      },
+      {
+        title: "Durée de conservation",
+        paragraphs: [
+          "Les informations sont conservées le temps nécessaire au traitement de votre demande et au suivi de la relation commerciale.",
+        ],
+      },
+      {
+        title: "Vos droits",
+        paragraphs: [
+          "Vous pouvez demander à consulter, corriger ou supprimer vos informations en écrivant à l'adresse e-mail indiquée sur la page Contact.",
+        ],
+      },
+      {
+        title: "Cookies et services tiers",
+        paragraphs: [
+          "Ce site n'utilise pas de cookies publicitaires ni de mesure d'audience. La carte de la page Contact (Google Maps) se charge lorsque vous faites défiler la page jusqu'à elle ; Google peut alors appliquer ses propres règles et cookies. Les liens WhatsApp ouvrent le service de WhatsApp, soumis à ses propres conditions.",
+        ],
+      },
+    ] as LegalSection[],
   },
 
   /* ───────────── Pied de page ───────────── */
   footer: {
-    tagline:
-      "Votre partenaire pour développer et réaliser vos affaires en RDC, et demain en Afrique.",
+    tagline: "Groupe multisectoriel basé à Lubumbashi. Vos ambitions, notre capacité d'action.",
     navTitle: "Navigation",
-    polesTitle: "Nos pôles",
+    polesTitle: "Nos expertises",
     offersTitle: "Nos offres",
     contactTitle: "Contact",
+    legalTitle: "Informations légales",
     rights: "Tous droits réservés.",
     location: "Lubumbashi, Haut-Katanga, RDC",
   },
@@ -1047,7 +1331,3 @@ export const fr = {
 };
 
 export type Content = typeof fr;
-export type Pole = Content["poles"][number];
-export type PoleService = Pole["services"][number];
-export type CaseStudy = Content["caseStudies"][number];
-export type Offer = Content["offers"][number];

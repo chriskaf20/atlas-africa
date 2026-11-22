@@ -20,6 +20,10 @@ export type SendResult = { ok: true } | { ok: false; reason: "not_configured" | 
 export type ContactMessage = ContactValues & {
   /** Libellé lisible du service choisi. */
   serviceLabel: string;
+  /** Précisions du formulaire spécialisé (libellé et valeur). */
+  details: { label: string; value: string }[];
+  /** Langue du visiteur. */
+  locale: string;
 };
 
 function formatMessage(message: ContactMessage): { subject: string; text: string } {
@@ -32,6 +36,10 @@ function formatMessage(message: ContactMessage): { subject: string; text: string
     `Téléphone : ${message.phone}`,
     `E-mail : ${message.email || "—"}`,
     `Service souhaité : ${message.serviceLabel}`,
+    `Langue du visiteur : ${message.locale}`,
+    ...(message.details.length > 0
+      ? ["", "Précisions :", ...message.details.map((detail) => `- ${detail.label} : ${detail.value}`)]
+      : []),
     "",
     "Message :",
     message.message,
