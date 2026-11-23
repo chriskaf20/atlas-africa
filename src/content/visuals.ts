@@ -75,7 +75,7 @@ export const visuals = {
   "hero-operations": {
     kind: "video",
     file: "/media/higgsfield/hero-operations.mp4",
-    poster: "/media/higgsfield/hero-operations.jpg",
+    poster: "/media/higgsfield/hero-operations-v2.jpg",
     ratio: "16/9",
     label: { fr: "Logistique coordonnée en RDC", en: "Coordinated logistics in the DRC" },
     alt: {
@@ -92,9 +92,9 @@ export const visuals = {
   /* ───── À propos ───── */
   "about-lubumbashi": {
     kind: "image",
-    file: "/media/higgsfield/about-lubumbashi.jpg",
-    ratio: "4/5",
-    label: { fr: "Lubumbashi, Haut-Katanga", en: "Lubumbashi, Haut-Katanga" },
+    file: "/media/higgsfield/about-lubumbashi-v2.jpg",
+    ratio: "4/3",
+    label: { fr: "Équipe d'affaires congolaise", en: "Congolese business team" },
     alt: {
       fr: "Une jeune femme d'affaires congolaise, en tailleur bleu marine, contemple Lubumbashi depuis une terrasse en fin d'après-midi : des jacarandas en fleurs violettes bordent les avenues, les immeubles du centre-ville s'étendent sous un ciel doré et le terril sombre de l'ancienne fonderie de cuivre se dessine à l'horizon.",
       en: "A young Congolese businesswoman in a navy suit looks out over Lubumbashi from a rooftop terrace in the late afternoon: jacaranda trees in purple bloom line the avenues, downtown buildings stretch beneath a golden sky and the dark slag heap of the old copper smelter rises on the horizon.",
@@ -107,7 +107,7 @@ export const visuals = {
   /* ───── Les 4 pôles ───── */
   "pole-business": {
     kind: "image",
-    file: "/media/higgsfield/pole-business.jpg",
+    file: "/media/higgsfield/pole-business-v2.jpg",
     ratio: "3/2",
     label: { fr: "Business & Projects Development", en: "Business & Projects Development" },
     alt: {
@@ -130,11 +130,11 @@ export const visuals = {
     prompt:
       "Documentary photograph at a modern distribution warehouse loading dock near Lubumbashi, DRC, early morning. In the foreground, a Congolese female logistics supervisor in her forties, navy work jacket with amber high-visibility stripes and white hard hat, checks a shipment on a rugged tablet. Behind her, the warehouse operator's forklift driver in a grey uniform loads shrink-wrapped pallets of industrial equipment into the open back of a white semi-trailer backed against a dock door; through the doors, tall pallet racking under bright LED lights. Clean concrete apron, a strip of red laterite earth and acacia trees at the edge of the frame. Medium shot, 35mm lens, f/2.8, eye level, subject on the right third, open sky and dock wall on the left for overlay. Soft low morning sun with cool blue shade, crisp air. Deep navy shadows, warm gold highlights, natural skin tones. Photorealistic, ultra-detailed, 8k, shot on full-frame camera.",
     negative: `${NEGATIVE_BASE}, ${NEGATIVE_SITE}, aerial view, highway, convoy, port cranes, sunset, messy dock, overloaded truck`,
-    fallback: { file: "/media/higgsfield/hero-operations.jpg", kind: "image" },
+    fallback: { file: "/media/higgsfield/hero-operations-v2.jpg", kind: "image" },
   },
   "pole-people": {
     kind: "image",
-    file: "/media/higgsfield/pole-people.jpg",
+    file: "/media/higgsfield/pole-people-v2.jpg",
     ratio: "3/2",
     label: { fr: "People, Facilities & Environment", en: "People, Facilities & Environment" },
     alt: {
@@ -147,7 +147,7 @@ export const visuals = {
   },
   "pole-digital": {
     kind: "image",
-    file: "/media/higgsfield/pole-digital.jpg",
+    file: "/media/higgsfield/pole-digital-v2.jpg",
     ratio: "3/2",
     label: { fr: "Digital, Media & Communication", en: "Digital, Media & Communication" },
     alt: {
