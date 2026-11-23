@@ -437,8 +437,16 @@ export const en: Content = {
         {
           icon: "dashboard",
           title: "Process digitalisation",
-          description: "Custom tools to manage your sales, stock, invoicing, staff and customers from a single place.",
+          description: "Paperless documents, approval workflows and dashboards to steer your business.",
           items: [],
+          delivery: "internal",
+          group: "digital",
+        },
+        {
+          icon: "layers",
+          title: "Digital business management system",
+          description: "A custom platform that brings your company's management into one place, from a computer or a phone.",
+          items: ["Sales and invoicing", "Stock and purchasing", "Staff and payroll", "Customers and suppliers", "Reports and dashboards"],
           delivery: "internal",
           group: "digital",
         },

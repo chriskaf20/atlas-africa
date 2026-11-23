@@ -459,8 +459,16 @@ export const fr = {
         {
           icon: "dashboard",
           title: "Digitalisation des processus",
-          description: "Des outils sur mesure pour gérer vos ventes, vos stocks, votre facturation, votre personnel et vos clients, depuis un seul espace.",
+          description: "Documents dématérialisés, circuits de validation et tableaux de bord pour piloter votre activité.",
           items: [],
+          delivery: "internal",
+          group: "digital",
+        },
+        {
+          icon: "layers",
+          title: "Système de gestion d'entreprise numérique",
+          description: "Une plateforme sur mesure qui réunit la gestion de votre entreprise en un seul espace, accessible depuis un ordinateur ou un téléphone.",
+          items: ["Ventes et facturation", "Stocks et achats", "Personnel et paie", "Clients et fournisseurs", "Rapports et tableaux de bord"],
           delivery: "internal",
           group: "digital",
         },
