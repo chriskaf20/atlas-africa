@@ -28,8 +28,11 @@ export const en: Content = {
       "ATLAS AFRICA GROUP",
       "multi-sector group DRC",
       "B2B services DRC",
+      "Democratic Republic of the Congo",
+      "Congo",
+      "Africa",
+      "Kinshasa",
       "Lubumbashi",
-      "Haut-Katanga",
       "business development DRC",
       "supply and logistics",
       "chauffeur service Lubumbashi",
@@ -174,7 +177,7 @@ export const en: Content = {
       groups: [],
       sectors: ["mines", "energy", "construction", "industry", "business", "institutions"],
       advantages: [
-        { title: "On-the-ground knowledge", text: "A team based in Lubumbashi, in touch with the economic players of Haut-Katanga." },
+        { title: "On-the-ground knowledge", text: "A Congolese team, in touch with the country's economic players." },
         { title: "A network of qualified players", text: "Suppliers, contractors and partners identified and vetted." },
         { title: "One point of contact", text: "We coordinate the steps and contributors of your project." },
         { title: "Written commitments", text: "A clear proposal, a precise contract, regular updates." },
@@ -217,7 +220,7 @@ export const en: Content = {
         "Your equipment or consumables reach the site late.",
         "You juggle suppliers and hauliers without coordination.",
         "You need products that are hard to find locally.",
-        "Your teams and visitors need to travel safely in Haut-Katanga.",
+        "Your teams and visitors need to travel safely.",
       ],
       services: [
         {
@@ -276,7 +279,7 @@ export const en: Content = {
         { title: "Vetted suppliers", text: "Every supplier is qualified before the first order." },
         { title: "Follow-up at every step", text: "You know where your order stands at all times." },
         { title: "Qualified operators", text: "Transport, warehousing and formalities handled by recognised partners." },
-        { title: "Rooted in Haut-Katanga", text: "Lubumbashi, Likasi, Kolwezi: we know the routes and their constraints." },
+        { title: "Rooted in the DRC", text: "We know the country's logistics routes and their constraints." },
       ],
       caseStudies: [],
       formType: "supply-logistics",
@@ -415,7 +418,7 @@ export const en: Content = {
         "Your customers cannot find you on Google or social media.",
         "Your image does not reflect how serious your business is.",
         "You still manage sales, stock or invoicing on paper.",
-        "You want to reach the Lubumbashi public beyond digital.",
+        "You want to reach your audience beyond digital.",
       ],
       groups: [
         { id: "digital", title: "Digital Solutions", text: "Digital tools that simplify your management." },
@@ -656,7 +659,7 @@ export const en: Content = {
       icon: "pickaxe",
       label: "Mining and natural resources",
       short: "Mining",
-      text: "Equipment and consumables, staff transport, personnel and upkeep of mining sites in Haut-Katanga and Lualaba.",
+      text: "Equipment and consumables, staff transport, personnel and upkeep of mining sites in the DRC.",
       needs: ["Supplies and parts for sites", "Staff transport", "Workforce and site upkeep"],
       poles: ["supply-logistics", "people-facilities", "business-projects"],
     },
@@ -801,7 +804,7 @@ export const en: Content = {
 
   home: {
     hero: {
-      eyebrow: "Multi-sector group · Lubumbashi · DRC",
+      eyebrow: "Multi-sector group · DRC · Africa",
       title: "Your ambitions.",
       titleAccent: "Our capacity to act.",
       subtitle:
@@ -813,7 +816,7 @@ export const en: Content = {
       intro:
         "A multi-sector group, active in every field your business needs, with a single point of contact to coordinate it all.",
       items: [
-        { icon: "mapPin", title: "Understanding of the Congolese market", text: "A team based in Lubumbashi, in touch with the economic players of Haut-Katanga." },
+        { icon: "mapPin", title: "Understanding of the Congolese market", text: "A Congolese team, in touch with economic players across the country." },
         { icon: "layers", title: "Multi-sector approach", text: "Four complementary divisions, from business to the daily running of your sites." },
         { icon: "handshake", title: "Partnership development", text: "We work with qualified partners and local companies." },
         { icon: "userCheck", title: "Tailored support", text: "Every proposal starts from your real need, not from a catalogue." },
@@ -841,7 +844,7 @@ export const en: Content = {
     group: {
       eyebrow: "The Group",
       title: "A Congolese company with an African ambition.",
-      text: "ATLAS AFRICA GROUP SARL is based in Lubumbashi, in Haut-Katanga. An operating company today, a group tomorrow: we are growing step by step, in the DRC first, then into other African countries.",
+      text: "ATLAS AFRICA GROUP SARL is a Congolese company operating across the DRC. An operating company today, a group tomorrow: we are growing step by step, in the DRC first, then into other African countries.",
       cta: "Discover the group",
     },
     contact: {
@@ -988,11 +991,11 @@ export const en: Content = {
   groupPage: {
     metaTitle: "The Group",
     metaDescription:
-      "ATLAS AFRICA GROUP SARL, a multi-sector group based in Lubumbashi: who we are, our mission, vision, values, operating model and presence.",
+      "ATLAS AFRICA GROUP SARL, a Congolese multi-sector group looking to Africa: who we are, our mission, vision, values, operating model and presence.",
     eyebrow: "The Group",
     title: "A Congolese company with an African ambition.",
     intro:
-      "ATLAS AFRICA GROUP SARL is based in Lubumbashi, in Haut-Katanga. We help those who do business and invest in the DRC to see their projects through.",
+      "ATLAS AFRICA GROUP SARL is a Congolese company. We help those who do business and invest in the DRC, and soon in other African countries, to see their projects through.",
     who: {
       eyebrow: "Who we are",
       title: "A multi-sector group, one point of contact.",
@@ -1020,7 +1023,7 @@ export const en: Content = {
         { icon: "shield", title: "Reliability", text: "We keep our commitments: what is agreed gets done." },
         { icon: "eye", title: "Transparency", text: "Clear proposals, precise contracts, regular updates." },
         { icon: "award", title: "Quality", text: "Qualified partners and services checked at handover." },
-        { icon: "heartHandshake", title: "Local commitment", text: "We work with the skills and companies of Haut-Katanga." },
+        { icon: "heartHandshake", title: "Local commitment", text: "We work with Congolese skills and companies." },
       ],
     },
     model: {
@@ -1033,7 +1036,7 @@ export const en: Content = {
         { title: "Our projects in development", text: "Services being prepared, announced as such, like drone cleaning." },
       ],
       steps: [
-        { label: "Today", title: "An operating company", text: "Concrete services delivered in Lubumbashi and Haut-Katanga through four complementary divisions." },
+        { label: "Today", title: "An operating company", text: "Concrete services delivered in the DRC through four complementary divisions." },
         { label: "Tomorrow", title: "A group", text: "Activities growing step by step, first in the DRC, then into other African countries." },
       ],
     },
@@ -1044,9 +1047,12 @@ export const en: Content = {
     },
     presence: {
       eyebrow: "Where we are",
-      title: "Based in Lubumbashi, at the heart of Haut-Katanga.",
-      text: "From Lubumbashi, we operate across Haut-Katanga and along the Lubumbashi – Likasi – Kolwezi mining corridor.",
-      places: [{ city: "Lubumbashi", region: "Haut-Katanga · DRC", role: "Operational base" }],
+      title: "Present in the DRC, looking to Africa.",
+      text: "We operate across the Democratic Republic of the Congo and are preparing our growth into other African countries.",
+      places: [
+        { city: "Democratic Republic of the Congo", region: "Operational base: Lubumbashi", role: "Today" },
+        { city: "Africa", region: "Step-by-step growth, country by country", role: "Tomorrow" },
+      ],
     },
     commitment: {
       eyebrow: "Our professional commitment",
@@ -1069,7 +1075,7 @@ export const en: Content = {
   contactPage: {
     metaTitle: "Contact",
     metaDescription:
-      "Contact ATLAS AFRICA GROUP in Lubumbashi (Haut-Katanga, DRC): quote requests, specialised forms, WhatsApp, phone and email.",
+      "Contact ATLAS AFRICA GROUP, anywhere in the DRC: quote requests, specialised forms, WhatsApp, phone and email.",
     eyebrow: "Contact",
     title: "Let's talk about your project.",
     intro: "Choose the service concerned: the form adapts to your request. You can also message us on WhatsApp.",
@@ -1117,7 +1123,7 @@ export const en: Content = {
       { value: "autre", label: "Other request" },
     ],
     fields: {
-      location: { label: "City or site concerned", placeholder: "e.g. Lubumbashi, Kolwezi…" },
+      location: { label: "City or site concerned", placeholder: "e.g. Kinshasa, Lubumbashi, Kolwezi…" },
       timeline: { label: "Desired timeline", options: ["As soon as possible", "Within a month", "Within three months", "Later"] },
       projectType: { label: "Type of project", placeholder: "e.g. set-up, website, study…" },
       sector: {
@@ -1254,14 +1260,14 @@ export const en: Content = {
   },
 
   footer: {
-    tagline: "A multi-sector group based in Lubumbashi. Your ambitions, our capacity to act.",
+    tagline: "A Congolese multi-sector group looking to Africa. Your ambitions, our capacity to act.",
     navTitle: "Navigation",
     polesTitle: "Our expertise",
     offersTitle: "Our offers",
     contactTitle: "Contact",
     legalTitle: "Legal information",
     rights: "All rights reserved.",
-    location: "Lubumbashi, Haut-Katanga, DRC",
+    location: "Democratic Republic of the Congo · Africa",
   },
 
   notFound: {

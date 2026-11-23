@@ -37,8 +37,11 @@ export const fr = {
       "ATLAS AFRICA GROUP",
       "groupe multisectoriel RDC",
       "services aux entreprises RDC",
+      "République démocratique du Congo",
+      "Congo",
+      "Afrique",
+      "Kinshasa",
       "Lubumbashi",
-      "Haut-Katanga",
       "développement d'affaires RDC",
       "approvisionnement et logistique",
       "transport avec chauffeur Lubumbashi",
@@ -196,7 +199,7 @@ export const fr = {
       groups: [],
       sectors: ["mines", "energy", "construction", "industry", "business", "institutions"],
       advantages: [
-        { title: "Connaissance du terrain", text: "Une équipe basée à Lubumbashi, au contact des acteurs économiques du Haut-Katanga." },
+        { title: "Connaissance du terrain", text: "Une équipe congolaise, au contact des acteurs économiques du pays." },
         { title: "Un réseau d'acteurs qualifiés", text: "Des fournisseurs, prestataires et partenaires identifiés et vérifiés." },
         { title: "Un seul interlocuteur", text: "Nous coordonnons les étapes et les intervenants de votre projet." },
         { title: "Des engagements écrits", text: "Une proposition claire, un contrat précis, un suivi régulier." },
@@ -239,7 +242,7 @@ export const fr = {
         "Vos équipements ou consommables arrivent en retard sur site.",
         "Vous multipliez les fournisseurs et les transporteurs sans coordination.",
         "Vous avez besoin de produits difficiles à trouver localement.",
-        "Vos équipes et vos visiteurs doivent se déplacer en sécurité dans le Haut-Katanga.",
+        "Vos équipes et vos visiteurs doivent se déplacer en sécurité.",
       ],
       services: [
         {
@@ -298,7 +301,7 @@ export const fr = {
         { title: "Des fournisseurs vérifiés", text: "Chaque fournisseur est qualifié avant la première commande." },
         { title: "Un suivi à chaque étape", text: "Vous savez à tout moment où en est votre commande." },
         { title: "Des opérateurs qualifiés", text: "Transport, entreposage et formalités confiés à des partenaires reconnus." },
-        { title: "Ancrage dans le Haut-Katanga", text: "Lubumbashi, Likasi, Kolwezi : nous connaissons les axes et leurs contraintes." },
+        { title: "Ancrage en RDC", text: "Nous connaissons les axes logistiques du pays et leurs contraintes." },
       ],
       caseStudies: [],
       formType: "supply-logistics",
@@ -437,7 +440,7 @@ export const fr = {
         "Vos clients ne vous trouvent pas sur Google ni sur les réseaux sociaux.",
         "Votre image ne reflète pas le sérieux de votre entreprise.",
         "Vous gérez encore vos ventes, vos stocks ou votre facturation sur papier.",
-        "Vous voulez toucher le public de Lubumbashi au-delà du digital.",
+        "Vous voulez toucher votre public au-delà du digital.",
       ],
       groups: [
         { id: "digital", title: "Digital Solutions", text: "Des outils numériques qui simplifient votre gestion." },
@@ -680,7 +683,7 @@ export const fr = {
       icon: "pickaxe",
       label: "Mines et ressources naturelles",
       short: "Mines",
-      text: "Équipements et consommables, transport des équipes, personnel et entretien des sites miniers du Haut-Katanga et du Lualaba.",
+      text: "Équipements et consommables, transport des équipes, personnel et entretien des sites miniers en RDC.",
       needs: ["Fournitures et pièces pour les sites", "Transport du personnel", "Main-d'œuvre et entretien des sites"],
       poles: ["supply-logistics", "people-facilities", "business-projects"],
     },
@@ -832,7 +835,7 @@ export const fr = {
   /* ───────────── Page d'accueil ───────────── */
   home: {
     hero: {
-      eyebrow: "Groupe multisectoriel · Lubumbashi · RDC",
+      eyebrow: "Groupe multisectoriel · RDC · Afrique",
       title: "Vos ambitions.",
       titleAccent: "Notre capacité d'action.",
       subtitle:
@@ -844,7 +847,7 @@ export const fr = {
       intro:
         "Un groupe multisectoriel, présent dans tous les domaines utiles à vos activités, avec un seul interlocuteur pour les coordonner.",
       items: [
-        { icon: "mapPin", title: "Compréhension du marché congolais", text: "Une équipe basée à Lubumbashi, au contact des acteurs économiques du Haut-Katanga." },
+        { icon: "mapPin", title: "Compréhension du marché congolais", text: "Une équipe congolaise, au contact des acteurs économiques de tout le pays." },
         { icon: "layers", title: "Approche multisectorielle", text: "Quatre pôles complémentaires, des affaires à la vie quotidienne de vos sites." },
         { icon: "handshake", title: "Développement de partenariats", text: "Nous travaillons avec des partenaires qualifiés et les entreprises locales." },
         { icon: "userCheck", title: "Accompagnement personnalisé", text: "Chaque proposition part de votre besoin réel, pas d'un catalogue." },
@@ -872,7 +875,7 @@ export const fr = {
     group: {
       eyebrow: "Le Groupe",
       title: "Une société congolaise, une ambition africaine.",
-      text: "ATLAS AFRICA GROUP SARL est basée à Lubumbashi, dans le Haut-Katanga. Société opérationnelle aujourd'hui, groupe demain : nous grandissons pas à pas, en RDC d'abord, puis vers d'autres pays africains.",
+      text: "ATLAS AFRICA GROUP SARL est une société congolaise qui intervient dans toute la RDC. Société opérationnelle aujourd'hui, groupe demain : nous grandissons pas à pas, en RDC d'abord, puis vers d'autres pays africains.",
       cta: "Découvrir le groupe",
     },
     contact: {
@@ -1026,11 +1029,11 @@ export const fr = {
   groupPage: {
     metaTitle: "Le Groupe",
     metaDescription:
-      "ATLAS AFRICA GROUP SARL, groupe multisectoriel basé à Lubumbashi : qui nous sommes, notre mission, notre vision, nos valeurs, notre modèle opérationnel et notre implantation.",
+      "ATLAS AFRICA GROUP SARL, groupe multisectoriel congolais tourné vers l'Afrique : qui nous sommes, notre mission, notre vision, nos valeurs, notre modèle opérationnel et notre implantation.",
     eyebrow: "Le Groupe",
     title: "Une société congolaise, une ambition africaine.",
     intro:
-      "ATLAS AFRICA GROUP SARL est basée à Lubumbashi, dans le Haut-Katanga. Nous aidons ceux qui entreprennent et investissent en RDC à faire aboutir leurs projets.",
+      "ATLAS AFRICA GROUP SARL est une société congolaise. Nous aidons ceux qui entreprennent et investissent en RDC, et bientôt dans d'autres pays d'Afrique, à faire aboutir leurs projets.",
     who: {
       eyebrow: "Qui sommes-nous ?",
       title: "Un groupe multisectoriel, un seul interlocuteur.",
@@ -1059,7 +1062,7 @@ export const fr = {
         { icon: "shield", title: "Fiabilité", text: "Nous tenons nos engagements : ce qui est convenu est réalisé." },
         { icon: "eye", title: "Transparence", text: "Des propositions claires, des contrats précis, une information régulière." },
         { icon: "award", title: "Qualité", text: "Des partenaires qualifiés et des prestations vérifiées à la réception." },
-        { icon: "heartHandshake", title: "Engagement local", text: "Nous travaillons avec les compétences et les entreprises du Haut-Katanga." },
+        { icon: "heartHandshake", title: "Engagement local", text: "Nous travaillons avec les compétences et les entreprises congolaises." },
       ],
     },
     model: {
@@ -1072,7 +1075,7 @@ export const fr = {
         { title: "Nos projets en développement", text: "Les services en préparation, annoncés comme tels, comme le nettoyage par drone." },
       ],
       steps: [
-        { label: "Aujourd'hui", title: "Une société opérationnelle", text: "Des prestations concrètes, réalisées à Lubumbashi et dans le Haut-Katanga à travers quatre pôles complémentaires." },
+        { label: "Aujourd'hui", title: "Une société opérationnelle", text: "Des prestations concrètes, réalisées en RDC à travers quatre pôles complémentaires." },
         { label: "Demain", title: "Un groupe", text: "Des activités qui se développent pas à pas, en RDC d'abord, puis vers d'autres pays africains." },
       ],
     },
@@ -1084,9 +1087,12 @@ export const fr = {
     },
     presence: {
       eyebrow: "Notre implantation",
-      title: "Basés à Lubumbashi, au cœur du Haut-Katanga.",
-      text: "Depuis Lubumbashi, nous intervenons dans le Haut-Katanga et sur l'axe minier Lubumbashi – Likasi – Kolwezi.",
-      places: [{ city: "Lubumbashi", region: "Haut-Katanga · RDC", role: "Base opérationnelle" }],
+      title: "Présents en RDC, tournés vers l'Afrique.",
+      text: "Nous intervenons dans toute la République démocratique du Congo et préparons notre développement vers d'autres pays africains.",
+      places: [
+        { city: "République démocratique du Congo", region: "Base opérationnelle : Lubumbashi", role: "Aujourd'hui" },
+        { city: "Afrique", region: "Développement progressif, pays par pays", role: "Demain" },
+      ],
     },
     commitment: {
       eyebrow: "Notre engagement professionnel",
@@ -1110,7 +1116,7 @@ export const fr = {
   contactPage: {
     metaTitle: "Contact",
     metaDescription:
-      "Contactez ATLAS AFRICA GROUP à Lubumbashi (Haut-Katanga, RDC) : demande de devis, formulaires spécialisés, WhatsApp, téléphone et e-mail.",
+      "Contactez ATLAS AFRICA GROUP, partout en RDC : demande de devis, formulaires spécialisés, WhatsApp, téléphone et e-mail.",
     eyebrow: "Contact",
     title: "Parlons de votre projet.",
     intro:
@@ -1162,7 +1168,7 @@ export const fr = {
     ],
     /** Libellés des champs complémentaires (affichés selon le service choisi). */
     fields: {
-      location: { label: "Ville ou site concerné", placeholder: "Ex. Lubumbashi, Kolwezi…" },
+      location: { label: "Ville ou site concerné", placeholder: "Ex. Kinshasa, Lubumbashi, Kolwezi…" },
       timeline: { label: "Échéance souhaitée", options: ["Dès que possible", "Sous un mois", "D'ici trois mois", "Plus tard"] },
       projectType: { label: "Nature du projet", placeholder: "Ex. implantation, site internet, étude…" },
       sector: {
@@ -1310,14 +1316,14 @@ export const fr = {
 
   /* ───────────── Pied de page ───────────── */
   footer: {
-    tagline: "Groupe multisectoriel basé à Lubumbashi. Vos ambitions, notre capacité d'action.",
+    tagline: "Groupe multisectoriel congolais, tourné vers l'Afrique. Vos ambitions, notre capacité d'action.",
     navTitle: "Navigation",
     polesTitle: "Nos expertises",
     offersTitle: "Nos offres",
     contactTitle: "Contact",
     legalTitle: "Informations légales",
     rights: "Tous droits réservés.",
-    location: "Lubumbashi, Haut-Katanga, RDC",
+    location: "République démocratique du Congo · Afrique",
   },
 
   /* ───────────── Page introuvable (404) ───────────── */

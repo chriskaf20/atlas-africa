@@ -40,9 +40,8 @@ export function JsonLd({ locale, content }: JsonLdProps) {
       longitude: geo.longitude,
     },
     areaServed: [
-      { "@type": "City", name: contact.locality },
-      { "@type": "AdministrativeArea", name: contact.region },
       { "@type": "Country", name: content.contactPage.country },
+      { "@type": "Continent", name: locale === "fr" ? "Afrique" : "Africa" },
     ],
     knowsLanguage: locale,
     contactPoint: {
