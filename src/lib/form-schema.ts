@@ -83,6 +83,7 @@ export const serviceFields: Record<string, ExtraFieldKey[]> = {
   "digital-communication": ["projectType", "timeline"],
   "offre-cle-en-main": ["projectType", "timeline"],
   "led-atlas": ["brand", "period", "objective"],
+  "atlas-tech": ["projectType", "timeline"],
   partenariat: ["organization", "partnershipType", "country"],
   autre: [],
 };

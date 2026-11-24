@@ -164,7 +164,7 @@ export function WorkSection({ locale, content }: SectionProps) {
             {content.common.allWork}
           </ButtonLink>
         </Reveal>
-        <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:mt-16">
+        <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:mt-16 lg:grid-cols-3">
           {content.caseStudies.map((study, index) => (
             <Reveal as="li" key={study.id} delay={index * 100}>
               <WorkCard study={study} locale={locale} content={content} />

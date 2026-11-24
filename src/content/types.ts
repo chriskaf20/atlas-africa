@@ -92,6 +92,8 @@ export type CaseStudy = {
   image: string | null;
   video: string | null;
   videoPoster: string | null;
+  /** Format de la vidéo : verticale (téléphone) ou horizontale (16:9). */
+  videoOrientation: "portrait" | "landscape";
   videoLabel: string;
   imageAlt: string;
   deliverablesTitle: string;

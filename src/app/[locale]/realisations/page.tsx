@@ -76,8 +76,11 @@ function CaseSection({ study, locale, content }: { study: CaseStudy; locale: Loc
               alt={study.videoLabel}
               title={study.name}
               caption={study.sector}
-              ratio="aspect-[9/16]"
-              className="mx-auto w-full max-w-[19rem] border border-line shadow-[0_30px_60px_-30px_rgb(6_18_46/0.45)]"
+              ratio={study.videoOrientation === "portrait" ? "aspect-[9/16]" : "aspect-video"}
+              className={cn(
+                "w-full border border-line shadow-[0_30px_60px_-30px_rgb(6_18_46/0.45)]",
+                study.videoOrientation === "portrait" && "mx-auto max-w-[19rem]",
+              )}
             />
           ) : (
             <Media

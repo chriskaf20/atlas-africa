@@ -148,7 +148,7 @@ export default async function ServicesPage({ params }: LocaleParams) {
           <Reveal>
             <SectionHeading {...page.offers} />
           </Reveal>
-          <ul className="mt-12 grid gap-5 md:grid-cols-3">
+          <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {offers.map((offer, index) => (
               <Reveal as="li" key={offer.id} delay={index * 100}>
                 <article className="group card card-hover relative flex h-full flex-col p-7">
